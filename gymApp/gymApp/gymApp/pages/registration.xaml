@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="gymApp.pages.registration"
+             BackgroundColor="#2196F3">
+    <Grid Margin="20,20,20,60">
+        <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  >
+            <Label VerticalOptions="Start" HorizontalOptions="Center" Text="registration"></Label>
+        </StackLayout>
+        <StackLayout Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" >
+            <Entry Margin="30,0,30,0" Placeholder="ENTER USERNAME" PlaceholderColor="WhiteSmoke" TextColor="White" />
+            <Entry Margin="30,0,30,0" Placeholder="ENTER EMAIL" PlaceholderColor="WhiteSmoke" TextColor="White" />
+
+            <Entry Margin="30,0,30,0"  Placeholder="ENTER PASSWORD" PlaceholderColor="WhiteSmoke" TextColor="White" IsPassword="True"/>
+        </StackLayout>
+
+
+        <StackLayout Grid.Row="4" Grid.ColumnSpan="2" >
+            <Button Text="SIGN IN" VerticalOptions="EndAndExpand" BackgroundColor="White" FontSize="25" TextColor="#008EFF"  FontAttributes="Bold"  />
+        </StackLayout>
+
+
+        <StackLayout Grid.Row="5" Grid.Column="0" Margin="0,0,50,0" >
+            <Button x:Name="login" Text="Sign in" Clicked="login_Clicked" BackgroundColor="Transparent"  TextColor="#E3F2FD"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
