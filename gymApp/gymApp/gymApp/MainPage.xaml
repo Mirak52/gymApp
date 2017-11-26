@@ -5,27 +5,27 @@
              x:Class="gymApp.MainPage"
              BackgroundColor="#2196F3">
     <Grid Margin="20,20,20,60">
-        <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  BackgroundColor="#008EFF" >
+        <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  >
             <!--<Image WidthRequest="30" HeightRequest="30" Source="http://brandmark.io/logo-rank/random/pepsi.png"/> -->
             </StackLayout>
-        <StackLayout Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2"  BackgroundColor="#008EFF" >
+        <StackLayout Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" >
             <Entry Margin="30,0,30,0" Placeholder="ENTER USERNAME" PlaceholderColor="Wheat" TextColor="White" />
 
             <Entry Margin="30,0,30,0" Placeholder="ENTER PASSWORD" PlaceholderColor="Wheat" TextColor="White" IsPassword="True"/>
         </StackLayout> 
 
 
-        <StackLayout Grid.Row="4" Grid.ColumnSpan="2" BackgroundColor="#008EFF">
+        <StackLayout Grid.Row="4" Grid.ColumnSpan="2" >
             <Button Text="SIGN IN" VerticalOptions="EndAndExpand" BackgroundColor="White" FontSize="25" TextColor="#008EFF"  FontAttributes="Bold"  />
         </StackLayout>
 
 
-        <StackLayout Grid.Row="5" Grid.Column="0" Margin="0,0,50,0"  BackgroundColor="#008EFF">
+        <StackLayout Grid.Row="5" Grid.Column="0" Margin="0,0,50,0" >
             <Button Text="Sign up" BackgroundColor="Transparent"  TextColor="#E3F2FD"/>
         </StackLayout>
 
 
-        <StackLayout Grid.Row="5" Grid.Column="1"  Margin="50,0,0,0"  BackgroundColor="#008EFF">
+        <StackLayout Grid.Row="5" Grid.Column="1"  Margin="50,0,0,0" >
             <Button Text="password?" BackgroundColor="Transparent" TextColor="#E3F2FD" />
         </StackLayout>
     </Grid>
