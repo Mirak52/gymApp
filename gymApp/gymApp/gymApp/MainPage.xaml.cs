@@ -16,8 +16,8 @@ namespace gymApp
 
         private void registration_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new pages.registration());
-
+            Navigation.PushModalAsync(new pages.registration(),false);
+           
         }
     }
 }

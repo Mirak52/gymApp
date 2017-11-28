@@ -18,7 +18,7 @@ namespace gymApp.pages
         }
         private void login_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new MainPage());
+            Navigation.PushModalAsync(new MainPage(),false);
         }
     }
 }
