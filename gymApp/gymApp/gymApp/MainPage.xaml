@@ -18,7 +18,7 @@
 
 
         <StackLayout Grid.Row="4" Grid.ColumnSpan="2" >
-            <Button x:Name="login" Text="SIGN IN" VerticalOptions="EndAndExpand" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold"  />
+            <Button x:Name="login" Text="SIGN IN" Clicked="login_Clicked"  VerticalOptions="EndAndExpand" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold"  />
         </StackLayout>
 
 

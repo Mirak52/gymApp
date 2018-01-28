@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="gymApp.pages.HiitPage"
+             BackgroundColor="Blue">
+    <ContentPage.Content>
+        <Grid Margin="20,20,20,20">
+            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5"  Grid.Row="0" BackgroundColor="DarkBlue"/>
+                <Label Text="PREP" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
+                <Label x:Name="prepTime" Grid.Column="2" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Grid.Row="0" Text="00:00" />
+                <Button x:Name="prepTimePlus" Grid.Column="3"  Grid.Row="0"  HeightRequest="25" Text="+" />
+                <Button x:Name="prepTimeMinus" Grid.Column="4"  Grid.Row="0"  Text="-"  />
+
+            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" BackgroundColor="DarkBlue"/>
+                <Label Text="WORK" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
+                <Label x:Name="workTime" Grid.Column="2" Grid.Row="1" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="00:00"/>
+                <Button x:Name="workTimePlus" Grid.Column="3" Grid.Row="1" Text="+"/>
+                <Button x:Name="workTimeMinus" Grid.Column="4" Grid.Row="1"  Text="-"/>
+
+            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" BackgroundColor="DarkBlue"/>
+            <Label  Text="REST" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
+            <Label x:Name="restTime" Grid.Column="2" Grid.Row="2" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Text="00:00"/>
+            <Button x:Name="restTimePlus" Grid.Column="3" Grid.Row="2" HeightRequest="25" Text="+" />
+            <Button x:Name="restTimeMinus" Grid.Column="4" Grid.Row="2" Text="-"  />
+
+            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="3" BackgroundColor="DarkBlue"/>
+                <Label  Text="ROUNDS" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
+                <Label x:Name="roundsTime" Grid.Column="2" Grid.Row="3" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Text="00:00"/>
+                <Button x:Name="roundsTimePlus"  Grid.Column="3" Grid.Row="3" Text="+"/>
+                <Button x:Name="roundsTimeMinus"  Grid.Column="4" Grid.Row="3" Text="-"/>
+
+            <StackLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="7" BackgroundColor="Red">
+                
+            </StackLayout>
+            </Grid>
+       
+    </ContentPage.Content>
+</ContentPage>
