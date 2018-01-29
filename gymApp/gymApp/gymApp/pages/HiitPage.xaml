@@ -2,37 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="gymApp.pages.HiitPage"
-             BackgroundColor="Blue">
+             BackgroundColor="#2196F3">
     <ContentPage.Content>
         <Grid Margin="20,20,20,20">
-            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5"  Grid.Row="0" BackgroundColor="DarkBlue"/>
-                <Label Text="PREP" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
-                <Label x:Name="prepTime" Grid.Column="2" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Grid.Row="0" Text="00:00" />
-                <Button x:Name="prepTimePlus" Grid.Column="3"  Grid.Row="0"  HeightRequest="25" Text="+" />
-                <Button x:Name="prepTimeMinus" Grid.Column="4"  Grid.Row="0"  Text="-"  />
+            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5"  Grid.Row="0" BackgroundColor="#0D47A1"/>
+            <Label Text="PREP" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
+            <Label x:Name="prepTime" Grid.Column="2" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Grid.Row="0" Text="00:00" />
+            <Button x:Name="prepTimePlus" Grid.Column="4"  Grid.Row="0" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="0,5,8,5" HeightRequest="25" Text="+" Clicked="prepTimePlus_Clicked" />
+            <Button x:Name="prepTimeMinus" Grid.Column="3"  Grid.Row="0" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="8,5,0,5" HeightRequest="25" Text="-" Clicked="prepTimeMinus_Clicked" />
 
-            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" BackgroundColor="DarkBlue"/>
-                <Label Text="WORK" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
-                <Label x:Name="workTime" Grid.Column="2" Grid.Row="1" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="00:00"/>
-                <Button x:Name="workTimePlus" Grid.Column="3" Grid.Row="1" Text="+"/>
-                <Button x:Name="workTimeMinus" Grid.Column="4" Grid.Row="1"  Text="-"/>
+            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" BackgroundColor="#0D47A1"/>
+            <Label Text="WORK" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
+            <Label x:Name="workTime" Grid.Column="2" Grid.Row="1" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="00:00"/>
+            <Button x:Name="workTimePlus" Grid.Column="4" Grid.Row="1" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="0,5,8,5" HeightRequest="25" Text="+" Clicked="workTimePlus_Clicked" />
+            <Button x:Name="workTimeMinus" Grid.Column="3" Grid.Row="1" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="8,5,0,5" HeightRequest="25" Text="-" Clicked="workTimeMinus_Clicked"/>
 
-            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" BackgroundColor="DarkBlue"/>
+            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" BackgroundColor="#0D47A1"/>
             <Label  Text="REST" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
             <Label x:Name="restTime" Grid.Column="2" Grid.Row="2" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Text="00:00"/>
-            <Button x:Name="restTimePlus" Grid.Column="3" Grid.Row="2" HeightRequest="25" Text="+" />
-            <Button x:Name="restTimeMinus" Grid.Column="4" Grid.Row="2" Text="-"  />
+            <Button x:Name="restTimePlus" Grid.Column="4" Grid.Row="2" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="0,5,8,5" HeightRequest="25" Text="+" Clicked="restTimePlus_Clicked" />
+            <Button x:Name="restTimeMinus" Grid.Column="3" Grid.Row="2" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="8,5,0,5" HeightRequest="25" Text="-" Clicked="restTimeMinus_Clicked"  /> 
 
-            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="3" BackgroundColor="DarkBlue"/>
-                <Label  Text="ROUNDS" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
-                <Label x:Name="roundsTime" Grid.Column="2" Grid.Row="3" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Text="00:00"/>
-                <Button x:Name="roundsTimePlus"  Grid.Column="3" Grid.Row="3" Text="+"/>
-                <Button x:Name="roundsTimeMinus"  Grid.Column="4" Grid.Row="3" Text="-"/>
+            <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="3" BackgroundColor="#0D47A1"/>
+            <Label  Text="ROUNDS" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
+            <Label x:Name="roundsTime" Grid.Column="2" Grid.Row="3" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Text="0"/>
+            <Button x:Name="roundsTimePlus"  Grid.Column="4" Grid.Row="3" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="0,5,8,5" HeightRequest="25" Text="+" Clicked="roundsTimePlus_Clicked"/>
+            <Button x:Name="roundsTimeMinus"  Grid.Column="3" Grid.Row="3" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="8,5,0,5" HeightRequest="25" Text="-" Clicked="roundsTimeMinus_Clicked"/>
 
-            <StackLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="7" BackgroundColor="Red">
-                
-            </StackLayout>
-            </Grid>
+            <StackLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="5" />
+            <Label x:Name="timer" Text="00:00" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" FontSize="30" FontAttributes="Bold" TextColor="#0D47A1" VerticalTextAlignment="Center" />
+            <Button x:Name="startCounting" Text="START" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="8" FontSize="28" FontAttributes="Bold" Margin="-15,0,-15,0" BackgroundColor="#FFC82C" Clicked="startCounting_Clicked"/>
+        </Grid>
        
     </ContentPage.Content>
 </ContentPage>

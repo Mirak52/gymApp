@@ -1,4 +1,5 @@
-﻿using System;
+﻿using gymApp.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,14 +8,102 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace gymApp.pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class HiitPage : ContentPage
 	{
-		public HiitPage ()
+        public Hiit hiit = new Hiit();
+        public HiitPage ()
 		{
 			InitializeComponent ();
 		}
-	}
+        private void ShowTotalTime()
+        {
+            timer.Text = hiit.Prep.ToString();
+
+        }
+        private string ReturnTimeInFormat(int timeParameter)
+        {
+            int minute =0;
+            int second = 0;
+            string timeFormated;
+            minute = timeParameter / 60;
+            second= timeParameter - minute * 60;
+            timeFormated = TimeAdjustment(minute) + ":" + TimeAdjustment(second);
+            return timeFormated;
+        }
+        private string TimeAdjustment(int timeParameter)
+        {
+            string time;
+            if(timeParameter <= 5)
+            {
+                time = "0" + timeParameter.ToString();
+            }
+            else
+            {
+                time = timeParameter.ToString();
+            }
+            return time;
+        }
+        private void prepTimePlus_Clicked(object sender, EventArgs e)
+        {
+            hiit.Prep = hiit.Prep + 5;
+
+            prepTime.Text = ReturnTimeInFormat(hiit.Prep);
+            ShowTotalTime();
+        }
+        private void prepTimeMinus_Clicked(object sender, EventArgs e)
+        {
+            hiit.Prep = hiit.Prep - 5;
+            prepTime.Text = ReturnTimeInFormat(hiit.Prep);
+            ShowTotalTime();
+        }
+
+        private void workTimePlus_Clicked(object sender, EventArgs e)
+        {
+            hiit.Work = hiit.Work + 5;
+            workTime.Text = ReturnTimeInFormat(hiit.Work);
+            ShowTotalTime();
+        }
+
+        private void workTimeMinus_Clicked(object sender, EventArgs e)
+        {
+            hiit.Work = hiit.Work - 5;
+            workTime.Text = ReturnTimeInFormat(hiit.Work);
+            ShowTotalTime();
+        }
+
+        private void restTimePlus_Clicked(object sender, EventArgs e)
+        {
+            hiit.Rest = hiit.Rest + 5;
+            restTime.Text = ReturnTimeInFormat(hiit.Rest);
+            ShowTotalTime();
+        }
+
+        private void restTimeMinus_Clicked(object sender, EventArgs e)
+        {
+            hiit.Rest = hiit.Rest - 5;
+            restTime.Text = ReturnTimeInFormat(hiit.Rest);
+            ShowTotalTime();
+        }
+
+        private void roundsTimePlus_Clicked(object sender, EventArgs e)
+        {
+            hiit.Rounds = hiit.Rounds + 1;
+            ShowTotalTime();
+        }
+
+        private void roundsTimeMinus_Clicked(object sender, EventArgs e)
+        {
+            hiit.Rounds = hiit.Rounds - 1;
+            ShowTotalTime();
+        }
+
+        private void startCounting_Clicked(object sender, EventArgs e)
+        {
+            //spouštěč!
+        }
+    }
 }
