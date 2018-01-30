@@ -18,10 +18,16 @@ namespace gymApp.pages
         public HiitPage ()
 		{
 			InitializeComponent ();
+            hiit.Rounds = 1;
 		}
         private void ShowTotalTime()
         {
-            timer.Text = hiit.Prep.ToString();
+            int totalTime = 0;
+            if(hiit.Work != 0 && hiit.Rest != 0) {
+                totalTime = (hiit.Work + hiit.Rest) * hiit.Rounds - hiit.Rest + hiit.Prep;
+            }
+            hiit.totalTime = totalTime;
+            timer.Text = ReturnTimeInFormat(totalTime); 
 
         }
         private string ReturnTimeInFormat(int timeParameter)
@@ -32,6 +38,10 @@ namespace gymApp.pages
             minute = timeParameter / 60;
             second= timeParameter - minute * 60;
             timeFormated = TimeAdjustment(minute) + ":" + TimeAdjustment(second);
+            if(timeParameter != hiit.totalTime)
+            {
+                ShowTotalTime();
+            }
             return timeFormated;
         }
         private string TimeAdjustment(int timeParameter)
@@ -47,57 +57,71 @@ namespace gymApp.pages
             }
             return time;
         }
+        private void VisibilityButton(Button buttonName, int timeParameter)
+        {
+            if(timeParameter <= 1)
+            {
+                buttonName.IsVisible = false;
+            }
+            else
+            {
+                buttonName.IsVisible = true;
+            }
+        }
         private void prepTimePlus_Clicked(object sender, EventArgs e)
         {
             hiit.Prep = hiit.Prep + 5;
-
             prepTime.Text = ReturnTimeInFormat(hiit.Prep);
-            ShowTotalTime();
+            VisibilityButton(prepTimeMinus,hiit.Prep);
         }
         private void prepTimeMinus_Clicked(object sender, EventArgs e)
         {
             hiit.Prep = hiit.Prep - 5;
             prepTime.Text = ReturnTimeInFormat(hiit.Prep);
-            ShowTotalTime();
+            VisibilityButton(prepTimeMinus, hiit.Prep);
         }
 
         private void workTimePlus_Clicked(object sender, EventArgs e)
         {
             hiit.Work = hiit.Work + 5;
             workTime.Text = ReturnTimeInFormat(hiit.Work);
-            ShowTotalTime();
+            VisibilityButton(workTimeMinus, hiit.Work);
         }
 
         private void workTimeMinus_Clicked(object sender, EventArgs e)
         {
             hiit.Work = hiit.Work - 5;
             workTime.Text = ReturnTimeInFormat(hiit.Work);
-            ShowTotalTime();
+            VisibilityButton(workTimeMinus, hiit.Work);
         }
 
         private void restTimePlus_Clicked(object sender, EventArgs e)
         {
             hiit.Rest = hiit.Rest + 5;
             restTime.Text = ReturnTimeInFormat(hiit.Rest);
-            ShowTotalTime();
+            VisibilityButton(restTimeMinus, hiit.Rest);
         }
 
         private void restTimeMinus_Clicked(object sender, EventArgs e)
         {
             hiit.Rest = hiit.Rest - 5;
             restTime.Text = ReturnTimeInFormat(hiit.Rest);
-            ShowTotalTime();
+            VisibilityButton(restTimeMinus, hiit.Rest);
         }
 
         private void roundsTimePlus_Clicked(object sender, EventArgs e)
         {
             hiit.Rounds = hiit.Rounds + 1;
+            roundsTime.Text = hiit.Rounds.ToString();
+            VisibilityButton(roundsTimeMinus, hiit.Rounds);
             ShowTotalTime();
         }
 
         private void roundsTimeMinus_Clicked(object sender, EventArgs e)
         {
             hiit.Rounds = hiit.Rounds - 1;
+            roundsTime.Text = hiit.Rounds.ToString();
+            VisibilityButton(roundsTimeMinus, hiit.Rounds);
             ShowTotalTime();
         }
 
