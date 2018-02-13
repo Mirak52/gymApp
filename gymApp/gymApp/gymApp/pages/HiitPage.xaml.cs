@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 
 namespace gymApp.pages
 {
@@ -19,7 +18,13 @@ namespace gymApp.pages
 		{
 			InitializeComponent ();
             hiit.Rounds = 1;
-		}
+            
+           
+        }
+        
+        public static void StartTimer(TimeSpan interval, Func<bool> callback) { }
+        //xamarin timer, PCL version is not included
+
         private void ShowTotalTime()
         {
             int totalTime = 0;
@@ -30,6 +35,7 @@ namespace gymApp.pages
             timer.Text = ReturnTimeInFormat(totalTime); 
 
         }
+
         private string ReturnTimeInFormat(int timeParameter)
         {
             int minute =0;
@@ -44,6 +50,7 @@ namespace gymApp.pages
             }
             return timeFormated;
         }
+
         private string TimeAdjustment(int timeParameter)
         {
             string time;
@@ -57,6 +64,7 @@ namespace gymApp.pages
             }
             return time;
         }
+
         private void VisibilityButton(Button buttonName, int timeParameter)
         {
             if(timeParameter <= 1)
@@ -68,6 +76,7 @@ namespace gymApp.pages
                 buttonName.IsVisible = true;
             }
         }
+
         private void prepTimePlus_Clicked(object sender, EventArgs e)
         {
             hiit.Prep = hiit.Prep + 5;
@@ -87,7 +96,6 @@ namespace gymApp.pages
             workTime.Text = ReturnTimeInFormat(hiit.Work);
             VisibilityButton(workTimeMinus, hiit.Work);
         }
-
         private void workTimeMinus_Clicked(object sender, EventArgs e)
         {
             hiit.Work = hiit.Work - 5;
@@ -101,7 +109,6 @@ namespace gymApp.pages
             restTime.Text = ReturnTimeInFormat(hiit.Rest);
             VisibilityButton(restTimeMinus, hiit.Rest);
         }
-
         private void restTimeMinus_Clicked(object sender, EventArgs e)
         {
             hiit.Rest = hiit.Rest - 5;
@@ -116,7 +123,6 @@ namespace gymApp.pages
             VisibilityButton(roundsTimeMinus, hiit.Rounds);
             ShowTotalTime();
         }
-
         private void roundsTimeMinus_Clicked(object sender, EventArgs e)
         {
             hiit.Rounds = hiit.Rounds - 1;
@@ -127,7 +133,20 @@ namespace gymApp.pages
 
         private void startCounting_Clicked(object sender, EventArgs e)
         {
-            //spouštěč!
+            int number = 0;
+            Device.StartTimer(TimeSpan.FromSeconds(1), () => {
+                number++;
+                if (number <= hiit.totalTime)
+                {
+
+
+                    timer.Text = number.ToString();
+                    return true; //continue
+                }
+                return false; //not continue
+            });
+            
         }
+
     }
 }
