@@ -14,12 +14,10 @@ namespace gymApp.pages
 	public partial class HiitPage : ContentPage
 	{
         public Hiit hiit = new Hiit();
+        public bool timerStatus;
         public HiitPage ()
 		{
-			InitializeComponent ();
-            hiit.Rounds = 1;
-            
-           
+			InitializeComponent();
         }
         
         public static void StartTimer(TimeSpan interval, Func<bool> callback) { }
@@ -54,7 +52,7 @@ namespace gymApp.pages
         private string TimeAdjustment(int timeParameter)
         {
             string time;
-            if(timeParameter <= 5)
+            if(timeParameter <= 9)
             {
                 time = "0" + timeParameter.ToString();
             }
@@ -133,20 +131,32 @@ namespace gymApp.pages
 
         private void startCounting_Clicked(object sender, EventArgs e)
         {
+            gridSettup.IsVisible = false;
+            gridCountdown.IsVisible = true;
+            timerStatus = true;
+            countDown.Text = ReturnTimeInFormat(hiit.totalTime);
+            startCountdown();
+        }
+        private void startCountdown()
+        {
             int number = 0;
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 number++;
                 if (number <= hiit.totalTime)
                 {
-
-
-                    timer.Text = number.ToString();
-                    return true; //continue
+                    countDown.Text = ReturnTimeInFormat(hiit.totalTime-number);
+                    return timerStatus; //continue
                 }
-                return false; //not continue
+                timerStatus = false;
+                return timerStatus; //not continue
             });
-            
         }
 
+        private void cancelCouting_Clicked(object sender, EventArgs e)
+        {
+            gridSettup.IsVisible = true;
+            gridCountdown.IsVisible = false;
+            timerStatus = false; //stop counting
+        }
     }
 }

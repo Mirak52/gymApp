@@ -11,7 +11,7 @@ namespace gymApp.classes
         public int Prep { get; set; }
         public int Work { get; set; }
         public int Rest { get; set; }
-        public int Rounds { get; set; }
+        public int Rounds { get; set; } = 1;
         public int totalTime { get; set; }
     }
 }
