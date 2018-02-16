@@ -35,7 +35,7 @@
                 <Button x:Name="startCounting" Text="START" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="8" FontSize="28" FontAttributes="Bold" Margin="-15,0,-15,0" BackgroundColor="#FFC82C" Clicked="startCounting_Clicked"/>
             </Grid>
             <Grid x:Name="gridCountdown" Margin="10,10,10,10" IsVisible="False">
-                <Label x:Name="action" Grid.Column="0" Grid.Row="2" FontAttributes="Bold" TextColor="#0D47A1" Text="REST" FontSize="40"  HorizontalOptions="Center"/>
+                <Label x:Name="action" Grid.Column="0" Grid.Row="2" FontAttributes="Bold" TextColor="#0D47A1" Text="PREP" FontSize="40"  HorizontalOptions="Center"/>
                 <Label x:Name="countDown" Grid.Column="0" Grid.Row="3" Grid.RowSpan="1" VerticalTextAlignment="Center"  Text="00:00" TextColor="#0D47A1" FontSize="40" HorizontalOptions="Center"/>
                 <Button x:Name="cancelCouting" Clicked="cancelCouting_Clicked" Grid.Column="0" Grid.Row="5" TextColor="White" Text="CANCEL" FontSize="27" FontAttributes="Bold" BackgroundColor="#FFC82C"/>
             </Grid>

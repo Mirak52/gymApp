@@ -15,6 +15,7 @@ namespace gymApp.pages
 	{
         public Hiit hiit = new Hiit();
         public bool timerStatus;
+        public int actionTime = 0;
         public HiitPage ()
 		{
 			InitializeComponent();
@@ -139,17 +140,43 @@ namespace gymApp.pages
         }
         private void startCountdown()
         {
-            int number = 0;
+            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            player.Load("hallOfFame.mp3");
+            player.Play();
+            int actualTime = 0;
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
-                number++;
-                if (number <= hiit.totalTime)
+                actualTime++;
+                
+                if (actualTime <= hiit.totalTime)
                 {
-                    countDown.Text = ReturnTimeInFormat(hiit.totalTime-number);
+                    if(hiit.Prep <= actualTime){
+                        actionTime++;
+                        action.Text = SetActualText();
+                    }
+                    countDown.Text = ReturnTimeInFormat(hiit.totalTime - actualTime);
                     return timerStatus; //continue
                 }
                 timerStatus = false;
+                action.Text = "FINISHED";
                 return timerStatus; //not continue
             });
+        }
+
+        private string SetActualText()
+        {
+            if(actionTime <= hiit.Work)
+            {
+                return "WORK";
+            }
+            else if(actionTime < hiit.Work + hiit.Rest)
+            {
+                return "REST";
+            }
+            else {
+                actionTime = 0;
+                return "REST";
+              
+            }
         }
 
         private void cancelCouting_Clicked(object sender, EventArgs e)
