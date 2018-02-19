@@ -140,9 +140,9 @@ namespace gymApp.pages
         }
         private void startCountdown()
         {
-            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+           /* var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
             player.Load("hallOfFame.mp3");
-            player.Play();
+            player.Play();*/
             int actualTime = 0;
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 actualTime++;
@@ -161,7 +161,7 @@ namespace gymApp.pages
                 return timerStatus; //not continue
             });
         }
-
+        
         private string SetActualText()
         {
             if(actionTime <= hiit.Work)
@@ -175,7 +175,6 @@ namespace gymApp.pages
             else {
                 actionTime = 0;
                 return "REST";
-              
             }
         }
 
@@ -183,6 +182,7 @@ namespace gymApp.pages
         {
             gridSettup.IsVisible = true;
             gridCountdown.IsVisible = false;
+            action.Text = "PREP";
             timerStatus = false; //stop counting
         }
     }
