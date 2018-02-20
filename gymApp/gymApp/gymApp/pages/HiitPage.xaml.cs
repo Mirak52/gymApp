@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.SimpleAudioPlayer.Abstractions;
+using System.Reflection;
+using System.IO;
 
 namespace gymApp.pages
 {
@@ -140,8 +143,10 @@ namespace gymApp.pages
         }
         private void startCountdown()
         {
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            Stream audioStream = assembly.GetManifestResourceStream("hallOfFame.mp3");
             var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-            player.Load("hallOfFame.mp3");
+            player.Load(audioStream);
             player.Play();
             int actualTime = 0;
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
