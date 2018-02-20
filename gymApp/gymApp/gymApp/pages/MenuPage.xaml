@@ -19,7 +19,17 @@
     </ContentPage>
     <ContentPage Title="EXCERCISE" >
         <ContentPage.Content>
-            <Label Text="Welcome to bla bla"/>
+            <Grid Margin="10,10,10,10">
+                <RelativeLayout Grid.Column="0" Grid.Row="0" BackgroundColor="#0D47A1"/>
+                <Entry  Grid.Column="0" Grid.Row="0" x:Name="exerciseSearch" Placeholder="Type excercise name" TextChanged="exerciseSearch_TextChanged" TextColor="White" FontAttributes="Bold" PlaceholderColor="White" />
+                
+                <RelativeLayout Grid.Column="0" Grid.Row="2" Grid.RowSpan="8" BackgroundColor="#0D47A1"/>
+                <ScrollView Grid.Column="0" Grid.Row="2" Grid.RowSpan="8" BackgroundColor="Red">
+                    <StackLayout>
+                        
+                    </StackLayout>  
+                </ScrollView>
+            </Grid>
         </ContentPage.Content>
     </ContentPage>
 </TabbedPage>

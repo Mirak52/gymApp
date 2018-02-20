@@ -21,5 +21,10 @@ namespace gymApp.pages
         {
             Navigation.PushModalAsync(new HiitPage(), false);
         }
+        //https://developer.xamarin.com/guides/xamarin-forms/user-interface/listview/customizing-list-appearance/
+        private void exerciseSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            exerciseSearch.TextColor= Xamarin.Forms.Color.Red;
+        }
     }
 }
