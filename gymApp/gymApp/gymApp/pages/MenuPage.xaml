@@ -24,10 +24,11 @@
                 <Entry  Grid.Column="0" Grid.Row="0" x:Name="exerciseSearch" Placeholder="Type excercise name" TextChanged="exerciseSearch_TextChanged" TextColor="White" FontAttributes="Bold" PlaceholderColor="White" />
                 
                 <RelativeLayout Grid.Column="0" Grid.Row="2" Grid.RowSpan="8" BackgroundColor="#0D47A1"/>
-                <ScrollView Grid.Column="0" Grid.Row="2" Grid.RowSpan="8" BackgroundColor="Red">
+                <ScrollView Grid.Column="0" Grid.Row="2" Grid.RowSpan="8" BackgroundColor="Green">
                     <StackLayout>
-                        
-                    </StackLayout>  
+                        <ListView x:Name="listview"/>
+                    </StackLayout>
+                    <Label x:Name="Test" TextColor="Red"/>
                 </ScrollView>
             </Grid>
         </ContentPage.Content>

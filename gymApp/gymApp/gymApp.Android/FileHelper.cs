@@ -12,7 +12,7 @@ using Android.Widget;
 using gymApp.Droid;
 using Xamarin.Forms;
 using System.IO;
-
+[assembly: Dependency(typeof(FileHelper))]
 namespace gymApp.Droid
 {
     public class FileHelper : IFileHelper

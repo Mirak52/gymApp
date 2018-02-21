@@ -1,4 +1,5 @@
-﻿using System;
+﻿using gymApp.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,31 @@ namespace gymApp
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+        
+        private static ExcerciseDatabase _databaseEx;
+        public static ExcerciseDatabase DatabaseExcercise
+        {
+            get
+            {
+                if (_databaseEx == null)
+                {
+                    _databaseEx = new ExcerciseDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseEx;
+            }
+        }
+        private static UpdaterDatabase _databaseUp;
+        public static UpdaterDatabase DatabaseUpdater
+        {
+            get
+            {
+                if (_databaseUp == null)
+                {
+                    _databaseUp = new UpdaterDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseUp;
+            }
         }
     }
 }
