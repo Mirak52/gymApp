@@ -25,7 +25,7 @@ namespace gymApp.pages
         public MenuPage ()
         {
             InitializeComponent();
-            CheckUpdates();
+            CheckUpdater();
 
 
             var url = "https://student.sps-prosek.cz/~bastlma14/gymApp/item.php";
@@ -55,7 +55,7 @@ namespace gymApp.pages
 
         }
         public DateTime date;
-        private void CheckUpdates()
+        private void CheckUpdater()
         {
             
             var updater = App.DatabaseUpdater.Select().Result;
@@ -63,7 +63,7 @@ namespace gymApp.pages
             {
                 DateTime Today = DateTime.Today;
                 App.DatabaseUpdater.insertToday(Today.ToString());
-                SaveExcercises();
+                saveExcercises();
                 exerciseSearch.BackgroundColor = Color.Blue;
 
             }
@@ -71,11 +71,11 @@ namespace gymApp.pages
                 foreach (var data in updater)
                 {
                     DateTime updatedDay = DateTime.Parse(data.lastUpdate);
-                    Test.Text = updatedDay.AddDays(5).ToString();
+                    Test.Text = date.AddDays(5).ToString();
                     DateTime test = date.AddDays(5);
-                    if (DateTime.Today <= updatedDay.AddDays(5))
+                    if (updatedDay.AddDays(5) <= DateTime.Today)
                     {
-                        SaveExcercises();
+                        saveExcercises();
                         exerciseSearch.BackgroundColor = Color.HotPink;
                     }
                     else
@@ -85,26 +85,21 @@ namespace gymApp.pages
                 }
             }
         }
-        private void SaveExcercises()
+        private void saveExcercises()
         {
             var jsonInput = "";
 
             Task task = new Task(() => {
-                jsonInput = GetExcerciseContent().Result;
+                jsonInput = AccessTheWebAsync().Result;
             });
             task.Start();
             task.Wait();
+
             var convertLocal = JsonConvert.DeserializeObject<List<Excercise>>(jsonInput);
             foreach (var Exercise in convertLocal)
             {
                 App.DatabaseExcercise.SaveItemAsync(Exercise);
             }
-            UpdateTimeInUpdater();
-        }
-        private void UpdateTimeInUpdater()
-        {
-            DateTime Today = DateTime.Today;
-            App.DatabaseUpdater.insertToday(Today.ToString());
         }
         private void Hiit_Clicked(object sender, EventArgs e)
         {
@@ -114,13 +109,16 @@ namespace gymApp.pages
         private void exerciseSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             exerciseSearch.BackgroundColor = Color.Aqua;
+
         }
-        async Task<string> GetExcerciseContent()
+        async Task<string> AccessTheWebAsync()
         {
             HttpClient client = new HttpClient();
             Task<string> getStringTask = client.GetStringAsync("https://student.sps-prosek.cz/~bastlma14/gymApp/item.php");
+
             string urlContents = await getStringTask;
             return urlContents;
         }
+
     }
 }
