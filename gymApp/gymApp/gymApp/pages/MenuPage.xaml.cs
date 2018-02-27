@@ -115,7 +115,6 @@ namespace gymApp.pages
         {
             HttpClient client = new HttpClient();
             Task<string> getStringTask = client.GetStringAsync("https://student.sps-prosek.cz/~bastlma14/gymApp/item.php");
-
             string urlContents = await getStringTask;
             return urlContents;
         }
