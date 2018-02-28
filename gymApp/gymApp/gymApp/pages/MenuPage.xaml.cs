@@ -8,6 +8,7 @@ using RestSharp.Portable.HttpClient.Impl;
 using RestSharp.Portable.WebRequest.Impl;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -26,8 +27,8 @@ namespace gymApp.pages
         {
             InitializeComponent();
             CheckUpdater();
-
-
+            ShowExcercises();
+            EmployeeListPage();
             var url = "https://student.sps-prosek.cz/~bastlma14/gymApp/item.php";
             var jsonInput = "";
             /*
@@ -52,6 +53,7 @@ namespace gymApp.pages
             }
             listview.ItemsSource = excercise;
             */
+            
 
         }
         public DateTime date;
@@ -71,7 +73,7 @@ namespace gymApp.pages
                 foreach (var data in updater)
                 {
                     DateTime updatedDay = DateTime.Parse(data.lastUpdate);
-                    Test.Text = date.AddDays(5).ToString();
+                    Test.Text = updatedDay.AddDays(5).ToString();
                     DateTime test = date.AddDays(5);
                     if (updatedDay.AddDays(5) <= DateTime.Today)
                     {
@@ -83,8 +85,53 @@ namespace gymApp.pages
                         exerciseSearch.BackgroundColor = Color.Yellow;
                     }
                 }
+            } 
+        }
+        public class Employee
+        {
+            public string DisplayName { get; set; }
+        }
+        ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
+        public void EmployeeListPage()
+        {
+            //defined in XAML to follow
+            
+           
+            employees.Add(new Employee { DisplayName = "Rob Finnerty" });
+            employees.Add(new Employee { DisplayName = "Bill Wrestler" });
+            employees.Add(new Employee { DisplayName = "Dr. Geri-Beth Hooper" });
+            employees.Add(new Employee { DisplayName = "Dr. Keith Joyce-Purdy" });
+            employees.Add(new Employee { DisplayName = "Sheri Spruce" });
+            employees.Add(new Employee { DisplayName = "Burt Indybrick" });
+            EmployeeView.ItemsSource = employees;
+        }
+        private void ShowExcercises()
+        {
+            
+        }
+        public class Person
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string DisplayName
+            {
+                get
+                {
+                    return $"{LastName}, {FirstName}";
+                }
             }
         }
+        private List<PersonList> _listOfPeople;
+        public List<PersonList> ListOfPeople { get { return _listOfPeople; } set { _listOfPeople = value; base.OnPropertyChanged(); } }
+
+
+        public class PersonList : List<Person>
+        {
+            public string Heading { get; set; }
+            public List<Person> Persons => this;
+        }
+
+
         private void saveExcercises()
         {
             var jsonInput = "";
@@ -118,6 +165,5 @@ namespace gymApp.pages
             string urlContents = await getStringTask;
             return urlContents;
         }
-
     }
 }

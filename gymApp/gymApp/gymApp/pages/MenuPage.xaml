@@ -15,6 +15,13 @@
     </ContentPage>
     <ContentPage Title="TRAINING" >
         <ContentPage.Content>
+            <ListView x:Name="EmployeeView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding DisplayName}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </ContentPage.Content>
     </ContentPage>
     <ContentPage Title="EXCERCISE" >
@@ -25,9 +32,7 @@
                 
                 <RelativeLayout Grid.Column="0" Grid.Row="2" Grid.RowSpan="8" BackgroundColor="#0D47A1"/>
                 <ScrollView Grid.Column="0" Grid.Row="2" Grid.RowSpan="8" BackgroundColor="Green">
-                    <StackLayout>
-                        <ListView x:Name="listview"/>
-                    </StackLayout>
+                    
                     <Label x:Name="Test" TextColor="Red"/>
                 </ScrollView>
             </Grid>
