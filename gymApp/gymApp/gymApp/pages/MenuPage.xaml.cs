@@ -94,16 +94,35 @@ namespace gymApp.pages
         ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
         public void EmployeeListPage()
         {
-            //defined in XAML to follow
+            var sList = new PersonList()
+                {
+                    new Person() { FirstName = "Sally", LastName = "Sampson" },
+                    new Person() { FirstName = "Taylor", LastName = "Swift" },
+                    new Person() { FirstName = "John", LastName = "Smith" }
+                };
+                        sList.Heading = "S";
+
+                        var dList = new PersonList()
+                {
+                    new Person() { FirstName = "Jane", LastName = "Doe" }
+                };
+                        dList.Heading = "D";
+
+                        var jList = new PersonList()
+                {
+                    new Person() { FirstName = "Billy", LastName = "Joel" }
+                };
+                        jList.Heading = "J";
+
+                        var list = new List<PersonList>()
+                {
+                    sList,
+                    dList,
+                    jList
+                };
+
             
-           
-            employees.Add(new Employee { DisplayName = "Rob Finnerty" });
-            employees.Add(new Employee { DisplayName = "Bill Wrestler" });
-            employees.Add(new Employee { DisplayName = "Dr. Geri-Beth Hooper" });
-            employees.Add(new Employee { DisplayName = "Dr. Keith Joyce-Purdy" });
-            employees.Add(new Employee { DisplayName = "Sheri Spruce" });
-            employees.Add(new Employee { DisplayName = "Burt Indybrick" });
-            EmployeeView.ItemsSource = employees;
+            EmployeeView.ItemsSource = list;
         }
         private void ShowExcercises()
         {
