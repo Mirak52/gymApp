@@ -6,16 +6,16 @@
     <ContentPage.Content>
         <Grid Margin="10,10,10,10">
             <Button Grid.Column="0" Grid.Row="0" x:Name="GoToLeft" Clicked="GoToLeft_Clicked" />
-            <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" x:Name="NameExcercise" VerticalTextAlignment="Center" FontSize="Large" HorizontalTextAlignment="Center" Text="Ahoj"/>
+            <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" x:Name="NameExcercise" VerticalTextAlignment="Center" FontSize="Large" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="Ahoj"/>
             <Button Grid.Column="4" Grid.Row="0" x:Name="GoToRight" Clicked="GoToRight_Clicked" />
 
-            <StackLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="3" BackgroundColor="Red">
-                <Label Text="Popis" HorizontalTextAlignment="Center" FontSize="Medium" />
-                <Label x:Name="DescriptionText"/>
+            <StackLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="3" BackgroundColor="#0D47A1">
+                <Label Text="Popis" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="White" FontAttributes="Bold" />
+                <Label x:Name="DescriptionText" FontSize="Micro" TextColor="White"/>
             </StackLayout>
-            <StackLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="3" BackgroundColor="Green">
-                <Label Text="Tipy" HorizontalTextAlignment="Center" FontSize="Medium" />
-                <Label x:Name="TipsText"/>
+            <StackLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="3" BackgroundColor="#0D47A1">
+                <Label Text="Tipy" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="White" FontAttributes="Bold" />
+                <Label x:Name="TipsText" FontSize="Micro" TextColor="White" />
 
             </StackLayout>
         </Grid>
