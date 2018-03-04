@@ -56,5 +56,17 @@ namespace gymApp
                 return _databaseUp;
             }
         }
+        private static ExcerciseRegionDatabase _databaseReg;
+        public static ExcerciseRegionDatabase DatabaseRegions
+        {
+            get
+            {
+                if (_databaseReg == null)
+                {
+                    _databaseReg = new ExcerciseRegionDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseReg;
+            }
+        }
     }
 }

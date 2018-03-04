@@ -15,22 +15,31 @@ namespace gymApp.classes
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<Excercise>().Wait();
         }
-        public Task<List<Excercise>> QueryCustom()
+        public Task<List<Excercise>> SelectExcercise()
         {
             return database.QueryAsync<Excercise>("select * FROM [Excercise]");
         }
-        // Query
-        public Task<List<Excercise>> GetItemsAsync()
+        public Task<List<Excercise>> SelectExcerciseByParameter(string parameter)
         {
-            return database.Table<Excercise>().ToListAsync();
+            return database.QueryAsync<Excercise>("select * FROM [Excercise] where Name LIKE '%" + parameter + "%'");
         }
-
-        // Query using SQL query string
-        public Task<List<Excercise>> GetItemsNotDoneAsync()
+        public Task<List<Excercise>> SelectByName(string parameter)
         {
-            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Done] = 0");
+            return database.QueryAsync<Excercise>("select ID_excercise FROM [Excercise] where Name ='" + parameter + "'");
         }
-
+        // Query SELECT  * FROM gym_excercise ORDER BY ID_excercise DESC LIMIT 1
+        public Task<List<Excercise>> SelectDetailedExcercise(int ID)
+        {
+            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [ID_excercise] = " + ID);
+        }
+        public Task<List<Excercise>> GetLastID()
+        {
+            return database.QueryAsync<Excercise>("SELECT ID_excercise FROM [Excercise] ORDER BY [ID_excercise] DESC LIMIT 1");
+        }
+        public Task<List<Excercise>> SelectExcerciseByRegion(int region)
+        {
+            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = "+region);
+        }
         // Query using LINQ <3
         public Task<Excercise> GetItemAsync(int id)
         {

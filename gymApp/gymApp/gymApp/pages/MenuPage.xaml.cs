@@ -1,18 +1,13 @@
 ﻿using gymApp.classes;
 using Newtonsoft.Json;
-using RestSharp.Portable;
-using RestSharp.Portable.Authenticators;
-using RestSharp.Portable.HttpClient;
-using RestSharp.Portable.HttpClient.Impl;
 
-using RestSharp.Portable.WebRequest.Impl;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+
 using System.Linq;
 using System.Net.Http;
-using System.Text;
+
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -27,39 +22,14 @@ namespace gymApp.pages
         {
             InitializeComponent();
             CheckUpdater();
+            var data = App.DatabaseRegions.SelectRegions().Result;
+            var datad = App.DatabaseExcercise.SelectExcercise().Result;
             ShowExcercises();
-            EmployeeListPage();
-            var url = "https://student.sps-prosek.cz/~bastlma14/gymApp/item.php";
-            var jsonInput = "";
-            /*
-            Task task = new Task(() => {
-                jsonInput = AccessTheWebAsync(url).Result;
-            });
-            task.Start();
-            task.Wait();
-
             
-       
-            var convertLocal = JsonConvert.DeserializeObject<List<Excercise>>(jsonInput);
-            foreach(var Exercise in convertLocal)
-            {
-                //App.DatabaseExcercise.SaveItemAsync(Exercise);
-            }
-            
-            var exercises = App.DatabaseExcercise.QueryCustom().Result;
-            List<Excercise> excercise = new List<Excercise>();
-            foreach (var exercise in exercises) {
-                excercise.Add(new Excercise() { Name = exercise.Name, Region = exercise.Region, Description = exercise.Description, Tip = exercise.Tip });
-            }
-            listview.ItemsSource = excercise;
-            */
-            
-
         }
         public DateTime date;
         private void CheckUpdater()
         {
-            
             var updater = App.DatabaseUpdater.Select().Result;
             if (!updater.Any())
             {
@@ -73,98 +43,88 @@ namespace gymApp.pages
                 foreach (var data in updater)
                 {
                     DateTime updatedDay = DateTime.Parse(data.lastUpdate);
-                    Test.Text = updatedDay.AddDays(5).ToString();
-                    DateTime test = date.AddDays(5);
                     if (updatedDay.AddDays(5) <= DateTime.Today)
                     {
                         saveExcercises();
-                        exerciseSearch.BackgroundColor = Color.HotPink;
-                    }
-                    else
-                    {
-                        exerciseSearch.BackgroundColor = Color.Yellow;
                     }
                 }
             } 
         }
-        public class Employee
-        {
-            public string DisplayName { get; set; }
-        }
-        ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
-        public void EmployeeListPage()
-        {
-            var sList = new PersonList()
-                {
-                    new Person() { FirstName = "Sally", LastName = "Sampson" },
-                    new Person() { FirstName = "Taylor", LastName = "Swift" },
-                    new Person() { FirstName = "John", LastName = "Smith" }
-                };
-                        sList.Heading = "S";
 
-                        var dList = new PersonList()
-                {
-                    new Person() { FirstName = "Jane", LastName = "Doe" }
-                };
-                        dList.Heading = "D";
-
-                        var jList = new PersonList()
-                {
-                    new Person() { FirstName = "Billy", LastName = "Joel" }
-                };
-                        jList.Heading = "J";
-
-                        var list = new List<PersonList>()
-                {
-                    sList,
-                    dList,
-                    jList
-                };
-
-            
-            EmployeeView.ItemsSource = list;
-        }
         private void ShowExcercises()
         {
-            
-        }
-        public class Person
-        {
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string DisplayName
+            var listView = new ListView
             {
-                get
+                IsGroupingEnabled = true,
+                GroupDisplayBinding = new Binding("FirstInitial"),
+                GroupShortNameBinding = new Binding("FirstInitial")
+            };
+
+            var template = new DataTemplate(typeof(TextCell));
+            template.SetBinding(TextCell.TextProperty, "Name");
+
+            EmployeeView.ItemTemplate = template;
+
+            List<Group> Groups = new List<Group>();
+            bool madeGroup = true;
+            int groupID=0;
+            int regionID =1;
+            var regions = App.DatabaseRegions.SelectRegions().Result;
+            foreach (var region in regions) {
+                var excercises = App.DatabaseExcercise.SelectExcerciseByRegion(regionID).Result;
+                foreach (var excercise in excercises)
                 {
-                    return $"{LastName}, {FirstName}";
+                    if (madeGroup)
+                    {
+                        Groups.Add(new Group(region.Region) { new Excercise { Name = excercise.Name } });
+                    }
+                    else
+                    {
+                        Groups[groupID].Add(new Excercise { Name = excercise.Name });
+                    }
+                    madeGroup = false;
                 }
+                madeGroup = true;
+                groupID++;
+                regionID++;
             }
-        }
-        private List<PersonList> _listOfPeople;
-        public List<PersonList> ListOfPeople { get { return _listOfPeople; } set { _listOfPeople = value; base.OnPropertyChanged(); } }
 
+            EmployeeView.ItemsSource = Groups;
 
-        public class PersonList : List<Person>
-        {
-            public string Heading { get; set; }
-            public List<Person> Persons => this;
         }
+       
 
 
         private void saveExcercises()
         {
-            var jsonInput = "";
-
+            var ExcercisesJson = "";
+            var RegionJson = "";
             Task task = new Task(() => {
-                jsonInput = AccessTheWebAsync().Result;
+                ExcercisesJson = GetExcerciseJson().Result;
+                RegionJson = GetRegionJson().Result;
             });
             task.Start();
             task.Wait();
 
-            var convertLocal = JsonConvert.DeserializeObject<List<Excercise>>(jsonInput);
-            foreach (var Exercise in convertLocal)
+            var convertedJsonExcercise = JsonConvert.DeserializeObject<List<Excercise>>(ExcercisesJson);
+            
+            foreach (var excercise in convertedJsonExcercise)
             {
-                App.DatabaseExcercise.SaveItemAsync(Exercise);
+                Excercise excerciseData = new Excercise();
+                //excerciseData.ID_excercise = excercise.ID_excercise;
+                excerciseData.Name = excercise.Name;
+                excerciseData.Region = excercise.Region;
+                excerciseData.Tip = excercise.Tip;
+                excerciseData.Description = excercise.Description;
+                App.DatabaseExcercise.SaveItemAsync(excerciseData);
+            }
+            var convertedJsonRegion = JsonConvert.DeserializeObject<List<ExcerciseRegion>>(RegionJson);
+            foreach (var Region in convertedJsonRegion)
+            {
+                ExcerciseRegion excerciseRegionData = new ExcerciseRegion();
+                //excerciseRegionData.ID_region = Region.ID_region;
+                excerciseRegionData.Region = Region.Region;
+                App.DatabaseRegions.SaveItemAsync(excerciseRegionData);
             }
         }
         private void Hiit_Clicked(object sender, EventArgs e)
@@ -174,15 +134,47 @@ namespace gymApp.pages
     
         private void exerciseSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            exerciseSearch.BackgroundColor = Color.Aqua;
-
+            if (string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                ShowExcercises();
+            }
+            else
+            {
+                searchAndShowExcercise(e.NewTextValue);
+            }
         }
-        async Task<string> AccessTheWebAsync()
+        
+        private void searchAndShowExcercise(string searchText)
+        {
+            if(searchText.Length > 2)
+            {
+                var data = App.DatabaseExcercise.SelectExcerciseByParameter(searchText).Result;
+                EmployeeView.IsGroupingEnabled = false;
+                EmployeeView.ItemsSource = "";
+                EmployeeView.ItemsSource = data;
+            }
+        }
+
+        async Task<string> GetExcerciseJson()
         {
             HttpClient client = new HttpClient();
-            Task<string> getStringTask = client.GetStringAsync("https://student.sps-prosek.cz/~bastlma14/gymApp/item.php");
+            Task<string> getStringTask = client.GetStringAsync("https://student.sps-prosek.cz/~bastlma14/gymApp/Excercises.php");
             string urlContents = await getStringTask;
             return urlContents;
+        }
+        async Task<string> GetRegionJson()
+        {
+            HttpClient client = new HttpClient();
+            Task<string> getStringTask = client.GetStringAsync("https://student.sps-prosek.cz/~bastlma14/gymApp/Excercises.php?action=1");
+            string urlContents = await getStringTask;
+            return urlContents;
+        }
+
+        private void EmployeeView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            dynamic selectedItem = EmployeeView.SelectedItem;
+            var excercise = App.DatabaseExcercise.SelectByName(selectedItem.Name).Result;
+            Navigation.PushModalAsync(new ExcerciseDetailPage(excercise[0].ID_excercise), false);
         }
     }
 }
