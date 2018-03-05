@@ -53,18 +53,8 @@ namespace gymApp.pages
 
         private void ShowExcercises()
         {
-            var listView = new ListView
-            {
-                IsGroupingEnabled = true,
-                GroupDisplayBinding = new Binding("FirstInitial"),
-                GroupShortNameBinding = new Binding("FirstInitial")
-            };
-
-            var template = new DataTemplate(typeof(TextCell));
-            template.SetBinding(TextCell.TextProperty, "Name");
-
-            EmployeeView.ItemTemplate = template;
-
+            EmployeeView.IsGroupingEnabled = true;
+          
             List<Group> Groups = new List<Group>();
             bool madeGroup = true;
             int groupID=0;
@@ -88,12 +78,9 @@ namespace gymApp.pages
                 groupID++;
                 regionID++;
             }
-
             EmployeeView.ItemsSource = Groups;
 
         }
-       
-
 
         private void saveExcercises()
         {
@@ -172,9 +159,11 @@ namespace gymApp.pages
 
         private void EmployeeView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            dynamic selectedItem = EmployeeView.SelectedItem;
-            var excercise = App.DatabaseExcercise.SelectByName(selectedItem.Name).Result;
-            Navigation.PushModalAsync(new ExcerciseDetailPage(excercise[0].ID_excercise), false);
+            if (EmployeeView.SelectedItem is Excercise selectedExcersise)
+            {
+                var excercise = App.DatabaseExcercise.SelectByName(selectedExcersise.Name).Result;
+                Navigation.PushModalAsync(new ExcerciseDetailPage(excercise[0].ID_excercise), false);
+            }
         }
     }
 }
