@@ -203,6 +203,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Assets\hallOfFame.mp3" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\arrowLeft.png" />
+    <AndroidResource Include="Resources\drawable\arrowRight.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

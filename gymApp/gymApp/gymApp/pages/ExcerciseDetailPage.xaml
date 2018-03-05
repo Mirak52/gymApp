@@ -5,9 +5,11 @@
              BackgroundColor="#2196F3">
     <ContentPage.Content>
         <Grid Margin="10,10,10,10">
-            <Button Grid.Column="0" Grid.Row="0" x:Name="GoToLeft" Clicked="GoToLeft_Clicked" />
+            <Image  Grid.Column="0" Grid.Row="0" Source="arrowLeft.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            <Button Grid.Column="0" Grid.Row="0" x:Name="GoToLeft" BackgroundColor="Transparent"  Clicked="GoToLeft_Clicked" HorizontalOptions="EndAndExpand" />
             <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" x:Name="NameExcercise" VerticalTextAlignment="Center" FontSize="Large" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="Ahoj"/>
-            <Button Grid.Column="4" Grid.Row="0" x:Name="GoToRight" Clicked="GoToRight_Clicked" />
+            <Image  Grid.Column="4" Grid.Row="0" Source="arrowRight.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            <Button Grid.Column="4" BackgroundColor="Transparent" Grid.Row="0" x:Name="GoToRight" Clicked="GoToRight_Clicked"/>
 
             <StackLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="3" BackgroundColor="#0D47A1">
                 <Label Text="Popis" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="White" FontAttributes="Bold" />
