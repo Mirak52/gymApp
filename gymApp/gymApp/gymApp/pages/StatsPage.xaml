@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="gymApp.pages.StatsPage">
+    <ContentPage.Content>
+        <Grid Margin="10,0,0,0">
+            <Label Text="Vlož údaj který chceš uložit" FontSize="Large" FontAttributes="Bold"/>
+            
+            <StackLayout Grid.Column="0" BackgroundColor="#0D47A1" Grid.Row="0" Grid.ColumnSpan="2">
+                <Label  Text="SLEDOVANÉ ÚDAJE" Margin="0,10,0,0" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  Grid.ColumnSpan="2" Margin="15,10,0,0" BackgroundColor="Transparent">
+                <Label/>
+                <Label/>
+                <Entry x:Name="WeightE" Placeholder="Vlož váhu"/>
+                <Entry x:Name="HeightE" Placeholder="Vlož výšku"/>
+                <Entry x:Name="WaistE" Placeholder="Vlož obvod pasu"/>
+                <Entry x:Name="ThighE" Placeholder="Vlož obvod stehna"/>
+                <Entry x:Name="BicepsE" Placeholder="Vlož obvod bicepsu"/>
+                <DatePicker x:Name="DateE"/>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

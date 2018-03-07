@@ -165,5 +165,15 @@ namespace gymApp.pages
                 Navigation.PushModalAsync(new ExcerciseDetailPage(excercise[0].ID_excercise), false);
             }
         }
+
+        private void Workout_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new WorkoutSelectionPage(), false);
+        }
+
+        private void AddStats_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new StatsPage(), false);
+        }
     }
 }

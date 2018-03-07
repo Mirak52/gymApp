@@ -44,6 +44,18 @@ namespace gymApp
                 return _databaseEx;
             }
         }
+        private static BodyStatsDatabase _databaseBS;
+        public static BodyStatsDatabase DatabaseBodyStats
+        {
+            get
+            {
+                if (_databaseBS == null)
+                {
+                    _databaseBS = new BodyStatsDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseBS;
+            }
+        }
         private static UpdaterDatabase _databaseUp;
         public static UpdaterDatabase DatabaseUpdater
         {
