@@ -4,12 +4,10 @@
              x:Class="gymApp.pages.StatsPage">
     <ContentPage.Content>
         <Grid Margin="10,0,0,0">
-            <Label Text="Vlož údaj který chceš uložit" FontSize="Large" FontAttributes="Bold"/>
-            
-            <StackLayout Grid.Column="0" BackgroundColor="#0D47A1" Grid.Row="0" Grid.ColumnSpan="2">
-                <Label  Text="SLEDOVANÉ ÚDAJE" Margin="0,10,0,0" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                <Label  Text="SLEDOVANÉ ÚDAJE" Margin="0,20,10,0" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
             </StackLayout>
-            <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  Grid.ColumnSpan="2" Margin="15,10,0,0" BackgroundColor="Transparent">
+            <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  Grid.ColumnSpan="2" Margin="15,10,15,0" BackgroundColor="Transparent">
                 <Label/>
                 <Label/>
                 <Entry x:Name="WeightE" Placeholder="Vlož váhu"/>
