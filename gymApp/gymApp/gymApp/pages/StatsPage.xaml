@@ -1,22 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="gymApp.pages.StatsPage">
+             x:Class="gymApp.pages.StatsPage"
+             BackgroundColor="#2196F3">
     <ContentPage.Content>
-        <Grid Margin="10,0,0,0">
-            <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+        <Grid Margin="10,0,0,0" >
+            <StackLayout Grid.Column="0" Grid.Row="0" >
+                <Label/>
+                <Picker x:Name="Picker" TextColor="White" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center"  WidthRequest="200"  VerticalOptions="Center" SelectedIndexChanged="Picker_SelectedIndexChanged" Title="Vyber zadávání" ></Picker>
+            </StackLayout>
+
+            <StackLayout x:Name="Stats" IsVisible="False" BackgroundColor="#0D47A1" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"  Margin="15,10,15,10"  >
                 <Label  Text="SLEDOVANÉ ÚDAJE" Margin="0,20,10,0" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
             </StackLayout>
-            <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  Grid.ColumnSpan="2" Margin="15,10,15,0" BackgroundColor="Transparent">
+            <StackLayout x:Name="BodyStats" IsVisible="False" BackgroundColor="Transparent" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Margin="15,10,15,10" >
                 <Label/>
                 <Label/>
-                <Entry x:Name="WeightE" Placeholder="Vlož váhu"/>
-                <Entry x:Name="HeightE" Placeholder="Vlož výšku"/>
-                <Entry x:Name="WaistE" Placeholder="Vlož obvod pasu"/>
-                <Entry x:Name="ThighE" Placeholder="Vlož obvod stehna"/>
-                <Entry x:Name="BicepsE" Placeholder="Vlož obvod bicepsu"/>
-                <DatePicker x:Name="DateE"/>
+                <Entry x:Name="WeightE" Margin="10,0,10,0" Placeholder="Vlož váhu"/>
+                <Entry x:Name="HeightE" Margin="10,0,10,0" Placeholder="Vlož výšku"/>
+                <Entry x:Name="WaistE" Margin="10,0,10,0" Placeholder="Vlož obvod pasu"/>
+                <Entry x:Name="ThighE" Margin="10,0,10,0" Placeholder="Vlož obvod stehna"/>
+                <Entry x:Name="BicepsE" Margin="10,0,10,0" Placeholder="Vlož obvod bicepsu"/>
+                <DatePicker Margin="10,0,0,0" x:Name="DateE"/>
+                <Button x:Name="SendB" Text="Odeslat" VerticalOptions="End" Clicked="SendB_Clicked"/>
             </StackLayout>
+            
+            
+            <StackLayout x:Name="Records" IsVisible="False" BackgroundColor="Transparent" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Margin="15,10,15,10" >
+                <Label/>
+                <Label/>
+                <Entry x:Name="BenchpressE" Margin="10,10,0,0" Placeholder="Vlož maximálku na Bench-press"/>
+                <Entry x:Name="DeathliftE" Margin="10,10,0,0" Placeholder="Vlož maximálku na Death-lift"/>
+                <Entry x:Name="SquatE" Margin="10,0,10,0" Placeholder="Vlož maximálku na Dřep"/>
+
+                <DatePicker Margin="10,0,0,0" x:Name="DateR"/>
+                <Button x:Name="SendR" Text="Odeslat" VerticalOptions="EndAndExpand"  Clicked="SendR_Clicked"/>
+            </StackLayout>
+
 
         </Grid>
     </ContentPage.Content>
