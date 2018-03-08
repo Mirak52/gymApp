@@ -106,6 +106,7 @@ namespace gymApp.pages
                 personalRecord.Deathlift = highestData[0].Deathlift;
                 personalRecord.Squat = highestData[0].Squat;
                 SavePersonalRecordData(personalRecord);
+              
                 ErrorL.Text = "Úspěšně uloženo";
             }
         }

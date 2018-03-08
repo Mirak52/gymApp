@@ -18,7 +18,11 @@ namespace gymApp.classes
         }
         public Task<List<PersonalRecord>> SelectHighestRecord()
         {
-            return database.QueryAsync<PersonalRecord>("select MAX(Benchpress),MAX(Deathlift),MAX(Squat) FROM [PersonalRecord]");
+            return database.QueryAsync<PersonalRecord>("select MAX(Benchpress) Benchpress,MAX(Deathlift) Deathlift,MAX(Squat) Squat FROM [PersonalRecord]");
+        }
+        public Task<List<PersonalRecord>> SelectAll()
+        {
+            return database.QueryAsync<PersonalRecord>("select * FROM [PersonalRecord]");
         }
 
         public Task<int> SaveItemAsync(PersonalRecord item)
