@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace gymApp.classes
 {
-    public class BodyStatsDatabase
+    public class PersonalRecordDatabase
     {
         public SQLiteAsyncConnection database;
 
-        public BodyStatsDatabase(string dbPath)
+        public PersonalRecordDatabase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<BodyStats>().Wait();
+            database.CreateTableAsync<PersonalRecord>().Wait();
         }
-        public Task<List<BodyStats>> SelectLastBodyStats()
+        public Task<List<PersonalRecord>> SelectHighestRecord()
         {
-            return database.QueryAsync<BodyStats>("select * FROM [BodyStats] ORDER BY ID_bodyStats DESC LIMIT 1");
+            return database.QueryAsync<PersonalRecord>("select MAX(Benchpress),MAX(Deathlift),MAX(Squat) FROM [PersonalRecord]");
         }
-      
-        public Task<int> SaveItemAsync(BodyStats item)
+
+        public Task<int> SaveItemAsync(PersonalRecord item)
         {
-            if (item.ID_bodyStats != 0)
+            if (item.ID_personalRecord != 0)
             {
                 return database.UpdateAsync(item);
             }
@@ -33,7 +33,7 @@ namespace gymApp.classes
             }
         }
 
-        public Task<int> DeleteItemAsync(Excercise item)
+        public Task<int> DeleteItemAsync(PersonalRecord item)
         {
             return database.DeleteAsync(item);
         }

@@ -26,7 +26,7 @@
                     <Label x:Name="HeightL" FontAttributes="Bold" HorizontalOptions="End" TextColor="White" Text="0"/>
                     <Label x:Name="WaistL" FontAttributes="Bold" HorizontalOptions="End" TextColor="White" Text="0"/>
                     <Label x:Name="ThighL" FontAttributes="Bold" HorizontalOptions="End" TextColor="White" Text="0"/>
-                    <Label x:Name="HandL" FontAttributes="Bold" HorizontalOptions="End" TextColor="White" Text="0"/>
+                    <Label x:Name="BicepsL" FontAttributes="Bold" HorizontalOptions="End" TextColor="White" Text="0"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="0" BackgroundColor="#0D47A1"  Grid.Row="2" Grid.RowSpan="2"  Grid.ColumnSpan="2">

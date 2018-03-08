@@ -19,6 +19,7 @@ namespace gymApp.pages
         public HiitPage ()
 		{
 			InitializeComponent();
+            
         }
         
         public static void StartTimer(TimeSpan interval, Func<bool> callback) { }

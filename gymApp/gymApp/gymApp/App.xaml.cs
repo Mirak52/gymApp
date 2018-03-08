@@ -80,5 +80,33 @@ namespace gymApp
                 return _databaseReg;
             }
         }
+
+        
+
+        private static PersonalRecordDatabase _databaseRec;
+        public static PersonalRecordDatabase DatabasePersonalRecord
+        {
+            get
+            {
+                if (_databaseRec == null)
+                {
+                    _databaseRec = new PersonalRecordDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseRec;
+            }
+        }
+
+        public static bool IsNumber(string parameter)
+        {
+            int number;
+            bool isNumeric = int.TryParse(parameter, out number);
+            return isNumeric;
+        }
+        internal static int setNumber(string text)
+        {
+            int number;
+            bool isNumeric = int.TryParse(text, out number);
+            return number;
+        }
     }
 }

@@ -45,6 +45,8 @@
     <Compile Include="classes\ExcerciseRegion.cs" />
     <Compile Include="classes\ExcerciseRegionDatabase.cs" />
     <Compile Include="classes\Hiit.cs" />
+    <Compile Include="classes\PersonalRecord.cs" />
+    <Compile Include="classes\PersonalRecordDatabase.cs" />
     <Compile Include="classes\Updater.cs" />
     <Compile Include="classes\UpdaterDatabase.cs" />
     <Compile Include="IFileHelper.cs" />

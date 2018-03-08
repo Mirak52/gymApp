@@ -21,12 +21,44 @@ namespace gymApp.pages
         public MenuPage ()
         {
             InitializeComponent();
+            CheckFirstRun();
+            ShowStats();
             CheckUpdater();
-            var data = App.DatabaseRegions.SelectRegions().Result;
-            var datad = App.DatabaseExcercise.SelectExcercise().Result;
             ShowExcercises();
+           
             
         }
+
+        public void ShowStats()
+        {
+            var bodyStats = App.DatabaseBodyStats.SelectLastBodyStats().Result;
+            var highestLift = App.DatabasePersonalRecord.SelectHighestRecord().Result;
+            WeightL.Text = bodyStats[0].Weight.ToString();
+            HeightL.Text = bodyStats[0].Height.ToString();
+            WaistL.Text = bodyStats[0].WaistCircumference.ToString();
+            ThighL.Text = bodyStats[0].ThighCircumference.ToString();
+            BicepsL.Text = bodyStats[0].BicepsCircumference.ToString();
+
+            BenchL.Text = highestLift[0].Benchpress.ToString();
+            DeathL.Text = highestLift[0].Deathlift.ToString();
+            SquatL.Text = highestLift[0].Squat.ToString();
+        }
+
+        private void CheckFirstRun()
+        {
+            var bodyStats = App.DatabaseBodyStats.SelectLastBodyStats().Result;
+            if(bodyStats.Count == 0) {
+                BodyStats bodyStat = new BodyStats();
+                bodyStat.Height = 0;
+                bodyStat.Weight = 0;
+                bodyStat.WaistCircumference = 0;
+                bodyStat.ThighCircumference = 0;
+                bodyStat.BicepsCircumference = 0;
+                App.DatabaseBodyStats.SaveItemAsync(bodyStat);
+
+            }
+        }
+
         public DateTime date;
         private void CheckUpdater()
         {

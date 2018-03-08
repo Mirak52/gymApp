@@ -14,7 +14,7 @@ namespace gymApp.classes
         public int Height{ get; set; }
         public int WaistCircumference{ get; set; }
         public int ThighCircumference { get; set; }
-        public int HandCircumference { get; set; }
-        public DateTime Date { get; set; }
+        public int BicepsCircumference { get; set; }
+        public string Date { get; set; }
     }
 }
