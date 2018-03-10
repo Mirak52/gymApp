@@ -82,14 +82,10 @@ namespace gymApp.pages
             bodyStat.Date = bodyStat.Date.Remove(bodyStat.Date.Length - 12);
             App.DatabaseBodyStats.SaveItemAsync(bodyStat);
         }
-
-        
-
         private void SendR_Clicked(object sender, EventArgs e)
         {
             SavePersonalRecord();
         }
-
         private void SavePersonalRecord()
         {
             if (string.IsNullOrEmpty(BenchpressE.Text) && string.IsNullOrEmpty(DeathliftE.Text) && string.IsNullOrEmpty(SquatE.Text))
@@ -110,7 +106,6 @@ namespace gymApp.pages
                 ErrorL.Text = "Úspěšně uloženo";
             }
         }
-
         private void SavePersonalRecordData(PersonalRecord personalRecord)
         {
             //order = order.Remove(order.Length - 1);

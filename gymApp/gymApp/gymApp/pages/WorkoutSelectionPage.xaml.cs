@@ -16,5 +16,15 @@ namespace gymApp.pages
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void QuickTrain_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new TrainingCreatorPage(1), false);
+        }
+
+        private void WorkoutPlan_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new TrainingCreatorPage(2), false);
+        }
+    }
 }

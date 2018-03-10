@@ -25,8 +25,7 @@ namespace gymApp.pages
             ShowStats();
             CheckUpdater();
             ShowExcercises();
-           
-            
+            var data = App.DatabaseExcercise.SelectExcercise().Result;
         }
 
         public void ShowStats()
@@ -135,6 +134,7 @@ namespace gymApp.pages
                 excerciseData.Region = excercise.Region;
                 excerciseData.Tip = excercise.Tip;
                 excerciseData.Description = excercise.Description;
+                excerciseData.Specification = excercise.Specification;
                 App.DatabaseExcercise.SaveItemAsync(excerciseData);
             }
             var convertedJsonRegion = JsonConvert.DeserializeObject<List<ExcerciseRegion>>(RegionJson);

@@ -47,6 +47,7 @@
     <Compile Include="classes\Hiit.cs" />
     <Compile Include="classes\PersonalRecord.cs" />
     <Compile Include="classes\PersonalRecordDatabase.cs" />
+    <Compile Include="classes\TrainingCreatorTimer.cs" />
     <Compile Include="classes\Updater.cs" />
     <Compile Include="classes\UpdaterDatabase.cs" />
     <Compile Include="IFileHelper.cs" />
@@ -67,6 +68,9 @@
     </Compile>
     <Compile Include="pages\StatsPage.xaml.cs">
       <DependentUpon>StatsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\TrainingCreatorPage.xaml.cs">
+      <DependentUpon>TrainingCreatorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\WorkoutSelectionPage.xaml.cs">
       <DependentUpon>WorkoutSelectionPage.xaml</DependentUpon>
@@ -176,6 +180,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="pages\StatsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="pages\TrainingCreatorPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
