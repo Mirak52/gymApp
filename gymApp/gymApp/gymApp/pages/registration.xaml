@@ -20,11 +20,11 @@
         <StackLayout Grid.Column="1" Grid.Row="0" Margin="0,10,15,0" BackgroundColor="Transparent">
             <Label/>
             <Label/>
-            <Label x:Name="WeightL" HorizontalOptions="End" FontSize="Medium" TextColor="White"   Text="0"/>
-            <Label x:Name="HeightL" HorizontalOptions="End" FontSize="Medium" TextColor="White"   Text="0"/>
-            <Label x:Name="WaistL" HorizontalOptions="End" FontSize="Medium" TextColor="White"   Text="0"/>
-            <Label x:Name="ThighL" HorizontalOptions="End" FontSize="Medium" TextColor="White"   Text="0"/>
-            <Label x:Name="HandL" HorizontalOptions="End" FontSize="Medium" TextColor="White"   Text="0"/>
+            <Label x:Name="WeightL" HorizontalOptions="End" FontSize="Medium" TextColor="White" Text="0"/>
+            <Label x:Name="HeightL" HorizontalOptions="End" FontSize="Medium" TextColor="White" Text="0"/>
+            <Label x:Name="WaistL" HorizontalOptions="End" FontSize="Medium" TextColor="White" Text="0"/>
+            <Label x:Name="ThighL" HorizontalOptions="End" FontSize="Medium" TextColor="White" Text="0"/>
+            <Label x:Name="HandL" HorizontalOptions="End" FontSize="Medium" TextColor="White" Text="0"/>
         </StackLayout>
 
         <StackLayout Grid.Column="0" BackgroundColor="#0D47A1" Grid.Row="1"  Grid.ColumnSpan="2">

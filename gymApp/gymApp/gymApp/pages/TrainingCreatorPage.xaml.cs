@@ -104,6 +104,7 @@ namespace gymApp.pages
                                     + (totalTime.SupplementExceNum * totalTime.SupplementSetsNum * 90)
                                     + (totalTime.CompensationExceNum * totalTime.CompensationSetsNum * 60);
             }
+            Information.TextColor = Color.White;
             Information.Text = "Odhadovaná doba tréninku: " + ReturnTimeInFormat(totalTime.totalTime)+ " min";
         }
         private string ReturnTimeInFormat(int timeParameter)
@@ -132,7 +133,20 @@ namespace gymApp.pages
 
         private void Create_Clicked(object sender, EventArgs e)
         {
-            CountTotalTrainingTime();
+            if (Muscles.SelectedIndex == 0)
+            {
+                Information.TextColor = Color.Red;
+                Information.Text = "Nezadal si partii kterou chceš cvičit";
+            }
+            else
+            {
+                CreateTraining();
+            }
+        }
+
+        private void CreateTraining()
+        {
+            var list = new List<string>();
         }
 
         private void VolumePower_Toggled(object sender, ToggledEventArgs e)
