@@ -39,17 +39,19 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="classes\BodyStats.cs" />
-    <Compile Include="classes\BodyStatsDatabase.cs" />
+    <Compile Include="classes\Database\BodyStatsDatabase.cs" />
+    <Compile Include="classes\Database\SetDatabase.cs" />
     <Compile Include="classes\Excercise.cs" />
-    <Compile Include="classes\ExcerciseDatabase.cs" />
+    <Compile Include="classes\Database\ExcerciseDatabase.cs" />
     <Compile Include="classes\ExcerciseRegion.cs" />
-    <Compile Include="classes\ExcerciseRegionDatabase.cs" />
-    <Compile Include="classes\Hiit.cs" />
+    <Compile Include="classes\Database\ExcerciseRegionDatabase.cs" />
+    <Compile Include="classes\Functions\Hiit.cs" />
     <Compile Include="classes\PersonalRecord.cs" />
-    <Compile Include="classes\PersonalRecordDatabase.cs" />
-    <Compile Include="classes\TrainingCreatorTimer.cs" />
+    <Compile Include="classes\Database\PersonalRecordDatabase.cs" />
+    <Compile Include="classes\Functions\TrainingCreatorTimer.cs" />
+    <Compile Include="classes\Set.cs" />
     <Compile Include="classes\Updater.cs" />
-    <Compile Include="classes\UpdaterDatabase.cs" />
+    <Compile Include="classes\Database\UpdaterDatabase.cs" />
     <Compile Include="IFileHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

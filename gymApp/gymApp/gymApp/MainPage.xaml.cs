@@ -22,7 +22,7 @@ namespace gymApp
         private void login_Clicked(object sender, EventArgs e)
         {
           Navigation.PushModalAsync(new pages.WorkoutSelectionPage(), false);
-//          Navigation.PushModalAsync(new pages.MenuPage(), false);
+          //Navigation.PushModalAsync(new pages.MenuPage(), false);
         }
     }
 }

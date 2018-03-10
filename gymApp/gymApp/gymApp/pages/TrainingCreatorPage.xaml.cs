@@ -104,7 +104,7 @@ namespace gymApp.pages
                                     + (totalTime.SupplementExceNum * totalTime.SupplementSetsNum * 90)
                                     + (totalTime.CompensationExceNum * totalTime.CompensationSetsNum * 60);
             }
-            Information.TextColor = Color.White;
+            Information.TextColor = Color.Black;
             Information.Text = "Odhadovaná doba tréninku: " + ReturnTimeInFormat(totalTime.totalTime)+ " min";
         }
         private string ReturnTimeInFormat(int timeParameter)
@@ -143,12 +143,87 @@ namespace gymApp.pages
                 CreateTraining();
             }
         }
-
+       
         private void CreateTraining()
         {
-            var list = new List<string>();
+            MakeListOfBasicExcercise();
+            MakeListOfSupplementExcercise();
+            MakeListOfCompensationExcercise();
+            
+        }
+        /* public int ID_set { get; set; }
+         public int ID_excercisePK { get; set; }
+         public int Reps { get; set; }*/
+
+
+        public List<Set> sets = new List<Set>();
+        private List<Excercise> excercises;
+        public Random rnd = new Random();
+        private void MakeListOfBasicExcercise()
+        {
+            int RepsInSet = Convert.ToInt32(BasicSetExcerciseNumber.Value);
+            int excerciseRandomNumber = 0;
+            for (int excerciseNum = 0; excerciseNum <= totalTime.BasicExceNum-1; excerciseNum++)
+            {
+                switch (Muscles.SelectedItem)
+                {
+                    case "Prsa":
+                        excercises = App.DatabaseExcercise.SelectExcerciseByRegion(1).Result;
+                        break;
+                    case "Záda":
+                        excercises = App.DatabaseExcercise.SelectExcerciseByRegion(6).Result;
+                        break;
+                    case "Nohy":
+                        excercises = App.DatabaseExcercise.SelectExcerciseByRegion(7).Result;
+                        break;
+                }
+                excerciseRandomNumber = rnd.Next(0, excercises.Count());
+                excerciseRandomNumber = TestGeneratedNumber(excerciseRandomNumber);
+                for (int excerciseSet = 0; excerciseSet <= totalTime.BasicSetsNum-1; excerciseSet++)
+                {
+                    if (VolumePower.IsToggled)
+                    {
+                        RepsInSet = RepsInSet + 5;
+                        sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = RepsInSet });
+                        RepsInSet = RepsInSet - 5 - excerciseSet;
+                    }
+                    else
+                    {
+                        RepsInSet = RepsInSet + 5;
+                        sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = RepsInSet });
+                        RepsInSet = RepsInSet - 5 - excerciseSet;
+                    }
+                }
+            }
+        }
+        public List<int> randomNumbersList = new List<int>();
+        private int TestGeneratedNumber(int excerciseRandomNumber)
+        {
+            if (randomNumbersList.Contains(excerciseRandomNumber))
+            {
+                excerciseRandomNumber = rnd.Next(0, excercises.Count());
+                TestGeneratedNumber(excerciseRandomNumber);
+            }
+            randomNumbersList.Add(excerciseRandomNumber);
+            return excerciseRandomNumber;          
         }
 
+        private void MakeListOfCompensationExcercise()
+        {
+            int number = 0;
+            for (int excerciseNum = 1; excerciseNum == totalTime.BasicExceNum; excerciseNum++)
+            {
+                for (int excerciseSet = 1; excerciseSet == totalTime.BasicSetsNum; excerciseSet++)
+                {
+
+                    number++;
+                }
+            }
+        }
+        private void MakeListOfSupplementExcercise()
+        {
+
+        }
         private void VolumePower_Toggled(object sender, ToggledEventArgs e)
         {
             CountTotalTrainingTime();
