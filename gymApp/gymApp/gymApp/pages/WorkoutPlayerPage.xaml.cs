@@ -22,6 +22,7 @@ namespace gymApp.pages
         private void CreateListView(List<Set> sets)
         {
             List<Set> excerciseList = new List<Set>();
+            excerciseList.Clear();
             int number = sets[0].ID_excercisePK;
             string reps = null;
             foreach (var set in sets)
@@ -32,15 +33,17 @@ namespace gymApp.pages
                 }
                 else
                 {
-                    reps.Remove(0, 1);
+                    reps = reps.Substring(2);
                     excerciseList.Add(new Set { ExcerciseName= number.ToString(), Reps= reps });
                     number = set.ID_excercisePK;
                     reps = null;
                     reps = reps + " - " + set.Reps;
                 }
             }
+            reps = reps.Substring(2);
             excerciseList.Add(new Set { ExcerciseName = number.ToString(), Reps = reps });
-
+            ExcercisesLV.ItemsSource = null;
+            ExcercisesLV.ItemsSource = excerciseList;
         }
 
         private void Done_Clicked(object sender, EventArgs e)

@@ -156,7 +156,7 @@ namespace gymApp.pages
         public Random rnd = new Random();
         private void MakeListOfBasicExcercise()
         {
-            int RepsInSet = 0;
+            double RepsInSet = 0;
             int excerciseRandomNumber = 0;
             for (int excerciseNum = 1; excerciseNum <= BasicExcerciseNumber.Value; excerciseNum++)
             {
@@ -175,19 +175,19 @@ namespace gymApp.pages
                 }
                 excerciseRandomNumber = rnd.Next(0, excercises.Count());
                 excerciseRandomNumber = TestGeneratedNumber(excerciseRandomNumber);
+                RepsInSet = RepsInSet + 5;
                 for (int excerciseSet = 1; excerciseSet <= BasicSetExcerciseNumber.Value; excerciseSet++)
                 {
                     if (VolumePower.IsToggled)
                     {
-                        RepsInSet = RepsInSet + 5;
-                        sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = RepsInSet.ToString() });
-                        RepsInSet = RepsInSet - 5 - excerciseSet;
+                        sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = Convert.ToInt32(RepsInSet).ToString() });
+                        RepsInSet = RepsInSet / 1.15;
                     }
                     else
                     {
-                        RepsInSet = RepsInSet + 5;
-                        sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = RepsInSet.ToString() });
-                        RepsInSet = RepsInSet - 5 - excerciseSet;
+                        
+                        sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = Convert.ToInt32(RepsInSet).ToString() });
+                        RepsInSet = RepsInSet / 1.3;
                     }
                 }
             }
