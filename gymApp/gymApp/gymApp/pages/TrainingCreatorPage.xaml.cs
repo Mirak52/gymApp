@@ -161,20 +161,21 @@ namespace gymApp.pages
         public Random rnd = new Random();
         private void MakeListOfBasicExcercise()
         {
-            int RepsInSet = Convert.ToInt32(BasicSetExcerciseNumber.Value);
+            int RepsInSet = 0;
             int excerciseRandomNumber = 0;
             for (int excerciseNum = 0; excerciseNum <= totalTime.BasicExceNum-1; excerciseNum++)
             {
+                RepsInSet = Convert.ToInt32(BasicSetExcerciseNumber.Value);
                 switch (Muscles.SelectedItem)
                 {
                     case "Prsa":
-                        excercises = App.DatabaseExcercise.SelectExcerciseByRegion(1).Result;
+                        excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(1,1).Result;
                         break;
                     case "Záda":
-                        excercises = App.DatabaseExcercise.SelectExcerciseByRegion(6).Result;
+                        excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(6,1).Result;
                         break;
                     case "Nohy":
-                        excercises = App.DatabaseExcercise.SelectExcerciseByRegion(7).Result;
+                        excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(7,1).Result;
                         break;
                 }
                 excerciseRandomNumber = rnd.Next(0, excercises.Count());
@@ -207,22 +208,72 @@ namespace gymApp.pages
             randomNumbersList.Add(excerciseRandomNumber);
             return excerciseRandomNumber;          
         }
-
-        private void MakeListOfCompensationExcercise()
+        private List<Excercise> SupllementExcercises;
+        private void MakeListOfSupplementExcercise()
         {
-            int number = 0;
-            for (int excerciseNum = 1; excerciseNum == totalTime.BasicExceNum; excerciseNum++)
-            {
-                for (int excerciseSet = 1; excerciseSet == totalTime.BasicSetsNum; excerciseSet++)
-                {
+            randomNumbersList.Clear();
+            int excerciseRandomNumber = 0;
 
-                    number++;
+            switch (Muscles.SelectedItem)
+            {
+                case "Prsa":
+                    excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(1, 2).Result;
+                    SupllementExcercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
+                    foreach(var supplementExcercise in SupllementExcercises)
+                    {
+                        excercises.Add(new Excercise { ID_excercise = supplementExcercise.ID_excercise });
+                    }
+                    break;
+                case "Záda":
+                    excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(6, 2).Result;
+                    SupllementExcercises = App.DatabaseExcercise.SelectTricepsAndForearm().Result;
+                    foreach (var supplementExcercise in SupllementExcercises)
+                    {
+                        excercises.Add(new Excercise { ID_excercise = supplementExcercise.ID_excercise });
+                    }
+                    break;
+                case "Nohy":
+                    excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(7, 2).Result;
+                    SupllementExcercises = App.DatabaseExcercise.SelectBellyAndCalf().Result;
+                    foreach (var supplementExcercise in SupllementExcercises)
+                    {
+                        excercises.Add(new Excercise { ID_excercise = supplementExcercise.ID_excercise });
+                    }
+                    break;
+            }
+            for (int excerciseNum = 0; excerciseNum <= totalTime.BasicExceNum - 1; excerciseNum++)
+            {
+                excerciseRandomNumber = rnd.Next(0, excercises.Count());
+                excerciseRandomNumber = TestGeneratedNumber(excerciseRandomNumber);
+                for (int excerciseSet = 0; excerciseSet <= totalTime.BasicSetsNum - 1; excerciseSet++)
+                {
+                    if (VolumePower.IsToggled)
+                    {
+                        sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = 10 });
+                    }
+                    else
+                    {
+                        sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = 8 });
+                    }
                 }
             }
         }
-        private void MakeListOfSupplementExcercise()
+        
+        private void MakeListOfCompensationExcercise()
         {
+            randomNumbersList.Clear();
+            int excerciseRandomNumber = 0;
+            excercises = App.DatabaseExcercise.SelectCompensationExcercises().Result;
 
+            for (int excerciseNum = 0; excerciseNum <= totalTime.BasicExceNum - 1; excerciseNum++)
+            {
+                excerciseRandomNumber = rnd.Next(0, excercises.Count());
+                excerciseRandomNumber = TestGeneratedNumber(excerciseRandomNumber);
+                for (int excerciseSet = 0; excerciseSet <= totalTime.BasicSetsNum - 1; excerciseSet++)
+                {
+                    sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = 10 });
+                }
+            }
         }
         private void VolumePower_Toggled(object sender, ToggledEventArgs e)
         {

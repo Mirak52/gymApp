@@ -40,6 +40,26 @@ namespace gymApp.classes
         {
             return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = "+region);
         }
+        public Task<List<Excercise>> SelectBicepsAndShoulders()
+        {
+            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = '" + 3 + "'OR [Region] = " + 2);
+        }
+        public Task<List<Excercise>> SelectTricepsAndForearm()
+        {
+            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = '" + 4 + "'OR [Region] = " + 5);
+        }
+        public Task<List<Excercise>> SelectBellyAndCalf()
+        {
+            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = '" + 9 + "'OR [Region] = " + 8);
+        }
+        public Task<List<Excercise>> SelectCompensationExcercises()
+        {
+            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Specification] = " + 3);
+        }
+        public Task<List<Excercise>> SelectByRegionAndSpecification(int region,int specification)
+        {
+            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = '" + region+ "'AND [Specification] = " + specification);
+        }
         // Query using LINQ <3
         public Task<Excercise> GetItemAsync(int id)
         {

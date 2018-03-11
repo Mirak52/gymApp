@@ -54,6 +54,15 @@ namespace gymApp.pages
                 bodyStat.ThighCircumference = 0;
                 bodyStat.BicepsCircumference = 0;
                 App.DatabaseBodyStats.SaveItemAsync(bodyStat);
+            }
+            var Records = App.DatabasePersonalRecord.SelectHighestRecord().Result;
+            if (Records.Count == 0)
+            {
+                PersonalRecord personalRecord = new PersonalRecord();
+                personalRecord.Benchpress = 0;
+                personalRecord.Deathlift = 0;
+                personalRecord.Squat = 0;
+                App.DatabasePersonalRecord.SaveItemAsync(personalRecord);
 
             }
         }
@@ -141,7 +150,7 @@ namespace gymApp.pages
             foreach (var Region in convertedJsonRegion)
             {
                 ExcerciseRegion excerciseRegionData = new ExcerciseRegion();
-                //excerciseRegionData.ID_region = Region.ID_region;
+                excerciseRegionData.ID_region = Region.ID_region;
                 excerciseRegionData.Region = Region.Region;
                 App.DatabaseRegions.SaveItemAsync(excerciseRegionData);
             }

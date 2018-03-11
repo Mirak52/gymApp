@@ -40,14 +40,9 @@ namespace gymApp.classes
 
         public Task<int> SaveItemAsync(ExcerciseRegion item)
         {
-            if (item.ID_region != 0)
-            {
-                return database.UpdateAsync(item);
-            }
-            else
-            {
+           
+
                 return database.InsertAsync(item);
-            }
         }
 
         public Task<int> DeleteItemAsync(ExcerciseRegion item)
