@@ -12,7 +12,8 @@ namespace gymApp.classes
         [PrimaryKey, AutoIncrement]
         public int ID_set { get; set; }
         public int ID_excercisePK { get; set; }
-        public int Reps { get; set; }
+        public string ExcerciseName { get; set; }
+        public string Reps { get; set; }
         public int Weight { get; set; }
     }
 }

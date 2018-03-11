@@ -36,8 +36,8 @@
                     <Slider x:Name="CompensatorExcerciseNumber"  Maximum="2" Minimum="0" Value="0"  ValueChanged="CompensatorExcerciseNumber_ValueChanged_1" />
 
                     <Label Text="Počet sérií kompenzačních cviků" FontSize="Medium"/>
-                    <Label x:Name="CompensationSetNumber" Text="0" />
-                    <Slider x:Name="CompensatorSetExcerciseNumber"  Maximum="5" Minimum="1" Value="0"  ValueChanged="CompensatorExcerciseNumber_ValueChanged" />
+                    <Label x:Name="CompensationSetNumber" Text="1" />
+                    <Slider x:Name="CompensatorSetExcerciseNumber"  Maximum="5" Minimum="1" Value="1"  ValueChanged="CompensatorExcerciseNumber_ValueChanged" />
 
                     <Label Text="Silový / Objemový trénink" FontSize="Medium" />
                     <Switch x:Name="VolumePower" HorizontalOptions="Center" Toggled="VolumePower_Toggled" />
