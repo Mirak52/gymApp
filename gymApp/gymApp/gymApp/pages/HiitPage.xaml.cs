@@ -139,12 +139,14 @@ namespace gymApp.pages
             countDown.Text = ReturnTimeInFormat(hiit.totalTime);
             startCountdown();
         }
+
         private void startCountdown()
         {
            /* var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
             player.Load("hallOfFame.mp3");
             player.Play();*/
             int actualTime = 0;
+           
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 actualTime++;
                 

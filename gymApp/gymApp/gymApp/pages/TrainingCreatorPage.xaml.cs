@@ -146,6 +146,7 @@ namespace gymApp.pages
        
         private void CreateTraining()
         {
+            sets.Clear();
             MakeListOfBasicExcercise();
             MakeListOfSupplementExcercise();
             MakeListOfCompensationExcercise();

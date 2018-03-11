@@ -13,18 +13,62 @@ namespace gymApp.pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WorkoutPlayerPage : ContentPage
     {
+        private List<Excercise> excercise;
+
         public WorkoutPlayerPage(List<Set> sets)
         {
             InitializeComponent();
             CreateListView(sets);
+            StartTimer();
         }
+        private bool TimerRun= true;
+        private int actualTime = 0;
+        private void StartTimer()
+        {
+            actualTime = 0;
+            TimerL.Text = ReturnTimeInFormat(actualTime);
+            Device.StartTimer(TimeSpan.FromSeconds(1), () => {
+                actualTime++;
+                if (TimerRun)
+                {
+                    TimerL.Text = ReturnTimeInFormat(actualTime);
+                    return TimerRun; //continue
+                }
 
+                actualTime = 0;
+                return TimerRun; //not continue
+            });
+        }
+        private string ReturnTimeInFormat(int timeParameter)
+        {
+            int minute = 0;
+            int second = 0;
+            string timeFormated;
+            minute = timeParameter / 60;
+            second = timeParameter - minute * 60;
+            timeFormated = TimeAdjustment(minute) + ":" + TimeAdjustment(second);
+            return timeFormated;
+        }
+        private string TimeAdjustment(int timeParameter)
+        {
+            string time;
+            if (timeParameter <= 9)
+            {
+                time = "0" + timeParameter.ToString();
+            }
+            else
+            {
+                time = timeParameter.ToString();
+            }
+            return time;
+        }
+        private List<Set> excerciseList = new List<Set>();
         private void CreateListView(List<Set> sets)
         {
-            List<Set> excerciseList = new List<Set>();
             excerciseList.Clear();
             int number = sets[0].ID_excercisePK;
             string reps = null;
+
             foreach (var set in sets)
             {
                 if(set.ID_excercisePK == number)
@@ -33,8 +77,9 @@ namespace gymApp.pages
                 }
                 else
                 {
+                    excercise = App.DatabaseExcercise.SelectDetailedExcercise(number).Result;
                     reps = reps.Substring(2);
-                    excerciseList.Add(new Set { ExcerciseName= number.ToString(), Reps= reps });
+                    excerciseList.Add(new Set { ExcerciseName = excercise[0].Name, Reps= reps });
                     number = set.ID_excercisePK;
                     reps = null;
                     reps = reps + " - " + set.Reps;
@@ -45,10 +90,23 @@ namespace gymApp.pages
             ExcercisesLV.ItemsSource = null;
             ExcercisesLV.ItemsSource = excerciseList;
         }
-
         private void Done_Clicked(object sender, EventArgs e)
         {
-
+            excerciseList.RemoveAt(0);
+            if (excerciseList.Count() == 0)
+            {
+                excerciseList.RemoveAt(0);
+                TimerRun = false;
+                Done.Text = "Úspěšně splněno";
+                Done.IsEnabled = false;
+            }
+            else
+            {
+                ExcercisesLV.ItemsSource = null;
+                ExcercisesLV.ItemsSource = excerciseList;
+                actualTime = 0;
+                TimerL.Text = ReturnTimeInFormat(actualTime);
+            } 
         }
     }
 }
