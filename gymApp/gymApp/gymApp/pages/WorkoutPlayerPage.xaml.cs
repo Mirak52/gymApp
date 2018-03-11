@@ -95,7 +95,7 @@ namespace gymApp.pages
             excerciseList.RemoveAt(0);
             if (excerciseList.Count() == 0)
             {
-                excerciseList.RemoveAt(0);
+                ExcercisesLV.ItemsSource = null;
                 TimerRun = false;
                 Done.Text = "Úspěšně splněno";
                 Done.IsEnabled = false;
