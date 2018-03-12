@@ -159,23 +159,24 @@ namespace gymApp.pages
         {
             double RepsInSet = 0;
             int excerciseRandomNumber = 0;
+            switch (Muscles.SelectedItem)
+            {
+                case "Prsa":
+                    excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(1, 1).Result;
+                    break;
+                case "Záda":
+                    excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(6, 1).Result;
+                    break;
+                case "Nohy":
+                    excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(7, 1).Result;
+                    break;
+            }
             for (int excerciseNum = 1; excerciseNum <= BasicExcerciseNumber.Value; excerciseNum++)
             {
                 RepsInSet = Convert.ToInt32(BasicSetExcerciseNumber.Value);
-                switch (Muscles.SelectedItem)
-                {
-                    case "Prsa":
-                        excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(1,1).Result;
-                        break;
-                    case "Záda":
-                        excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(6,1).Result;
-                        break;
-                    case "Nohy":
-                        excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(7,1).Result;
-                        break;
-                }
+              
                 excerciseRandomNumber = rnd.Next(0, excercises.Count());
-                excerciseRandomNumber = TestGeneratedNumber(excerciseRandomNumber);
+                
                 RepsInSet = RepsInSet + 5;
                 for (int excerciseSet = 1; excerciseSet <= BasicSetExcerciseNumber.Value; excerciseSet++)
                 {
@@ -190,7 +191,9 @@ namespace gymApp.pages
                         sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = Convert.ToInt32(RepsInSet).ToString() });
                         RepsInSet = RepsInSet / 1.3;
                     }
+                    
                 }
+                excercises.RemoveAt(excerciseRandomNumber);
             }
         }
         public List<int> randomNumbersList = new List<int>();
@@ -209,7 +212,6 @@ namespace gymApp.pages
         {
             randomNumbersList.Clear();
             int excerciseRandomNumber = 0;
-
             switch (Muscles.SelectedItem)
             {
                 case "Prsa":
@@ -240,7 +242,6 @@ namespace gymApp.pages
             for (int excerciseNum = 1; excerciseNum <= SupplementExcerciseNumber.Value; excerciseNum++)
             {
                 excerciseRandomNumber = rnd.Next(0, excercises.Count());
-                excerciseRandomNumber = TestGeneratedNumber(excerciseRandomNumber);
                 for (int excerciseSet = 1; excerciseSet <= SupplementSetExcerciseNumber.Value; excerciseSet++)
                 {
                     if (VolumePower.IsToggled)
@@ -252,6 +253,7 @@ namespace gymApp.pages
                         sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = "8" });
                     }
                 }
+                excercises.RemoveAt(excerciseRandomNumber);
             }
         }
         
@@ -264,12 +266,13 @@ namespace gymApp.pages
             for (int excerciseNum = 1; excerciseNum <= CompensatorExcerciseNumber.Value; excerciseNum++)
             {
                 excerciseRandomNumber = rnd.Next(0, excercises.Count());
-                excerciseRandomNumber = TestGeneratedNumber(excerciseRandomNumber);
                 for (int excerciseSet = 1; excerciseSet <= CompensatorSetExcerciseNumber.Value; excerciseSet++)
                 {
                     sets.Add(new Set { ID_excercisePK = excercises[excerciseRandomNumber].ID_excercise, Reps = "10" });
                 }
+                excercises.RemoveAt(excerciseRandomNumber);
             }
+           
         }
         private void VolumePower_Toggled(object sender, ToggledEventArgs e)
         {

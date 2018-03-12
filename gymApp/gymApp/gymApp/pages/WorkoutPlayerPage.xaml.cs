@@ -86,7 +86,8 @@ namespace gymApp.pages
                 }
             }
             reps = reps.Substring(2);
-            excerciseList.Add(new Set { ExcerciseName = number.ToString(), Reps = reps });
+            excercise = App.DatabaseExcercise.SelectDetailedExcercise(number).Result;
+            excerciseList.Add(new Set { ExcerciseName = excercise[0].Name, Reps = reps });
             ExcercisesLV.ItemsSource = null;
             ExcercisesLV.ItemsSource = excerciseList;
         }
@@ -107,6 +108,15 @@ namespace gymApp.pages
                 actualTime = 0;
                 TimerL.Text = ReturnTimeInFormat(actualTime);
             } 
+        }
+
+        private void ExcercisesLV_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (ExcercisesLV.SelectedItem is Set selectedExcersise)
+            {
+                var excercise = App.DatabaseExcercise.SelectByName(selectedExcersise.ExcerciseName).Result;
+                Navigation.PushModalAsync(new ExcerciseDetailPage(excercise[0].ID_excercise), false);
+            }
         }
     }
 }

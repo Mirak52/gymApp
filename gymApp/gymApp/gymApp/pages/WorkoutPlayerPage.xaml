@@ -10,7 +10,7 @@
                     <Label x:Name="TimerL" Text="Timer" HorizontalOptions="Center" FontSize="Large"/>
                 </StackLayout>
                 <StackLayout  BackgroundColor="Cornsilk" >
-                    <ListView x:Name="ExcercisesLV">
+                    <ListView x:Name="ExcercisesLV" ItemSelected="ExcercisesLV_ItemSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextCell Text="{Binding ExcerciseName}" Detail="{Binding Reps}"></TextCell>
