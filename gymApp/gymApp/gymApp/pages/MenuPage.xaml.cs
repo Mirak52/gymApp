@@ -134,7 +134,7 @@ namespace gymApp.pages
             task.Wait();
 
             var convertedJsonExcercise = JsonConvert.DeserializeObject<List<Excercise>>(ExcercisesJson);
-            
+            var convertedJsonRegion = JsonConvert.DeserializeObject<List<ExcerciseRegion>>(RegionJson);
             foreach (var excercise in convertedJsonExcercise)
             {
                 Excercise excerciseData = new Excercise();
@@ -146,7 +146,7 @@ namespace gymApp.pages
                 excerciseData.Specification = excercise.Specification;
                 App.DatabaseExcercise.SaveItemAsync(excerciseData);
             }
-            var convertedJsonRegion = JsonConvert.DeserializeObject<List<ExcerciseRegion>>(RegionJson);
+            
             foreach (var Region in convertedJsonRegion)
             {
                 ExcerciseRegion excerciseRegionData = new ExcerciseRegion();

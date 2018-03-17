@@ -18,7 +18,7 @@ namespace gymApp.classes
         }
         public Task<List<ExcerciseRegion>> SelectRegions()
         {
-            return database.QueryAsync<ExcerciseRegion>("select * FROM [ExcerciseRegion]");
+            return database.QueryAsync<ExcerciseRegion>("select * FROM [ExcerciseRegion] order by ID_region asc");
         }
         // Query
         public Task<List<ExcerciseRegion>> GetItemsAsync()

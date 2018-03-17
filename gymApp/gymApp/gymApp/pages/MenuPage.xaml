@@ -71,11 +71,15 @@
                 <ScrollView Grid.Column="0" Grid.Row="1" Grid.RowSpan="8"  >
                     <ListView x:Name="EmployeeView"
                             IsGroupingEnabled="true"
-                              ItemSelected="EmployeeView_ItemSelected">
+                              ItemSelected="EmployeeView_ItemSelected"
+                              SeparatorColor="White">
                         <ListView.GroupHeaderTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Label Text="{Binding FirstInitial}" />
+                                    <Frame OutlineColor="#FFC82C" BackgroundColor="Transparent">
+                                        <Label FontSize="Large"/>
+                                    </Frame>
+                                    <Label TextColor="#FFC82C"  FontFamily="Bold" FontSize="Large" Text="{Binding FirstInitial}" />
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.GroupHeaderTemplate>
@@ -83,7 +87,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Label Text="{Binding Name}" />
+                                    <Label TextColor="White" Text="{Binding Name}" VerticalOptions="Center" />
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
