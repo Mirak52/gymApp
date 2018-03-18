@@ -40,8 +40,6 @@ namespace gymApp.classes
 
         public Task<int> SaveItemAsync(ExcerciseRegion item)
         {
-           
-
                 return database.InsertAsync(item);
         }
 

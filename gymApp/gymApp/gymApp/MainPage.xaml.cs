@@ -12,6 +12,9 @@ namespace gymApp
         public MainPage()
         {
             InitializeComponent();
+          /*  var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            player.Load("hallOfFame.mp3");
+            player.Play();*/
         }
 
         private void registration_Clicked(object sender, EventArgs e)

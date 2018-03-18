@@ -98,10 +98,9 @@ namespace gymApp.pages
             List<Group> Groups = new List<Group>();
             bool madeGroup = true;
             int groupID=0;
-            int regionID =1;
             var regions = App.DatabaseRegions.SelectRegions().Result;
             foreach (var region in regions) {
-                var excercises = App.DatabaseExcercise.SelectExcerciseByRegion(regionID).Result;
+                var excercises = App.DatabaseExcercise.SelectExcerciseByRegion(region.ID_region).Result;
                 foreach (var excercise in excercises)
                 {
                     if (madeGroup)
@@ -116,7 +115,6 @@ namespace gymApp.pages
                 }
                 madeGroup = true;
                 groupID++;
-                regionID++;
             }
             EmployeeView.ItemsSource = Groups;
 
@@ -132,9 +130,15 @@ namespace gymApp.pages
             });
             task.Start();
             task.Wait();
-
             var convertedJsonExcercise = JsonConvert.DeserializeObject<List<Excercise>>(ExcercisesJson);
             var convertedJsonRegion = JsonConvert.DeserializeObject<List<ExcerciseRegion>>(RegionJson);
+            foreach (var Region in convertedJsonRegion)
+            {
+                ExcerciseRegion excerciseRegionData = new ExcerciseRegion();
+                excerciseRegionData.ID_region = Region.ID_region;
+                excerciseRegionData.Region = Region.Region;
+                App.DatabaseRegions.SaveItemAsync(excerciseRegionData);
+            }
             foreach (var excercise in convertedJsonExcercise)
             {
                 Excercise excerciseData = new Excercise();
@@ -145,14 +149,6 @@ namespace gymApp.pages
                 excerciseData.Description = excercise.Description;
                 excerciseData.Specification = excercise.Specification;
                 App.DatabaseExcercise.SaveItemAsync(excerciseData);
-            }
-            
-            foreach (var Region in convertedJsonRegion)
-            {
-                ExcerciseRegion excerciseRegionData = new ExcerciseRegion();
-                excerciseRegionData.ID_region = Region.ID_region;
-                excerciseRegionData.Region = Region.Region;
-                App.DatabaseRegions.SaveItemAsync(excerciseRegionData);
             }
         }
         private void Hiit_Clicked(object sender, EventArgs e)

@@ -201,7 +201,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Assets\hallOfFame.mp3" />
+    <AndroidAsset Include="Assets\hallOfFame.mp3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\arrowLeft.png" />
