@@ -47,7 +47,7 @@
                     <Label x:Name="DeathL" HorizontalOptions="End" FontAttributes="Bold" TextColor="White" Text="0"/>
                     <Label x:Name="SquatL" HorizontalOptions="End" FontAttributes="Bold" TextColor="White" Text="0"/>
                 </StackLayout>
-                <Button x:Name="AddStats" Grid.Row="4" Text="Zadej další záznam" Clicked="AddStats_Clicked"  Grid.Column="0" Grid.ColumnSpan="2" />
+                <Button x:Name="AddStats" Grid.Row="4" Text="Zadej další záznam" BackgroundColor="White" TextColor="#008EFF" FontAttributes="Bold" Clicked="AddStats_Clicked"  Grid.Column="0" Grid.ColumnSpan="2" />
             </Grid>
         </ContentPage.Content>
     </ContentPage>

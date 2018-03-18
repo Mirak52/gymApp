@@ -36,13 +36,18 @@ namespace gymApp.pages
             {
                 Stats.IsVisible = true;
                 BodyStats.IsVisible = true;
+                SendB.IsVisible= true;
                 Records.IsVisible = false;
+                SendR.IsVisible = false;
+
             }
             else if(Picker.SelectedIndex == 2)
             {
                 Stats.IsVisible = true;
                 BodyStats.IsVisible = false;
+                SendB.IsVisible = true;
                 Records.IsVisible = true;
+                SendR.IsVisible = true;
             }
         }
 
