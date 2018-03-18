@@ -12,9 +12,9 @@ namespace gymApp
         public MainPage()
         {
             InitializeComponent();
-          /*  var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
             player.Load("hallOfFame.mp3");
-            player.Play();*/
+            player.Play();
         }
 
         private void registration_Clicked(object sender, EventArgs e)
@@ -26,6 +26,8 @@ namespace gymApp
         {
            //Navigation.PushModalAsync(new pages.WorkoutSelectionPage(), false);
            Navigation.PushModalAsync(new pages.MenuPage(), false);
+           var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+           player.Stop();
         }
     }
 }
