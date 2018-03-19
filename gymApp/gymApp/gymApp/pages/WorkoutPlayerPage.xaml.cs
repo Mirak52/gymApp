@@ -19,7 +19,7 @@ namespace gymApp.pages
         {
             InitializeComponent();
             CreateListView(sets);
-            StartTimer();
+            
         }
         private bool TimerRun= true;
         private int actualTime = 0;
@@ -93,21 +93,25 @@ namespace gymApp.pages
         }
         private void Done_Clicked(object sender, EventArgs e)
         {
-            excerciseList.RemoveAt(0);
-            if (excerciseList.Count() == 0)
+            if (Done.Text == "START")
             {
-                ExcercisesLV.ItemsSource = null;
-                TimerRun = false;
-                Done.Text = "Úspěšně splněno";
-                Done.IsEnabled = false;
+                StartTimer();
+                Done.Text = "Další cvik splněn";
             }
-            else
-            {
+            else { 
+                excerciseList.RemoveAt(0);
                 ExcercisesLV.ItemsSource = null;
                 ExcercisesLV.ItemsSource = excerciseList;
                 actualTime = 0;
                 TimerL.Text = ReturnTimeInFormat(actualTime);
-            } 
+                if (excerciseList.Count() == 0)
+                {
+                    ExcercisesLV.ItemsSource = null;
+                    TimerRun = false;
+                    Done.Text = "Úspěšně splněno";
+                    Done.IsEnabled = false;
+                }
+            }
         }
 
         private void ExcercisesLV_ItemSelected(object sender, SelectedItemChangedEventArgs e)

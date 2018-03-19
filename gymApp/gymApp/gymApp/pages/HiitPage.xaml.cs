@@ -135,16 +135,16 @@ namespace gymApp.pages
             gridSettup.IsVisible = false;
             gridCountdown.IsVisible = true;
             timerStatus = true;
-            countDown.Text = ReturnTimeInFormat(hiit.totalTime);
+            countDownActual.Text = ReturnTimeInFormat(hiit.Prep);
             startCountdown();
         }
-
+        private int actualTime = 0;
         private void startCountdown()
         {
            /* var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
             player.Load("hallOfFame.mp3");
             player.Play();*/
-            int actualTime = 0;
+            
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 actualTime++;
@@ -164,6 +164,7 @@ namespace gymApp.pages
                 player.Load("beepEnd.mp3");
                 player.Play();
                 action.Text = "HOTOVO";
+                cancelCouting.Text = "ÚSPĚŠNĚ SPLĚNO";
                 countDownActual.Text = "00:00";
                 return timerStatus; //not continue
             });
@@ -215,10 +216,31 @@ namespace gymApp.pages
                 player.Play();
             }
         }
+        private void DefaultHiit()
+        {
+            actualTime = 0;
+            hiit.Work = 0;
+            hiit.Prep = 0;
+            hiit.Rest = 0;
+            hiit.totalTime = 0;
+            hiit.Rounds = 1;
 
+            roundsTime.Text = hiit.Rounds.ToString();
+            workTime.Text = ReturnTimeInFormat(hiit.Work);
+            prepTime.Text = ReturnTimeInFormat(hiit.Work);
+            restTime.Text = ReturnTimeInFormat(hiit.Work);
+            timer.Text = ReturnTimeInFormat(hiit.totalTime);
+
+            VisibilityButton(workTimeMinus, hiit.Work);
+            VisibilityButton(prepTimeMinus, hiit.Prep);
+            VisibilityButton(restTimeMinus, hiit.Rest);
+            VisibilityButton(roundsTimeMinus, hiit.Rounds);
+        }
         private void cancelCouting_Clicked(object sender, EventArgs e)
         {
+            DefaultHiit();
             timerStatus = false; //stop counting
+
             gridSettup.IsVisible = true;
             gridCountdown.IsVisible = false;
             action.Text = "PŘIPRAV SE";

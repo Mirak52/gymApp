@@ -38,7 +38,7 @@
                 <Label x:Name="action" Grid.Column="0" Grid.Row="2" FontAttributes="Bold" TextColor="#0D47A1" Text="PŘIPRAV SE" FontSize="40"  HorizontalOptions="Center"/>
                 <Label x:Name="countDownActual" Grid.Column="0" Grid.Row="3" Grid.RowSpan="1" VerticalTextAlignment="Center"  Text="00:00" TextColor="#0D47A1" FontSize="40" HorizontalOptions="Center"/>
                 <Label x:Name="countDown" Grid.Column="0" Grid.Row="4" Grid.RowSpan="1" VerticalTextAlignment="Center"  Text="00:00" TextColor="#0D47A1" FontSize="25" HorizontalOptions="Center"/>
-                <Button x:Name="cancelCouting" Clicked="cancelCouting_Clicked" Grid.Column="0" Grid.Row="5" TextColor="White" Text="ZASTAVIT" FontSize="Large" FontAttributes="Bold" BackgroundColor="#FFC82C"/>
+                <Button x:Name="cancelCouting" Clicked="cancelCouting_Clicked" Grid.Column="0" Grid.Row="8" TextColor="White" Text="ZASTAVIT" FontSize="Large" FontAttributes="Bold" BackgroundColor="#FFC82C"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
