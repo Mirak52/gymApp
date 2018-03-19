@@ -18,8 +18,7 @@ namespace gymApp.pages
         public int actionTime = 0;
         public HiitPage ()
 		{
-			InitializeComponent();
-            
+			InitializeComponent();  
         }
         
         public static void StartTimer(TimeSpan interval, Func<bool> callback) { }
@@ -146,7 +145,7 @@ namespace gymApp.pages
             player.Load("hallOfFame.mp3");
             player.Play();*/
             int actualTime = 0;
-           
+
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 actualTime++;
                 
@@ -156,40 +155,74 @@ namespace gymApp.pages
                         actionTime++;
                         SetActualText(actualTime);
                     }
+                    else { countDownActual.Text = ReturnTimeInFormat(hiit.Rest - actualTime); }
                     countDown.Text = ReturnTimeInFormat(hiit.totalTime - actualTime);
                     return timerStatus; //continue
                 }
                 timerStatus = false;
-                action.Text = "FINISHED";
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load("beepEnd.mp3");
+                player.Play();
+                action.Text = "HOTOVO";
+                countDownActual.Text = "00:00";
                 return timerStatus; //not continue
             });
         }
-        public int HiitCounter;
         private void SetActualText(int actualTime)
         {
-            if(actionTime <= hiit.Work)
+            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            if (actionTime <= hiit.Work)
             {
                 countDownActual.Text = ReturnTimeInFormat(hiit.Work-actionTime+1);
                 action.Text = "CVIČ";
+                if(hiit.Work - actionTime + 1 < 4)
+                {
+                    player.Load("beep.mp3");
+                    player.Play();
+                }
+                if (hiit.Work + actionTime == hiit.Work+1) {
+                    player.Load("cvic.mp3");
+                    player.Play();
+                }
             }
             else if(actionTime < hiit.Work + hiit.Rest)
             {
-                countDownActual.Text = ReturnTimeInFormat(hiit.Work+hiit.Rest- actionTime+1);
-                action.Text = "ODPOČÍVEJ";
+                if(actualTime != hiit.totalTime)
+                {
+                    countDownActual.Text = ReturnTimeInFormat(hiit.Work + hiit.Rest - actionTime + 1);
+                    action.Text = "PAUZA";
+                }
+                if (hiit.Work + hiit.Rest - actionTime + 1 < 4)
+                {
+                    player.Load("beep.mp3");
+                    player.Play();
+                }
+                if (hiit.Rest + 1 == actionTime)
+                {
+                    if (actualTime != hiit.totalTime)
+                    {
+                        player.Load("pauza.mp3");
+                        player.Play();
+                    }
+                }
+
             }
             else {
                 countDownActual.Text = ReturnTimeInFormat(hiit.Work + hiit.Rest - actionTime+1);
                 actionTime = 0;
-                action.Text = "ODPOČÍVEJ";
+                action.Text = "PAUZA";
+                player.Load("beep.mp3");
+                player.Play();
             }
         }
 
         private void cancelCouting_Clicked(object sender, EventArgs e)
         {
+            timerStatus = false; //stop counting
             gridSettup.IsVisible = true;
             gridCountdown.IsVisible = false;
-            action.Text = "PREP";
-            timerStatus = false; //stop counting
+            action.Text = "PŘIPRAV SE";
+          
         }
     }
 }

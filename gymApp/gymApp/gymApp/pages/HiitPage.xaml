@@ -13,13 +13,13 @@
                 <Button x:Name="prepTimeMinus" IsVisible="False" Grid.Column="3"  Grid.Row="0" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="8,5,0,5" HeightRequest="25" Text="-" Clicked="prepTimeMinus_Clicked" />
 
                 <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" BackgroundColor="#0D47A1"/>
-                <Label Text="CVIČ" TextColor="White" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
+                <Label Text="CVIČENÍ" TextColor="White" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
                 <Label x:Name="workTime" TextColor="White"  Grid.Column="2" Grid.Row="1" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="00:00"/>
                 <Button x:Name="workTimePlus" Grid.Column="4" Grid.Row="1" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="0,5,8,5" HeightRequest="25" Text="+" Clicked="workTimePlus_Clicked" />
                 <Button x:Name="workTimeMinus" IsVisible="False" Grid.Column="3" Grid.Row="1" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="8,5,0,5" HeightRequest="25" Text="-" Clicked="workTimeMinus_Clicked"/>
 
                 <RelativeLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" BackgroundColor="#0D47A1"/>
-                <Label  Text="ODPOČÍVEJ" TextColor="White" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
+                <Label  Text="PAUZA" TextColor="White" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  FontSize="20" HorizontalTextAlignment="Start" Margin="10" VerticalTextAlignment="Center" />
                 <Label x:Name="restTime" TextColor="White"  Grid.Column="2" Grid.Row="2" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  Text="00:00"/>
                 <Button x:Name="restTimePlus" Grid.Column="4" Grid.Row="2" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="0,5,8,5" HeightRequest="25" Text="+" Clicked="restTimePlus_Clicked" />
                 <Button x:Name="restTimeMinus" IsVisible="False" Grid.Column="3" Grid.Row="2" BorderColor="White" TextColor="White" BorderWidth="2" FontSize="20" BackgroundColor="Transparent" Margin="8,5,0,5" HeightRequest="25" Text="-" Clicked="restTimeMinus_Clicked"  />
@@ -35,7 +35,7 @@
                 <Button x:Name="startCounting" Text="ZAČÍT" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="8"  FontSize="Large" FontAttributes="Bold" Margin="-15,0,-15,0" BackgroundColor="#FFC82C" Clicked="startCounting_Clicked"/>
             </Grid>
             <Grid x:Name="gridCountdown" Margin="10,10,10,10" IsVisible="False">
-                <Label x:Name="action" Grid.Column="0" Grid.Row="2" FontAttributes="Bold" TextColor="#0D47A1" Text="PREP" FontSize="40"  HorizontalOptions="Center"/>
+                <Label x:Name="action" Grid.Column="0" Grid.Row="2" FontAttributes="Bold" TextColor="#0D47A1" Text="PŘIPRAV SE" FontSize="40"  HorizontalOptions="Center"/>
                 <Label x:Name="countDownActual" Grid.Column="0" Grid.Row="3" Grid.RowSpan="1" VerticalTextAlignment="Center"  Text="00:00" TextColor="#0D47A1" FontSize="40" HorizontalOptions="Center"/>
                 <Label x:Name="countDown" Grid.Column="0" Grid.Row="4" Grid.RowSpan="1" VerticalTextAlignment="Center"  Text="00:00" TextColor="#0D47A1" FontSize="25" HorizontalOptions="Center"/>
                 <Button x:Name="cancelCouting" Clicked="cancelCouting_Clicked" Grid.Column="0" Grid.Row="5" TextColor="White" Text="ZASTAVIT" FontSize="Large" FontAttributes="Bold" BackgroundColor="#FFC82C"/>
