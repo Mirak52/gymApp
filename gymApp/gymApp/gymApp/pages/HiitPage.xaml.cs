@@ -154,7 +154,7 @@ namespace gymApp.pages
                 {
                     if(hiit.Prep <= actualTime){
                         actionTime++;
-                        action.Text = SetActualText();
+                        SetActualText(actualTime);
                     }
                     countDown.Text = ReturnTimeInFormat(hiit.totalTime - actualTime);
                     return timerStatus; //continue
@@ -164,20 +164,23 @@ namespace gymApp.pages
                 return timerStatus; //not continue
             });
         }
-        
-        private string SetActualText()
+        public int HiitCounter;
+        private void SetActualText(int actualTime)
         {
             if(actionTime <= hiit.Work)
             {
-                return "WORK";
+                countDownActual.Text = ReturnTimeInFormat(hiit.Work-actionTime+1);
+                action.Text = "CVIČ";
             }
             else if(actionTime < hiit.Work + hiit.Rest)
             {
-                return "REST";
+                countDownActual.Text = ReturnTimeInFormat(hiit.Work+hiit.Rest- actionTime+1);
+                action.Text = "ODPOČÍVEJ";
             }
             else {
+                countDownActual.Text = ReturnTimeInFormat(hiit.Work + hiit.Rest - actionTime+1);
                 actionTime = 0;
-                return "REST";
+                action.Text = "ODPOČÍVEJ";
             }
         }
 

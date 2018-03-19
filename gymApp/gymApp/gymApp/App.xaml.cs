@@ -13,7 +13,6 @@ namespace gymApp
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new gymApp.MainPage());
         }
 
