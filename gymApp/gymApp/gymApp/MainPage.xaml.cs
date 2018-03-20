@@ -20,18 +20,14 @@ namespace gymApp
 
         private void registration_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new pages.registration(),false);
+            Navigation.PushModalAsync(new pages.WorkoutSelectionPage(), false);
         }
 
         private void login_Clicked(object sender, EventArgs e)
         {
-            //Navigation.PushModalAsync(new pages.WorkoutSelectionPage(), false);
-
             
-           Navigation.PushModalAsync(new pages.MenuPage(), false);
-           
-           var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-           player.Stop();
+            Application.Current.MainPage = new pages.MenuPage();
+            //Navigation.PushModalAsync(new pages.MenuPage(), false);
         }
     }
 }

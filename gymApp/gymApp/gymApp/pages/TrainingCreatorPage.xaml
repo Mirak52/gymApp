@@ -4,49 +4,80 @@
              x:Class="gymApp.pages.TrainingCreatorPage"
              BackgroundColor="#2196F3">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Margin="10,0,10,0">
+        <StackLayout>
+            <ScrollView x:Name="QuickTraining">
+                <StackLayout Margin="10,0,10,0" >
+                    <StackLayout Margin="0,10,0,0">
+                        <Picker x:Name="Muscles" TextColor="White" HorizontalOptions="Center" WidthRequest="200" />
+                    </StackLayout>
+                    <StackLayout  BackgroundColor="#0D47A1" >
+                        <StackLayout Margin="15,10,15,0">
+                            <Label Text="Počet základních cviků" TextColor="White" FontSize="Medium" FontAttributes="Bold" />
+                            <Label x:Name="BasicNumber" TextColor="White" Text="1"/>
+                            <Slider x:Name="BasicExcerciseNumber" Maximum="3" Minimum="1" Value="1" ValueChanged="BasicExcerciseNumber_ValueChanged" />
+                            <Label Text="Počet sérií základních cviků" FontAttributes="Bold" TextColor="White" FontSize="Medium" />
+                            <Label x:Name="BasicSetNumber" TextColor="White" Text="1"/>
+                            <Slider x:Name="BasicSetExcerciseNumber" Maximum="5" Minimum="1" Value="1" ValueChanged="BasicSetExcerciseNumber_ValueChanged" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout  BackgroundColor="#0D47A1" >
+                        <StackLayout Margin="15,10,15,0">
+                            <Label/>
+                            <Label Text="Počet doplňkových cviků" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label x:Name="SupplementNumber" TextColor="White" Text="0" />
+                            <Slider x:Name="SupplementExcerciseNumber" Maximum="5" Minimum="0" Value="0" ValueChanged="SupplementExcerciseNumber_ValueChanged" />
 
-                <StackLayout BackgroundColor="LightCoral" Margin="0,10,0,0">
-                    <Picker x:Name="Muscles" TextColor="White" HorizontalOptions="Center" />
-                </StackLayout>
-                <StackLayout  BackgroundColor="Cornsilk" >
-                    <Label Text="Počet základních cviků" FontSize="Medium" />
-                    <Label x:Name="BasicNumber" Text="1"/>
-                    <Slider x:Name="BasicExcerciseNumber" Maximum="3" Minimum="1" Value="1" ValueChanged="BasicExcerciseNumber_ValueChanged" />
+                            <Label Text="Počet sérií doplňkových cviků" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label x:Name="SupplementSetNumber" TextColor="White" Text="1" />
+                            <Slider x:Name="SupplementSetExcerciseNumber" Maximum="5" Minimum="1" Value="1"  ValueChanged="SupplementSetExcerciseNumber_ValueChanged" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout  BackgroundColor="#0D47A1" >
+                        <StackLayout Margin="15,10,15,0">
+                            <Label/>
+                            <Label Text="Počet kompenzačních cviků" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label x:Name="CompensationNumber" TextColor="White" Text="0" />
+                            <Slider x:Name="CompensatorExcerciseNumber"  Maximum="2" Minimum="0" Value="0"  ValueChanged="CompensatorExcerciseNumber_ValueChanged_1" />
 
-                    <Label Text="Počet sérií základních cviků" FontSize="Medium" />
-                    <Label x:Name="BasicSetNumber" Text="1"/>
-                    <Slider x:Name="BasicSetExcerciseNumber" Maximum="5" Minimum="1" Value="1" ValueChanged="BasicSetExcerciseNumber_ValueChanged" />
-                </StackLayout>
-                <StackLayout  BackgroundColor="Cornsilk" >
-                    <Label/>
-                    <Label Text="Počet doplňkových cviků" FontSize="Medium"/>
-                    <Label x:Name="SupplementNumber" Text="1" />
-                    <Slider x:Name="SupplementExcerciseNumber" Maximum="5" Minimum="1" Value="1" ValueChanged="SupplementExcerciseNumber_ValueChanged" />
+                            <Label Text="Počet sérií kompenzačních cviků" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label x:Name="CompensationSetNumber" TextColor="White" Text="1" />
+                            <Slider x:Name="CompensatorSetExcerciseNumber"  Maximum="5" Minimum="1" Value="1"  ValueChanged="CompensatorExcerciseNumber_ValueChanged" />
 
-                    <Label Text="Počet sérií doplňkových cviků" FontSize="Medium"/>
-                    <Label x:Name="SupplementSetNumber" Text="1" />
-                    <Slider x:Name="SupplementSetExcerciseNumber" Maximum="5" Minimum="1" Value="1" ValueChanged="SupplementSetExcerciseNumber_ValueChanged" />
+                            <Label Text="Silový / Objemový trénink" TextColor="White" FontAttributes="Bold" FontSize="Medium" />
+                            <Switch x:Name="VolumePower" HorizontalOptions="Center" Toggled="VolumePower_Toggled" />
+                            <Label x:Name="Information" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="Odhadovaná doba tréninku: "/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout>
+                        <Button x:Name="Create" Text="Vytvořit trénink" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" Clicked="Create_Clicked" />
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout  BackgroundColor="Cornsilk" >
-                    <Label/>
-                    <Label Text="Počet kompenzačních cviků" FontSize="Medium"/>
-                    <Label x:Name="CompensationNumber" Text="0" />
-                    <Slider x:Name="CompensatorExcerciseNumber"  Maximum="2" Minimum="0" Value="0"  ValueChanged="CompensatorExcerciseNumber_ValueChanged_1" />
+            </ScrollView>
 
-                    <Label Text="Počet sérií kompenzačních cviků" FontSize="Medium"/>
-                    <Label x:Name="CompensationSetNumber" Text="1" />
-                    <Slider x:Name="CompensatorSetExcerciseNumber"  Maximum="5" Minimum="1" Value="1"  ValueChanged="CompensatorExcerciseNumber_ValueChanged" />
-
-                    <Label Text="Silový / Objemový trénink" FontSize="Medium" />
-                    <Switch x:Name="VolumePower" HorizontalOptions="Center" Toggled="VolumePower_Toggled" />
-                    <Label x:Name="Information" FontSize="Medium" Text="Odhadovaná doba tréninku: "/>
+            <ScrollView x:Name="LongPlan" IsVisible="False">
+                <StackLayout Margin="10,0,10,0">
+                    <StackLayout Margin="0,10,0,0">
+                        <Label Text="Generování pyramidového tréninku" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="#FFC82C" />
+                    </StackLayout>
+                    <StackLayout x:Name="RecordsSet" Margin="10,10,10,0" BackgroundColor="#0D47A1">
+                        <Label x:Name="InformationsAboutRecords" Text="Generování na základě osobních rekordů" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="White"/>
+                        <Label x:Name="UseInsertedData" Text="Vložit nová data / použít již zadaná" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="White"/>
+                        <Switch x:Name="UseData" HorizontalOptions="Center" Toggled="UseData_Toggled"/>
+                        <Entry x:Name="BenchpressE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Bench-press"/>
+                        <Entry x:Name="DeathliftE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Death-lift"/>
+                        <Entry x:Name="SquatE" Keyboard="Numeric" Margin="10,0,10,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Dřep"/>
+                        <Label x:Name="RecordInformations" IsVisible="False" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="White"/>
+                    </StackLayout>
+                    <StackLayout Margin="10,10,10,0" BackgroundColor="#0D47A1">
+                        <Label Text="Vyber počet dnů v týdnu co můžeš trénovat" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="White"/>
+                        <Picker x:Name="DaysNumbers" TextColor="White" HorizontalOptions="Center" />
+                        <Label x:Name="Warning" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text=""/>
+                    </StackLayout>
+                    <StackLayout Margin="10,0,10,10">
+                        <Button x:Name="GenerateTraining" Text="Vytvořit trénink" BackgroundColor="White" TextColor="#008EFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" Clicked="GenerateTraining_Clicked" />
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout  BackgroundColor="Cornsilk" >
-                    <Button x:Name="Create" Text="Vytvořit trénink" Clicked="Create_Clicked" />
-                </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

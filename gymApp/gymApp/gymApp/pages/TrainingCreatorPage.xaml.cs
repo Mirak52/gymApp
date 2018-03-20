@@ -17,9 +17,33 @@ namespace gymApp.pages
         public TrainingCreatorPage(int TypeOfTraining)
         {
             InitializeComponent();
-            SetPicker();
-            SetDefaultTime();
-            CountTotalTrainingTime();
+            if (TypeOfTraining == 1)
+            {
+                QuickTraining.IsVisible = true;
+                SetPickerQuick();
+                SetDefaultTime();
+                CountTotalTrainingTime();
+                
+            }
+            else if (TypeOfTraining == 2)
+            {
+                SetPickerPlan();
+                CheckPersonalRecords();
+                QuickTraining.IsVisible = false;
+                LongPlan.IsVisible = true;
+            }
+        }
+
+        private void SetPickerPlan()
+        {
+            var days = new List<string>();
+            days.Add("Vyber počet dnů");
+            for (int i = 2; i <= 7; i++)
+            {
+                days.Add(i.ToString());
+            }
+            DaysNumbers.ItemsSource = days;
+            DaysNumbers.SelectedIndex = 0;
         }
 
         private void SetDefaultTime()
@@ -32,13 +56,13 @@ namespace gymApp.pages
             totalTime.CompensationSetsNum = Convert.ToInt32(CompensatorSetExcerciseNumber.Value);
         }
 
-        private void SetPicker()
+        private void SetPickerQuick()
         {
             var muscles = new List<string>();
             muscles.Add("Vyber zadávání");
-            muscles.Add("Prsa");
-            muscles.Add("Záda");
-            muscles.Add("Nohy");
+            muscles.Add("Prsa, ramena, biceps");
+            muscles.Add("Záda, triceps");
+            muscles.Add("Nohy, břicho");
             Muscles.ItemsSource = muscles;
             Muscles.SelectedIndex = 0;
         }
@@ -104,7 +128,6 @@ namespace gymApp.pages
                                     + (totalTime.SupplementExceNum * totalTime.SupplementSetsNum * 90)
                                     + (totalTime.CompensationExceNum * totalTime.CompensationSetsNum * 60);
             }
-            Information.TextColor = Color.Black;
             Information.Text = "Odhadovaná doba tréninku: " + ReturnTimeInFormat(totalTime.totalTime)+ " min";
         }
         private string ReturnTimeInFormat(int timeParameter)
@@ -159,15 +182,15 @@ namespace gymApp.pages
         {
             double RepsInSet = 0;
             int excerciseRandomNumber = 0;
-            switch (Muscles.SelectedItem)
+            switch (Muscles.SelectedIndex)
             {
-                case "Prsa":
+                case 1:
                     excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(1, 1).Result;
                     break;
-                case "Záda":
+                case 2:
                     excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(6, 1).Result;
                     break;
-                case "Nohy":
+                case 3:
                     excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(7, 1).Result;
                     break;
             }
@@ -212,9 +235,9 @@ namespace gymApp.pages
         {
             randomNumbersList.Clear();
             int excerciseRandomNumber = 0;
-            switch (Muscles.SelectedItem)
+            switch (Muscles.SelectedIndex)
             {
-                case "Prsa":
+                case 1:
                     excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(1, 2).Result;
                     SupllementExcercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
                     foreach(var supplementExcercise in SupllementExcercises)
@@ -222,7 +245,7 @@ namespace gymApp.pages
                         excercises.Add(new Excercise { ID_excercise = supplementExcercise.ID_excercise });
                     }
                     break;
-                case "Záda":
+                case 2:
                     excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(6, 2).Result;
                     SupllementExcercises = App.DatabaseExcercise.SelectTricepsAndForearm().Result;
                     foreach (var supplementExcercise in SupllementExcercises)
@@ -230,7 +253,7 @@ namespace gymApp.pages
                         excercises.Add(new Excercise { ID_excercise = supplementExcercise.ID_excercise });
                     }
                     break;
-                case "Nohy":
+                case 3:
                     excercises = App.DatabaseExcercise.SelectByRegionAndSpecification(7, 2).Result;
                     SupllementExcercises = App.DatabaseExcercise.SelectBellyAndCalf().Result;
                     foreach (var supplementExcercise in SupllementExcercises)
@@ -277,6 +300,63 @@ namespace gymApp.pages
         private void VolumePower_Toggled(object sender, ToggledEventArgs e)
         {
             CountTotalTrainingTime();
+        }
+        private void CheckPersonalRecords()
+        {
+            var records= App.DatabasePersonalRecord.SelectHighestRecord().Result;
+            if(records[0].Benchpress == 0 || records[0].Deathlift == 0 || records[0].Squat == 0)
+            {
+                UseInsertedData.IsVisible = false;
+                UseData.IsVisible = false;
+            }
+        }
+        private void UseData_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (UseData.IsToggled) {
+                var records = App.DatabasePersonalRecord.SelectHighestRecord().Result;
+                BenchpressE.IsVisible = false;
+                DeathliftE.IsVisible = false;
+                SquatE.IsVisible = false;
+                RecordInformations.IsVisible = true;
+                RecordInformations.Text = "Zadaná data" +
+                    " Bench-press: "+ records[0].Benchpress+ "Kg \r\n Deathlift: " + records[0].Deathlift+ "Kg \r\n Dřep: " + records[0].Squat+"Kg";
+            }
+            else
+            {
+                BenchpressE.IsVisible = true;
+                DeathliftE.IsVisible = true;
+                SquatE.IsVisible = true;
+                RecordInformations.IsVisible = false;
+            }
+        }
+        private void GenerateTraining_Clicked(object sender, EventArgs e)
+        {
+            ChechUserInput();
+        }
+        private void ChechUserInput()
+        {
+            if(UseData.IsToggled && DaysNumbers.SelectedIndex != 0)
+            {
+                GenerateTrainingPlan(false);
+            }
+            else if(!UseData.IsToggled && !string.IsNullOrEmpty(BenchpressE.Text) && !string.IsNullOrEmpty(DeathliftE.Text) && !string.IsNullOrEmpty(SquatE.Text)){
+                GenerateTrainingPlan(true);
+            }
+            else
+            {
+                Warning.TextColor = Color.Red;
+                Warning.Text = "Zkontroluj si vložené údaje";
+            }
+        }
+        private void GenerateTrainingPlan(bool EntryUsed)
+        {
+            if (EntryUsed) {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
