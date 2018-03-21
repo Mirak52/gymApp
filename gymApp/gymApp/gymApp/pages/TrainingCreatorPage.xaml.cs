@@ -351,12 +351,24 @@ namespace gymApp.pages
         private void GenerateTrainingPlan(bool EntryUsed)
         {
             if (EntryUsed) {
-
+                SaveRecordsToDatabase();   
             }
             else
             {
-
+                var Records = App.DatabasePersonalRecord.SelectHighestRecord().Result;
+                personalRecord.Squat = Records[0].Squat;
+                personalRecord.Deathlift= Records[0].Deathlift;
+                personalRecord.Benchpress= Records[0].Benchpress;
             }
+
+        }
+        public PersonalRecord personalRecord = new PersonalRecord();
+        private void SaveRecordsToDatabase() {
+            personalRecord.Benchpress = App.setNumber(BenchpressE.Text);
+            personalRecord.Deathlift = App.setNumber(DeathliftE.Text);
+            personalRecord.Squat = App.setNumber(SquatE.Text);
+            personalRecord.Date = DateTime.Today.ToString();
+            App.DatabasePersonalRecord.SaveItemAsync(personalRecord);
         }
     }
 }

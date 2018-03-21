@@ -7,30 +7,15 @@
     
     <Grid Margin="20,20,20,0">
         
-        <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  >
-            <!--<Image WidthRequest="30" HeightRequest="30" Source="http://brandmark.io/logo-rank/random/pepsi.png"/> -->
-            <ActivityIndicator Color="Red" HorizontalOptions="FillAndExpand" IsRunning="true" />
+        <StackLayout Grid.Row="0" Grid.RowSpan="2"  >
+            <Image BackgroundColor="Blue"/>
+
         </StackLayout>
-        <StackLayout Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" >
-            <Entry Margin="30,0,30,0" Placeholder="ENTER USERNAME" PlaceholderColor="WhiteSmoke" TextColor="White" />
-
-            <Entry Margin="30,0,30,0" Placeholder="ENTER PASSWORD" PlaceholderColor="WhiteSmoke" TextColor="White" IsPassword="True"/>
-            
+        <StackLayout Grid.Row="2" Grid.RowSpan="6">
+            <ActivityIndicator x:Name="Indicator" IsVisible="False" Color="White" MinimumWidthRequest="150" MinimumHeightRequest="150" HorizontalOptions="FillAndExpand" IsRunning="true" />
+            <Label x:Name="Informations" FontSize="Large" TextColor="#0D47A1" IsVisible="False" Text="Stahuji aktualizace" HorizontalTextAlignment="Center"/>
+            <Button x:Name="login" Grid.Row="4" Text="VSTOUPIT" Clicked="login_Clicked_1" Pressed="login_Pressed" VerticalOptions="EndAndExpand" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold"  />
         </StackLayout>
-
-        
-        <StackLayout Grid.Row="4" Grid.ColumnSpan="2" >
-            <Button x:Name="login" Text="SIGN IN" Clicked="login_Clicked"  VerticalOptions="EndAndExpand" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold"  />
-        </StackLayout>
-
-
-        <StackLayout Grid.Row="5" Grid.Column="0" Margin="0,0,50,0" >
-            <Button x:Name="registration" Clicked="registration_Clicked" Text="Sign up" BackgroundColor="Transparent"  TextColor="#E3F2FD"/>
-        </StackLayout>
-
-
-        <StackLayout Grid.Row="5" Grid.Column="1"  Margin="50,0,0,0" >
-            <Button x:Name="passwordReset" Text="password?" BackgroundColor="Transparent" TextColor="#E3F2FD" />
-        </StackLayout>
+        <StackLayout Grid.Row="8"/>
     </Grid>
 </ContentPage>

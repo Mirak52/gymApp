@@ -12,22 +12,15 @@ namespace gymApp
         public MainPage()
         {
             InitializeComponent();
-            /*var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-            player.Load("hallOfFame.mp3");
-            player.Play();*/
-            
         }
-
-        private void registration_Clicked(object sender, EventArgs e)
+        private void login_Clicked_1(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new pages.WorkoutSelectionPage(), false);
-        }
-
-        private void login_Clicked(object sender, EventArgs e)
-        {
-            
             Application.Current.MainPage = new pages.MenuPage();
-            //Navigation.PushModalAsync(new pages.MenuPage(), false);
+        }
+        private void login_Pressed(object sender, EventArgs e)
+        {
+            Indicator.IsVisible = true;
+            Informations.IsVisible = true;
         }
     }
 }
