@@ -1,4 +1,5 @@
 ﻿using gymApp.classes;
+using gymApp.classes.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace gymApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new gymApp.MainPage());
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
@@ -94,7 +95,54 @@ namespace gymApp
                 return _databaseRec;
             }
         }
-
+        private static DayDatabase _databaseDay;
+        public static DayDatabase DatabaseDay
+        {
+            get
+            {
+                if (_databaseDay == null)
+                {
+                    _databaseDay = new DayDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseDay;
+            }
+        }
+        private static DaySetDatabase _databaseDaySet;
+        public static DaySetDatabase DatabaseDaySet
+        {
+            get
+            {
+                if (_databaseDaySet == null)
+                {
+                    _databaseDaySet = new DaySetDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseDaySet;
+            }
+        }
+        private static TrainingUnitDatabase _databaseTrainingUnit;
+        public static TrainingUnitDatabase DatabaseTrainingUnit
+        {
+            get
+            {
+                if (_databaseTrainingUnit == null)
+                {
+                    _databaseTrainingUnit = new TrainingUnitDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseTrainingUnit;
+            }
+        }
+        private static TrainingUnitDayDatabase _databaseTrainingUnitDay;
+        public static TrainingUnitDayDatabase DatabaseTrainingUnitDay
+        {
+            get
+            {
+                if (_databaseTrainingUnitDay == null)
+                {
+                    _databaseTrainingUnitDay = new TrainingUnitDayDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseTrainingUnitDay;
+            }
+        }
         public static bool IsNumber(string parameter)
         {
             int number;

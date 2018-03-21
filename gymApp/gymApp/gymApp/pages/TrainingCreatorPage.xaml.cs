@@ -337,10 +337,10 @@ namespace gymApp.pages
         {
             if(UseData.IsToggled && DaysNumbers.SelectedIndex != 0)
             {
-                GenerateTrainingPlan(false);
+                SetRecordsClass(false);
             }
             else if(!UseData.IsToggled && !string.IsNullOrEmpty(BenchpressE.Text) && !string.IsNullOrEmpty(DeathliftE.Text) && !string.IsNullOrEmpty(SquatE.Text)){
-                GenerateTrainingPlan(true);
+                SetRecordsClass(true);
             }
             else
             {
@@ -348,7 +348,7 @@ namespace gymApp.pages
                 Warning.Text = "Zkontroluj si vložené údaje";
             }
         }
-        private void GenerateTrainingPlan(bool EntryUsed)
+        private void SetRecordsClass(bool EntryUsed)
         {
             if (EntryUsed) {
                 SaveRecordsToDatabase();   
@@ -360,6 +360,8 @@ namespace gymApp.pages
                 personalRecord.Deathlift= Records[0].Deathlift;
                 personalRecord.Benchpress= Records[0].Benchpress;
             }
+            GenerateTrainingPlan();
+
 
         }
         public PersonalRecord personalRecord = new PersonalRecord();
@@ -369,6 +371,10 @@ namespace gymApp.pages
             personalRecord.Squat = App.setNumber(SquatE.Text);
             personalRecord.Date = DateTime.Today.ToString();
             App.DatabasePersonalRecord.SaveItemAsync(personalRecord);
+        }
+        private void GenerateTrainingPlan()
+        {
+
         }
     }
 }
