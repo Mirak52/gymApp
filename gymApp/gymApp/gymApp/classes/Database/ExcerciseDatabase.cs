@@ -27,6 +27,7 @@ namespace gymApp.classes
         {
             return database.QueryAsync<Excercise>("select ID_excercise FROM [Excercise] where Name ='" + parameter + "'");
         }
+
         // Query SELECT  * FROM gym_excercise ORDER BY ID_excercise DESC LIMIT 1
         public Task<List<Excercise>> SelectDetailedExcercise(int ID)
         {
@@ -40,6 +41,15 @@ namespace gymApp.classes
         {
             return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = "+region);
         }
+        public Task<List<Excercise>> SelectExcerciseByRegionWithoutMainExcercise(int region,string name)
+        {
+            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = " + region + " AND Name NOT LIKE '%" + name + "%'");
+        }
+        public Task<List<Excercise>> SelectMainExcerciseByRegionAndName(int region, string name)
+        {
+            return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = " + region + " AND Name LIKE '%" + name + "%'");
+        }
+
         public Task<List<Excercise>> SelectBicepsAndShoulders()
         {
             return database.QueryAsync<Excercise>("SELECT * FROM [Excercise] WHERE [Region] = '" + 3 + "'OR [Region] = " + 2);

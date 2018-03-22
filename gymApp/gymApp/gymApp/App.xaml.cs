@@ -143,6 +143,19 @@ namespace gymApp
                 return _databaseTrainingUnitDay;
             }
         }
+        private static SetDatabase _databaseSet;
+        public static SetDatabase DatabaseSet
+        {
+            get
+            {
+                if (_databaseSet == null)
+                {
+                    _databaseSet = new SetDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return _databaseSet;
+            }
+        }
+
         public static bool IsNumber(string parameter)
         {
             int number;

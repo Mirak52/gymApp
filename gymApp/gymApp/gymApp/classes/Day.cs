@@ -11,8 +11,7 @@ namespace gymApp.classes
     {
         [PrimaryKey, AutoIncrement]
         public int ID_Day{ get; set; }
-        public int EstimatedTime { get; set; }
         public string MainExcercise { get; set; }
-        public int State { get; set; }
+        public int State { get; set; } = 0;
     }
 }

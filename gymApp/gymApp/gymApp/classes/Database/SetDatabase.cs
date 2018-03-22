@@ -14,13 +14,12 @@ namespace gymApp.classes.Database
         public SetDatabase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<BodyStats>().Wait();
+            database.CreateTableAsync<Set>().Wait();
         }
-        public Task<List<Set>> SelectLastBodyStats()
+        public Task<List<Set>> Select()
         {
-            return database.QueryAsync<Set>("select * FROM [Set] ORDER BY ID_bodyStats DESC LIMIT 1");
+            return database.QueryAsync<Set>("SELECT * FROM [Set]");
         }
-
         public Task<int> SaveItemAsync(Set item)
         {
             if (item.ID_set != 0)

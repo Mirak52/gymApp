@@ -52,6 +52,7 @@
     <Compile Include="classes\ExcerciseRegion.cs" />
     <Compile Include="classes\Database\ExcerciseRegionDatabase.cs" />
     <Compile Include="classes\Functions\Hiit.cs" />
+    <Compile Include="classes\Functions\WeightInfluence.cs" />
     <Compile Include="classes\PersonalRecord.cs" />
     <Compile Include="classes\Database\PersonalRecordDatabase.cs" />
     <Compile Include="classes\Functions\TrainingCreatorTimer.cs" />

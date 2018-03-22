@@ -16,9 +16,13 @@ namespace gymApp.classes.Database
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<Day>().Wait();
         }
-        public Task<List<Day>> SelectLastBodyStats()
+        public Task<List<Day>> SelectLastID()
         {
-            return database.QueryAsync<Day>("select * FROM [Day] ORDER BY ID_bodyStats DESC LIMIT 1");
+            return database.QueryAsync<Day>("select ID_Day FROM [Day] order by ID_day DESC LIMIT 1");
+        }
+        public Task<List<Day>> Select()
+        {
+            return database.QueryAsync<Day>("SELECT * FROM [Day]");
         }
 
         public Task<int> SaveItemAsync(Day item)
