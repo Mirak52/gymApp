@@ -71,12 +71,21 @@
                     <StackLayout Margin="10,10,10,0" BackgroundColor="#0D47A1">
                         <Label Text="Vyber počet dnů v týdnu co můžeš trénovat" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="White"/>
                         <Picker x:Name="DaysNumbers" TextColor="White" HorizontalOptions="Center" />
+                        <Entry x:Name="TrainNameE" Keyboard="Text" Margin="10,0,10,0" TextColor="White" PlaceholderColor="White" Placeholder="Pojmenuj tréninkový plán"/>
                         <Label x:Name="Warning" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text=""/>
                     </StackLayout>
                     <StackLayout Margin="10,0,10,10">
-                        <Button x:Name="GenerateTraining" Text="Vytvořit trénink" BackgroundColor="White" TextColor="#008EFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" Clicked="GenerateTraining_Clicked" />
+                        <Button x:Name="GenerateTraining" Text="Vytvořit trénink" BackgroundColor="White" Pressed="GenerateTraining_Pressed" TextColor="#008EFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" Clicked="GenerateTraining_Clicked" />
                     </StackLayout>
                 </StackLayout>
+            </ScrollView>
+            <ScrollView x:Name="Generating" IsVisible="False">
+                <Grid Margin="10,0,10,0">
+                    <ActivityIndicator Grid.Row="1" x:Name="Indicator" IsVisible="True" Color="White" MinimumWidthRequest="150" MinimumHeightRequest="150" VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsRunning="true" />
+                    <Label Grid.Row="2" x:Name="Informations" FontSize="Large" TextColor="White" IsVisible="True" Text="Generuji trénink"  HorizontalTextAlignment="Center"/>
+                    <Button x:Name="Overview" IsVisible="False" Grid.Row="8" Text="Přejít přehled" BackgroundColor="White" TextColor="#008EFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" />
+                    <Label Grid.Row="9"/>
+                </Grid>
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>

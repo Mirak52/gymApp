@@ -16,6 +16,11 @@ namespace gymApp.classes.Database
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<TrainingUnit>().Wait();
         }
+
+         public Task<List<TrainingUnit>> SelectLastID()
+        {
+            return database.QueryAsync<TrainingUnit>("select ID_TrainingUnit FROM [TrainingUnit] order by ID_TrainingUnit DESC LIMIT 1");
+        }
         public Task<int> SaveItemAsync(TrainingUnit item)
         {
             if (item.ID_TrainingUnit != 0)

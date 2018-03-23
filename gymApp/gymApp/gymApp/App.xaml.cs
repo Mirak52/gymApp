@@ -107,18 +107,6 @@ namespace gymApp
                 return _databaseDay;
             }
         }
-        private static DaySetDatabase _databaseDaySet;
-        public static DaySetDatabase DatabaseDaySet
-        {
-            get
-            {
-                if (_databaseDaySet == null)
-                {
-                    _databaseDaySet = new DaySetDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
-                }
-                return _databaseDaySet;
-            }
-        }
         private static TrainingUnitDatabase _databaseTrainingUnit;
         public static TrainingUnitDatabase DatabaseTrainingUnit
         {
@@ -129,18 +117,6 @@ namespace gymApp
                     _databaseTrainingUnit = new TrainingUnitDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
                 }
                 return _databaseTrainingUnit;
-            }
-        }
-        private static TrainingUnitDayDatabase _databaseTrainingUnitDay;
-        public static TrainingUnitDayDatabase DatabaseTrainingUnitDay
-        {
-            get
-            {
-                if (_databaseTrainingUnitDay == null)
-                {
-                    _databaseTrainingUnitDay = new TrainingUnitDayDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
-                }
-                return _databaseTrainingUnitDay;
             }
         }
         private static SetDatabase _databaseSet;

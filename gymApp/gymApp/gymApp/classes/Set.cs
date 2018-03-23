@@ -15,5 +15,6 @@ namespace gymApp.classes
         public string ExcerciseName { get; set; }
         public string Reps { get; set; }
         public int Weight { get; set; }
+        public int ID_day { get; set; }
     }
 }

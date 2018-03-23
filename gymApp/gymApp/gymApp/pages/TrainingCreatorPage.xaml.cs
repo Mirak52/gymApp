@@ -336,11 +336,12 @@ namespace gymApp.pages
 
         private void ChechUserInput()
         {
-            if(UseData.IsToggled && DaysNumbers.SelectedIndex != 0)
+            if(UseData.IsToggled && DaysNumbers.SelectedIndex != 0 && !string.IsNullOrEmpty(TrainNameE.Text))
             {
                 SetRecordsClass(false);
             }
-            else if(!UseData.IsToggled && !string.IsNullOrEmpty(BenchpressE.Text) && !string.IsNullOrEmpty(DeathliftE.Text) && !string.IsNullOrEmpty(SquatE.Text)){
+            else if(!UseData.IsToggled && !string.IsNullOrEmpty(BenchpressE.Text) && !string.IsNullOrEmpty(DeathliftE.Text) && !string.IsNullOrEmpty(SquatE.Text) && !string.IsNullOrEmpty(TrainNameE.Text))
+            {               
                 SetRecordsClass(true);
             }
             else
@@ -349,6 +350,13 @@ namespace gymApp.pages
                 Warning.Text = "Zkontroluj si vložené údaje";
             }
         }
+
+        private void ShowGenerating()
+        {
+            LongPlan.IsVisible = false;
+            Generating.IsVisible = true;
+        }
+
         private void SetRecordsClass(bool EntryUsed)
         {
             if (EntryUsed) {
@@ -363,6 +371,9 @@ namespace gymApp.pages
             }
             CreatePlan();
         }
+       
+        
+
         public PersonalRecord personalRecord = new PersonalRecord();
         private void SaveRecordsToDatabase() {
             personalRecord.Benchpress = App.setNumber(BenchpressE.Text);
@@ -375,16 +386,19 @@ namespace gymApp.pages
         private void CreatePlan()
         {
             CreatePhaseOne();
-            //CreatePhaseTwo();
-            //CreatePhaseThree();
-            
+            CreatePhaseTwo();
+            CreatePhaseThree();
+            Indicator.IsVisible = false;
+            Informations.Text = "Vytvořeno";
+            Overview.IsVisible = true;
         }
         public List<double> ListOfInfluence = new List<double>();
         private int Volume = 0;
+        private int trainingUnitID = 0;
         private void CreatePhaseOne()
         {
             int Training = 1;
-            
+            trainingUnitID = CreateTrainingUnit(TrainNameE.Text);
             double Influencer = App.setNumber(DaysNumbers.SelectedItem.ToString()) * 4;
             Influencer = Influencer / 3;
             Influencer = 30 / Influencer; // 70-40% maxima
@@ -428,7 +442,7 @@ namespace gymApp.pages
                             sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), Weight = Convert.ToInt32(weightAplifier) });
                         }
                         excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
-                        sets = GenerateConclusion(excercises);
+                        sets = GenerateConclusion(excercises,4);
                         Training++;
                         SaveSetsToDatabase(sets, ID_lastDay);
                         break;
@@ -464,7 +478,7 @@ namespace gymApp.pages
                             sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), Weight = Convert.ToInt32(weightAplifier) });
                         }
                         excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
-                        sets = GenerateConclusion(excercises);
+                        sets = GenerateConclusion(excercises, 4);
                         Training++;
                         SaveSetsToDatabase(sets, ID_lastDay);
                         break;
@@ -502,13 +516,281 @@ namespace gymApp.pages
                             sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), Weight = Convert.ToInt32(weightAplifier) });
                         }
                         excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
-                        sets = GenerateConclusion(excercises);
+                        sets = GenerateConclusion(excercises, 4);
                         Training=1;
                         SaveSetsToDatabase(sets, ID_lastDay);
                         break;
                  }                
                 
             }
+        }
+        private void CreatePhaseTwo()
+        {
+            int Training = 1;
+
+            double Influencer = App.setNumber(DaysNumbers.SelectedItem.ToString()) * 4;
+            Influencer = Influencer / 3;
+            Influencer = 30 / Influencer; // 70-40% maxima
+            Influencer = Influencer / 100;
+            int ID_lastDay;
+            weightInfluence.Influence = 0.5 + Influencer;
+            for (int i = 1; i <= 1 + 4 * App.setNumber(DaysNumbers.SelectedItem.ToString()); i++) // Počítání tréninkových jednotek (dnů)
+            {
+                switch (Training) //výběr partie která se bude cvičit
+                {
+                    case 1:
+                        ID_lastDay = CreateTrainingDay(Training);
+                        Volume++;
+                        SetWeightInfluence(Influencer, i);
+                        ListOfInfluence.Add(weightInfluence.Influence);
+                        sets.Clear();
+                        var excercises = App.DatabaseExcercise.SelectExcerciseByRegionWithoutMainExcercise(1, "Benč").Result;
+                        sets = GenerateWarmUp(excercises);
+
+                        excercises = App.DatabaseExcercise.SelectMainExcerciseByRegionAndName(1, "Benč").Result;
+                        int RepsInSet = 10;
+                        double totalWeight = 0;
+                        double weightAplifier = 0;
+                        for (double excerciseSet = 1; excerciseSet <= 6; excerciseSet++)
+                        {
+                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            {
+                                totalWeight = 20;
+                            }
+                            else
+                            {
+                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                weightAplifier = totalWeight * (0.4 + (excerciseSet / 10));
+                                if (weightAplifier < 20)
+                                {
+                                    weightAplifier = 20;
+                                }
+                            }
+                            if(RepsInSet > 2)
+                            {
+                                RepsInSet = RepsInSet - 2;
+                            }
+                            sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), Weight = Convert.ToInt32(weightAplifier) });
+                        }
+                        excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
+                        sets = GenerateConclusion(excercises, 3);
+                        Training++;
+                        SaveSetsToDatabase(sets, ID_lastDay);
+                        break;
+                    case 2:
+                        Volume++;
+                        SetWeightInfluence(Influencer, i);
+                        ListOfInfluence.Add(weightInfluence.Influence);
+                        ID_lastDay = CreateTrainingDay(Training);
+                        sets.Clear();
+                        excercises = App.DatabaseExcercise.SelectExcerciseByRegionWithoutMainExcercise(6, "Mrtvý tah").Result;
+                        sets = GenerateWarmUp(excercises);
+
+                        excercises = App.DatabaseExcercise.SelectMainExcerciseByRegionAndName(6, "Mrtvý tah").Result;
+                        RepsInSet = 10;
+                        totalWeight = 0;
+                        weightAplifier = 0;
+                        for (double excerciseSet = 1; excerciseSet <= 6; excerciseSet++)
+                        {
+                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            {
+                                totalWeight = 20;
+                            }
+                            else
+                            {
+                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                weightAplifier = totalWeight * (0.4 + (excerciseSet / 10));
+                                if (weightAplifier < 20)
+                                {
+                                    weightAplifier = 20;
+                                }
+                            }
+                            if (RepsInSet > 2)
+                            {
+                                RepsInSet = RepsInSet - 2;
+                            }
+                            sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), Weight = Convert.ToInt32(weightAplifier) });
+                        }
+                        excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
+                        sets = GenerateConclusion(excercises, 3);
+                        Training++;
+                        SaveSetsToDatabase(sets, ID_lastDay);
+                        break;
+                    case 3:
+                        Volume++;
+                        SetWeightInfluence(Influencer, i);
+                        ListOfInfluence.Add(weightInfluence.Influence);
+
+
+                        ID_lastDay = CreateTrainingDay(Training);
+                        sets.Clear();
+                        excercises = App.DatabaseExcercise.SelectExcerciseByRegionWithoutMainExcercise(7, "Dřep").Result;
+                        sets = GenerateWarmUp(excercises);
+
+                        excercises = App.DatabaseExcercise.SelectMainExcerciseByRegionAndName(7, "Dřep").Result;
+                        RepsInSet = 10;
+                        totalWeight = 0;
+                        weightAplifier = 0;
+                        for (double excerciseSet = 1; excerciseSet <= 6; excerciseSet++)
+                        {
+                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            {
+                                totalWeight = 20;
+                            }
+                            else
+                            {
+                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                weightAplifier = totalWeight * (0.4 + (excerciseSet / 10));
+                                if (weightAplifier < 20)
+                                {
+                                    weightAplifier = 20;
+                                }
+                            }
+                            if (RepsInSet > 2)
+                            {
+                                RepsInSet = RepsInSet - 2;
+                            }
+                            sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), Weight = Convert.ToInt32(weightAplifier) });
+                        }
+                        excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
+                        sets = GenerateConclusion(excercises, 3);
+                        Training=1;
+                        SaveSetsToDatabase(sets, ID_lastDay);
+                        break;
+                }
+
+            }
+        }
+        private void CreatePhaseThree()
+        {
+            int Training = 1;
+
+            double Influencer = App.setNumber(DaysNumbers.SelectedItem.ToString()) * 4;
+            Influencer = Influencer / 3;
+            Influencer = 60 / Influencer; // 70-40% maxima
+            Influencer = Influencer / 100;
+            int ID_lastDay;
+            weightInfluence.Influence = 0.6 + Influencer;
+            for (int i = 1; i <= 1 + 4 * App.setNumber(DaysNumbers.SelectedItem.ToString()); i++) // Počítání tréninkových jednotek (dnů)
+            {
+                switch (Training) //výběr partie která se bude cvičit
+                {
+                    case 1:
+                        ID_lastDay = CreateTrainingDay(Training);
+                        Volume++;
+                        SetWeightInfluence(Influencer, i);
+                        ListOfInfluence.Add(weightInfluence.Influence);
+                        sets.Clear();
+                        var excercises = App.DatabaseExcercise.SelectExcerciseByRegionWithoutMainExcercise(1, "Benč").Result;
+                        sets = GenerateWarmUp(excercises);
+
+                        excercises = App.DatabaseExcercise.SelectMainExcerciseByRegionAndName(1, "Benč").Result;
+                        int RepsInSet = 10;
+                        double totalWeight = 0;
+                        double weightAplifier = 0;
+                        for (double excerciseSet = 1; excerciseSet <= 7; excerciseSet++)
+                        {
+                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            {
+                                totalWeight = 20;
+                            }
+                            else
+                            {
+                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                weightAplifier = totalWeight * (0.3 + (excerciseSet / 10));
+                                if (weightAplifier < 20)
+                                {
+                                    weightAplifier = 20;
+                                }
+                            }
+                            if (RepsInSet > 2){ RepsInSet = RepsInSet - 2;}
+                            if(excerciseSet == 7){RepsInSet = RepsInSet - 1;}
+                            sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), Weight = Convert.ToInt32(weightAplifier) });
+                        }
+                        excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
+                        sets = GenerateConclusion(excercises, 2);
+                        Training++;
+                        SaveSetsToDatabase(sets, ID_lastDay);
+                        break;
+                    case 2:
+                        Volume++;
+                        SetWeightInfluence(Influencer, i);
+                        ListOfInfluence.Add(weightInfluence.Influence);
+                        ID_lastDay = CreateTrainingDay(Training);
+                        sets.Clear();
+                        excercises = App.DatabaseExcercise.SelectExcerciseByRegionWithoutMainExcercise(6, "Mrtvý tah").Result;
+                        sets = GenerateWarmUp(excercises);
+
+                        excercises = App.DatabaseExcercise.SelectMainExcerciseByRegionAndName(6, "Mrtvý tah").Result;
+                        RepsInSet = 10;
+                        totalWeight = 0;
+                        weightAplifier = 0;
+                        for (double excerciseSet = 1; excerciseSet <= 7; excerciseSet++)
+                        {
+                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            {
+                                totalWeight = 20;
+                            }
+                            else
+                            {
+                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                weightAplifier = totalWeight * (0.3 + (excerciseSet / 10));
+                                if (weightAplifier < 20)
+                                {
+                                    weightAplifier = 20;
+                                }
+                            }
+                            if (RepsInSet > 2) { RepsInSet = RepsInSet - 2; }
+                            if (excerciseSet == 7) { RepsInSet = RepsInSet - 1; }
+                            sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), Weight = Convert.ToInt32(weightAplifier) });
+                        }
+                        excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
+                        sets = GenerateConclusion(excercises, 2);
+                        Training++;
+                        SaveSetsToDatabase(sets, ID_lastDay);
+                        break;
+                    case 3:
+                        Volume++;
+                        SetWeightInfluence(Influencer, i);
+                        ListOfInfluence.Add(weightInfluence.Influence);
+
+
+                        ID_lastDay = CreateTrainingDay(Training);
+                        sets.Clear();
+                        excercises = App.DatabaseExcercise.SelectExcerciseByRegionWithoutMainExcercise(7, "Dřep").Result;
+                        sets = GenerateWarmUp(excercises);
+
+                        excercises = App.DatabaseExcercise.SelectMainExcerciseByRegionAndName(7, "Dřep").Result;
+                        RepsInSet = 10;
+                        totalWeight = 0;
+                        weightAplifier = 0;
+                        for (double excerciseSet = 1; excerciseSet <= 7; excerciseSet++)
+                        {
+                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            {
+                                totalWeight = 20;
+                            }
+                            else
+                            {
+                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                weightAplifier = totalWeight * (0.3 + (excerciseSet / 10));
+                                if (weightAplifier < 20)
+                                {
+                                    weightAplifier = 20;
+                                }
+                            }
+                            if (RepsInSet > 2) { RepsInSet = RepsInSet - 2; }
+                            if (excerciseSet == 7) { RepsInSet = RepsInSet - 1; }
+                            sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), Weight = Convert.ToInt32(weightAplifier) });
+                        }
+                        excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
+                        sets = GenerateConclusion(excercises, 2);
+                        Training=1;
+                        SaveSetsToDatabase(sets, ID_lastDay);
+                        break;
+                }
+            }
+            
         }
 
         private void SaveSetsToDatabase(List<Set> sets, int iD_lastDay)
@@ -517,12 +799,23 @@ namespace gymApp.pages
             {
                 Set setDatabase = new Set();
                 setDatabase.ID_excercisePK = set.ID_excercisePK;
+                setDatabase.ID_day = iD_lastDay;
                 setDatabase.Reps = set.Reps;
                 setDatabase.Weight = set.Weight;
-                App.DatabaseSet.SaveItemAsync(setDatabase);
+                App.DatabaseSet.SaveItemAsync(setDatabase); 
             }
         }
 
+        private int CreateTrainingUnit(string Title)
+        {
+            TrainingUnit trainingUnit = new TrainingUnit();
+            trainingUnit.state = 0;
+            trainingUnit.Title = Title;
+            trainingUnit.CreatedDate = DateTime.Today.ToString();
+            App.DatabaseTrainingUnit.SaveItemAsync(trainingUnit);
+            var id = App.DatabaseTrainingUnit.SelectLastID().Result;
+            return id[0].ID_TrainingUnit;
+        }
         private int CreateTrainingDay(int training)
         {
             Day day = new Day();
@@ -538,6 +831,7 @@ namespace gymApp.pages
                     day.MainExcercise = "Dřep";
                     break;
             }
+            day.ID_TrainingUnit= trainingUnitID;
             App.DatabaseDay.SaveItemAsync(day);
             var id = App.DatabaseDay.SelectLastID().Result;
             return id[0].ID_Day;
@@ -558,13 +852,13 @@ namespace gymApp.pages
             }
             return sets;
         }
-        private List<Set> GenerateConclusion(List<Excercise> excercises)
+        private List<Set> GenerateConclusion(List<Excercise> excercises,int setting)
         {
-            for (int excerciseNum = 1; excerciseNum <= 4; excerciseNum++)
+            for (int excerciseNum = 1; excerciseNum <= setting; excerciseNum++)
             {
                 excerciseRandomNumber = rnd.Next(0, excercises.Count());
                 int RepsInSet = 10;
-                for (int excerciseSet = 1; excerciseSet <= 4; excerciseSet++)
+                for (int excerciseSet = 1; excerciseSet <= setting; excerciseSet++)
                 {
                     if(excerciseSet > 2)
                     {
@@ -575,15 +869,6 @@ namespace gymApp.pages
                 excercises.RemoveAt(excerciseRandomNumber);
             }
             return sets;
-        }
-
-        private void CreatePhaseTwo()
-        {
-            throw new NotImplementedException();
-        }
-        private void CreatePhaseThree()
-        {
-            throw new NotImplementedException();
         }
         public bool test = true;
         private void SetWeightInfluence(double Influencer, int i)
@@ -614,6 +899,18 @@ namespace gymApp.pages
             {
                 test = false;
                 weightInfluence.Influence = weightInfluence.Influence + Influencer ;
+            }
+        }
+
+        private void GenerateTraining_Pressed(object sender, EventArgs e)
+        {
+            if (UseData.IsToggled && DaysNumbers.SelectedIndex != 0 && !string.IsNullOrEmpty(TrainNameE.Text))
+            {
+                ShowGenerating();
+            }
+            else if (!UseData.IsToggled && !string.IsNullOrEmpty(BenchpressE.Text) && !string.IsNullOrEmpty(DeathliftE.Text) && !string.IsNullOrEmpty(SquatE.Text) && !string.IsNullOrEmpty(TrainNameE.Text))
+            {
+                ShowGenerating();
             }
         }
     }

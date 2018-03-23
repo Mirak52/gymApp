@@ -12,7 +12,7 @@ namespace gymApp.classes
         [PrimaryKey, AutoIncrement]
         public int ID_TrainingUnit { get; set; }
         public string Title { get; set; }
-        public string CreateDate { get; set; }
+        public string CreatedDate { get; set; }
         public int state { get; set; }
     }
 }

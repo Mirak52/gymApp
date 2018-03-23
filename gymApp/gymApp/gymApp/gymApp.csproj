@@ -41,12 +41,9 @@
     <Compile Include="classes\BodyStats.cs" />
     <Compile Include="classes\Database\BodyStatsDatabase.cs" />
     <Compile Include="classes\Database\DayDatabase.cs" />
-    <Compile Include="classes\Database\DaySetDatabase.cs" />
     <Compile Include="classes\Database\SetDatabase.cs" />
     <Compile Include="classes\Database\TrainingUnitDatabase.cs" />
-    <Compile Include="classes\Database\TrainingUnitDayDatabase.cs" />
     <Compile Include="classes\Day.cs" />
-    <Compile Include="classes\DaySet.cs" />
     <Compile Include="classes\Excercise.cs" />
     <Compile Include="classes\Database\ExcerciseDatabase.cs" />
     <Compile Include="classes\ExcerciseRegion.cs" />
@@ -58,7 +55,6 @@
     <Compile Include="classes\Functions\TrainingCreatorTimer.cs" />
     <Compile Include="classes\Set.cs" />
     <Compile Include="classes\TrainingUnit.cs" />
-    <Compile Include="classes\TrainingUnitDay.cs" />
     <Compile Include="classes\Updater.cs" />
     <Compile Include="classes\Database\UpdaterDatabase.cs" />
     <Compile Include="IFileHelper.cs" />
