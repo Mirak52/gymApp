@@ -19,7 +19,7 @@
                     </ListView>
                 </StackLayout>
                 <StackLayout Margin="0,0,0,10" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
-                    <Button x:Name="Done" Text="START"  HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" Clicked="Done_Clicked" />
+                    <Button x:Name="Done" Text="START"  HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="#008EFF" FontAttributes="Bold" Clicked="Done_Clicked" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

@@ -18,18 +18,26 @@ namespace gymApp.classes.Database
         }
         public Task<List<Set>> Select()
         {
-            return database.QueryAsync<Set>("SELECT * FROM [Set]");
+            return database.QueryAsync<Set>("SELECT * FROM [Set] order by ID_set asc");
+        }
+        public Task<List<Set>> SelectSetsByTrainingUnit(int day)
+        {
+            return database.QueryAsync<Set>("select * FROM [Set] WHERE ID_day = '" + day + "'"+ "order by ID_set asc");
+        }
+        public Task<List<Set>> SelectLastID()
+        {
+            return database.QueryAsync<Set>("select ID_set FROM [Set] order by ID_set DESC LIMIT 1");
         }
         public Task<int> SaveItemAsync(Set item)
         {
-            if (item.ID_set != 0)
+            /*if (item.ID_set != 0)
             {
                 return database.UpdateAsync(item);
             }
             else
-            {
+            {*/
                 return database.InsertAsync(item);
-            }
+            //}
         }
 
         public Task<int> DeleteItemAsync(Set item)

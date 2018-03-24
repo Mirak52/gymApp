@@ -54,10 +54,10 @@
     <ContentPage Title="TRÉNINK" >
         <ContentPage.Content>
             <Grid Margin="10,10,10,10">
-                <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="Blue" x:Name="Workout" Clicked="Workout_Clicked" Text="WORKOUT"/>
-                <Button Grid.Column="0" Grid.Row="1" BackgroundColor="Pink" Clicked="Hiit_Clicked" x:Name="Hiit" Text="HIIT"/>
-                <Button Grid.Column="1" Grid.Row="1" BackgroundColor="Red"  x:Name="Notes" Text="NOTES"/>
-                <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  x:Name="Achiewments" Text="ACHIEVEMENTS"/>
+                <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="Blue" x:Name="TRÉNINK" Clicked="Workout_Clicked" Text="WORKOUT"/>
+                <Button Grid.Column="0" Grid.Row="1" BackgroundColor="Pink" Clicked="Hiit_Clicked" x:Name="HIIT" Text="HIIT"/>
+                <Button Grid.Column="1" Grid.Row="1" BackgroundColor="Red"  x:Name="Notes" Text="PŘEHLED ÚDAJŮ"/>
+                <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  x:Name="TrainingOverview" Text="PROHLÍŽEČ TRÉNINKŮ" Clicked="TrainingOverview_Clicked"/>
             </Grid>
         </ContentPage.Content>
     </ContentPage>

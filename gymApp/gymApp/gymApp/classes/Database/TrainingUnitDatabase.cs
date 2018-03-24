@@ -17,10 +17,15 @@ namespace gymApp.classes.Database
             database.CreateTableAsync<TrainingUnit>().Wait();
         }
 
-         public Task<List<TrainingUnit>> SelectLastID()
+        public Task<List<TrainingUnit>> SelectLastID()
         {
             return database.QueryAsync<TrainingUnit>("select ID_TrainingUnit FROM [TrainingUnit] order by ID_TrainingUnit DESC LIMIT 1");
         }
+        public Task<List<TrainingUnit>> Select()
+        {
+            return database.QueryAsync<TrainingUnit>("SELECT * FROM [TrainingUnit]");
+        }
+
         public Task<int> SaveItemAsync(TrainingUnit item)
         {
             if (item.ID_TrainingUnit != 0)

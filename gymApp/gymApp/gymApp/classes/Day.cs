@@ -13,6 +13,6 @@ namespace gymApp.classes
         public int ID_Day{ get; set; }
         public int ID_TrainingUnit { get; set; }
         public string MainExcercise { get; set; }
-        public int State { get; set; } = 0;
+        public string State { get; set; } = "0";
     }
 }

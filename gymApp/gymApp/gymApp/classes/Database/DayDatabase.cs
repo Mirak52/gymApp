@@ -24,17 +24,13 @@ namespace gymApp.classes.Database
         {
             return database.QueryAsync<Day>("SELECT * FROM [Day]");
         }
-
+        public Task<List<Day>> SelectSetsByTrainingUnit(int trainingUnit)
+        {
+            return database.QueryAsync<Day>("select * FROM [Day] WHERE ID_TrainingUnit = '" + trainingUnit + "'" + "order by ID_Day asc");
+        }
         public Task<int> SaveItemAsync(Day item)
         {
-            if (item.ID_Day != 0)
-            {
-                return database.UpdateAsync(item);
-            }
-            else
-            {
                 return database.InsertAsync(item);
-            }
         }
 
         public Task<int> DeleteItemAsync(Day item)

@@ -9,7 +9,6 @@ namespace gymApp.classes
 {
     public class ExcerciseRegion
     {
-        
         public int ID_region{ get; set; }
         public string Region { get; set; }
     }

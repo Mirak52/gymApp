@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="gymApp.pages.WorkoutOverviewPage"
+             BackgroundColor="#2196F3">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout x:Name="TrainingUnits" IsVisible="True" Margin="10,0,10,0">
+                    <Label/>
+                    <Label TextColor="#FFC82C" Text="Tréninkové plány" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center"/>
+                    <Label/>
+                    <ListView x:Name="TrainingUnitsLV" ItemSelected="TrainingUnitsLV_ItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell TextColor="White"  DetailColor="#0D47A1" Text="{Binding Title}" Detail="{Binding CreatedDate}"></TextCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:Name="Directing" IsVisible="False" />
+                </StackLayout>
+                
+                <StackLayout x:Name="Days" IsVisible="False" Margin="10,0,10,0">
+                    <StackLayout>
+                        <Label/>
+                        <Label x:Name="TrainingUnitName"  TextColor="#FFC82C" FontAttributes="Bold" FontSize="Large" Text="Tréninkové sety" HorizontalTextAlignment="Center"/>
+                        <Label/>
+                        <ListView x:Name="DaysLV" ItemSelected="DaysLV_ItemSelected" VerticalOptions="FillAndExpand">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell TextColor="White"  DetailColor="#0D47A1" Text="{Binding MainExcercise}" Detail="{Binding State}"></TextCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <Label/>
+                    <Button x:Name="backView" Clicked="backView_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
+                </StackLayout>
+                
+                <StackLayout x:Name="Sets" IsVisible="False" Margin="10,0,10,0">
+                    <StackLayout>
+                        <Label/>
+                        <Label x:Name="MainExcerciseName"  TextColor="#FFC82C" FontAttributes="Bold" FontSize="Large" Text="Tréninkové sety" HorizontalTextAlignment="Center"/>
+                        <Label/>
+                        <ListView x:Name="SetsLV" ItemSelected="SetsLV_ItemSelected" VerticalOptions="FillAndExpand">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell TextColor="White"  DetailColor="#0D47A1" Text="{Binding ExcerciseName}" Detail="{Binding Reps}"></TextCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <Label/>
+                    <Button x:Name="BackToDays" Clicked="backView_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -83,7 +83,7 @@
                 <Grid Margin="10,0,10,0">
                     <ActivityIndicator Grid.Row="1" x:Name="Indicator" IsVisible="True" Color="White" MinimumWidthRequest="150" MinimumHeightRequest="150" VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsRunning="true" />
                     <Label Grid.Row="2" x:Name="Informations" FontSize="Large" TextColor="White" IsVisible="True" Text="Generuji trénink"  HorizontalTextAlignment="Center"/>
-                    <Button x:Name="Overview" IsVisible="False" Grid.Row="8" Text="Přejít přehled" BackgroundColor="White" TextColor="#008EFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" />
+                    <Button x:Name="Overview" Clicked="Overview_Clicked" IsVisible="False" Grid.Row="8" Text="Přejít přehled" BackgroundColor="White" TextColor="#008EFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" />
                     <Label Grid.Row="9"/>
                 </Grid>
             </ScrollView>

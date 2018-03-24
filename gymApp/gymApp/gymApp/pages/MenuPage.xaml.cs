@@ -196,6 +196,7 @@ namespace gymApp.pages
 
         private void EmployeeView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            EmployeeView.SelectedItem = null;
             if (EmployeeView.SelectedItem is Excercise selectedExcersise)
             {
                 var excercise = App.DatabaseExcercise.SelectByName(selectedExcersise.Name).Result;
@@ -211,6 +212,16 @@ namespace gymApp.pages
         private void AddStats_Clicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new StatsPage(), false);
+        }
+
+
+        /*private void TrainingOverview_Clicked(object sender, EventArgs e)
+        {
+           
+        }*/
+        private void TrainingOverview_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new WorkoutOverviewPage(), false);
         }
     }
 }
