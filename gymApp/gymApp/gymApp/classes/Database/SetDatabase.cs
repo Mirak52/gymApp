@@ -36,9 +36,6 @@ namespace gymApp.classes.Database
         {
                 return database.InsertAsync(item);
         }
-        /*UPDATE table_name
-SET column1 = value1, column2 = value2, ...
-WHERE condition;*/
         public Task<List<Set>> UpdateRepsAndExcercise(int PK, string Reps, int ID)
         {
             return database.QueryAsync<Set>("UPDATE [Set] SET ID_excercisePK = "+ PK + ", Reps = '" + Reps + "' WHERE ID_set = "+ ID);

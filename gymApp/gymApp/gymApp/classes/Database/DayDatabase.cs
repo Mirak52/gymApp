@@ -20,6 +20,14 @@ namespace gymApp.classes.Database
         {
             return database.QueryAsync<Day>("select ID_Day FROM [Day] order by ID_day DESC LIMIT 1");
         }
+        public Task<List<Day>> SelectFirstActiveDay()
+        {
+            return database.QueryAsync<Day>("select ID_Day FROM [Day] WHERE state = 0 order by ID_day ASC LIMIT 1");
+        }
+        public Task<List<Set>> UpdateDayState(int ID)
+        {
+            return database.QueryAsync<Set>("UPDATE [Day] SET State = 1 WHERE ID_Day = " + ID);
+        }
         public Task<List<Day>> Select()
         {
             return database.QueryAsync<Day>("SELECT * FROM [Day]");

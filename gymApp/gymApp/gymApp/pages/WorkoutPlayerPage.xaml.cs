@@ -14,12 +14,13 @@ namespace gymApp.pages
     public partial class WorkoutPlayerPage : ContentPage
     {
         private List<Excercise> excercise;
-
+        private bool plan;
+        private int ID_day;
         public WorkoutPlayerPage(List<Set> sets)
         {
             InitializeComponent();
-            CreateListView(sets);
-            
+                CreateListView(sets);
+            if (sets[0].ID_day != 0) { plan = true; ID_day = sets[0].ID_day; } else { plan = false; }
         }
         private bool TimerRun= true;
         private int actualTime = 0;
@@ -74,6 +75,10 @@ namespace gymApp.pages
                 if(set.ID_excercisePK == number)
                 {
                     reps = reps +" - " + set.Reps;
+                    if(set.Weight != 00)
+                    {
+                        reps = reps + "x" + set.Weight +"Kg";
+                    }
                 }
                 else
                 {
@@ -83,6 +88,10 @@ namespace gymApp.pages
                     number = set.ID_excercisePK;
                     reps = null;
                     reps = reps + " - " + set.Reps;
+                    if (set.Weight != 00)
+                    {
+                        reps = reps + "x" + set.Weight + "Kg";
+                    }
                 }
             }
             reps = reps.Substring(2);
@@ -98,6 +107,10 @@ namespace gymApp.pages
                 StartTimer();
                 Done.Text = "Další cvik splněn";
             }
+            else if(Done.Text == "Úspěšně splněno")
+            {
+                Application.Current.MainPage = new pages.MenuPage();
+            }
             else { 
                 excerciseList.RemoveAt(0);
                 ExcercisesLV.ItemsSource = null;
@@ -108,8 +121,9 @@ namespace gymApp.pages
                 {
                     ExcercisesLV.ItemsSource = null;
                     TimerRun = false;
+                    if (plan) { App.DatabaseDay.UpdateDayState(ID_day); }
                     Done.Text = "Úspěšně splněno";
-                    Done.IsEnabled = false;
+                    
                 }
             }
         }
