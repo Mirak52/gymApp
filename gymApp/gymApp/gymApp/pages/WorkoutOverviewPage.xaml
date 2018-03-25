@@ -5,8 +5,8 @@
              BackgroundColor="#2196F3">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <StackLayout x:Name="TrainingUnits" IsVisible="True" Margin="10,0,10,0">
+            <Grid>
+                <StackLayout Grid.Row="0" x:Name="TrainingUnits" IsVisible="True" Margin="10,0,10,0">
                     <Label/>
                     <Label TextColor="#FFC82C" Text="Tréninkové plány" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center"/>
                     <Label/>
@@ -17,11 +17,12 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Button x:Name="Directing" IsVisible="False" />
+                    <Button Grid.Row="9" x:Name="Directing" IsVisible="False" />
+                    <Label Grid.Row="10"/>
                 </StackLayout>
                 
                 <StackLayout x:Name="Days" IsVisible="False" Margin="10,0,10,0">
-                    <StackLayout>
+                    <StackLayout Grid.Row="0">
                         <Label/>
                         <Label x:Name="TrainingUnitName"  TextColor="#FFC82C" FontAttributes="Bold" FontSize="Large" Text="Tréninkové sety" HorizontalTextAlignment="Center"/>
                         <Label/>
@@ -34,7 +35,8 @@
                         </ListView>
                     </StackLayout>
                     <Label/>
-                    <Button x:Name="backView" Clicked="backView_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
+                    <Button Grid.Row="10" x:Name="BackToTraininUnits" Clicked="BackToTraininUnits_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
+                    <Label Grid.Row="11"/>
                 </StackLayout>
                 
                 <StackLayout x:Name="Sets" IsVisible="False" Margin="10,0,10,0">
@@ -51,9 +53,24 @@
                         </ListView>
                     </StackLayout>
                     <Label/>
-                    <Button x:Name="BackToDays" Clicked="backView_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
+                    <Button Grid.Row="10" x:Name="BackToDays" Clicked="BackToDays_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
+                    <Label Grid.Row="11"/>
                 </StackLayout>
-            </StackLayout>
+
+                <Grid x:Name="ExcerciseUpdater" IsVisible="False" Margin="10,0,10,0">
+                    <StackLayout Grid.Row="0" Grid.RowSpan="8" >
+                        <Label/>
+                        <Label x:Name="ExcerciseChange" TextColor="#FFC82C" FontAttributes="Bold" FontSize="Large" Text="Měníte cvik" HorizontalTextAlignment="Center"/>
+                        <Picker x:Name="ExcerciseP" TextColor="White" HorizontalOptions="Center" WidthRequest="300" VerticalOptions="Center" />
+                        <Entry x:Name="RepsE" TextChanged="ExcerciseChange_PropertyChanged" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož počet opakování" TextColor="White" PlaceholderColor="White"/>
+                        <Entry x:Name="WeightE" TextChanged="ExcerciseChange_PropertyChanged" IsVisible="False" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož váhu" TextColor="White" PlaceholderColor="White"/>
+                        <Label x:Name="Informations" IsVisible="False" TextColor="Red" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Medium" />
+                    </StackLayout>
+                    <Label/>
+                    <Button Grid.Row="8" x:Name="BackToSets" Clicked="BackToSets_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
+                    <Label Grid.Row="9"/>
+                </Grid>
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

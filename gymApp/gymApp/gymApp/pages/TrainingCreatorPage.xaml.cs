@@ -494,7 +494,7 @@ namespace gymApp.pages
                                 }
                             }
                             RepsInSet = RepsInSet - 2;
-                            sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), ID_set = SetIDNumber, Weight = Convert.ToInt32(weightAplifier) });
+                            sets.Add(new Set { ID_excercisePK = excercises[0].ID_excercise, Reps = (RepsInSet).ToString(), ID_set = SetIDNumber, ID_day = DayNumber, Weight = Convert.ToInt32(weightAplifier) });
                         }
                         excercises = App.DatabaseExcercise.SelectBicepsAndShoulders().Result;
                         sets = GenerateConclusion(excercises, 4);

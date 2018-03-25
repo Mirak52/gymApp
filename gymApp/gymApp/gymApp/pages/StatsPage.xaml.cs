@@ -46,7 +46,7 @@ namespace gymApp.pages
                 Stats.IsVisible = true;
                 BodyStats.IsVisible = false;
                 SendB.IsVisible = true;
-                 Records.IsVisible = true;
+                Records.IsVisible = true;
                 SendR.IsVisible = true;
             }
         }

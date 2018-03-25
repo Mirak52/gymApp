@@ -20,6 +20,10 @@ namespace gymApp.classes.Database
         {
             return database.QueryAsync<Set>("SELECT * FROM [Set] order by ID_set asc");
         }
+        public Task<List<Set>> SelectByID(int ID)
+        {
+            return database.QueryAsync<Set>("SELECT * FROM [Set] WHERE ID_set = " + ID);
+        }
         public Task<List<Set>> SelectSetsByTrainingUnit(int day)
         {
             return database.QueryAsync<Set>("select * FROM [Set] WHERE ID_day = '" + day + "'"+ "order by ID_set asc");
@@ -30,14 +34,18 @@ namespace gymApp.classes.Database
         }
         public Task<int> SaveItemAsync(Set item)
         {
-            /*if (item.ID_set != 0)
-            {
-                return database.UpdateAsync(item);
-            }
-            else
-            {*/
                 return database.InsertAsync(item);
-            //}
+        }
+        /*UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;*/
+        public Task<List<Set>> UpdateRepsAndExcercise(int PK, string Reps, int ID)
+        {
+            return database.QueryAsync<Set>("UPDATE [Set] SET ID_excercisePK = "+ PK + ", Reps = '" + Reps + "' WHERE ID_set = "+ ID);
+        }
+        public Task<List<Set>> UpdateRepsAndExcerciseAndWeight(int PK, string Reps,int Weight, int ID)
+        {
+            return database.QueryAsync<Set>("UPDATE [Set] SET ID_excercisePK = " + PK + ", Reps = '" + Reps + "', Weight = " + Weight + " WHERE ID_set = " + ID);
         }
 
         public Task<int> DeleteItemAsync(Set item)
