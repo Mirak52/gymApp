@@ -25,7 +25,10 @@ namespace gymApp.pages
             var BodyStats = App.DatabaseBodyStats.SelectSortedByDate().Result;
             foreach (var BodyStat in BodyStats)
             {
-                BodyStatsList.Add(new BodyStats { Combination = "Váha: "+BodyStat.Weight + "Kg Obvod pasu: "+ BodyStat.WaistCircumference + "CM Obvod stehna: "+ BodyStat.ThighCircumference + "CM Obvod bicepsu: " + BodyStat.BicepsCircumference+"CM", Date = BodyStat.Date});
+                if (BodyStat.Date != null)
+                {
+                    BodyStatsList.Add(new BodyStats { Combination = "Váha: " + BodyStat.Weight + "Kg Obvod pasu: " + BodyStat.WaistCircumference + "CM Obvod stehna: " + BodyStat.ThighCircumference + "CM Obvod bicepsu: " + BodyStat.BicepsCircumference + "CM", Date = BodyStat.Date });
+                }
             }
             BodyStatsLV.ItemsSource = BodyStatsList;
 
