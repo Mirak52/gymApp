@@ -213,15 +213,14 @@ namespace gymApp.pages
         {
             Navigation.PushModalAsync(new StatsPage(), false);
         }
-
-
-        /*private void TrainingOverview_Clicked(object sender, EventArgs e)
-        {
-           
-        }*/
         private void TrainingOverview_Clicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new WorkoutOverviewPage(), false);
+        }
+
+        private void DataBrowser_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new DataBrowserPage(), false);
         }
     }
 }

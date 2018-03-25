@@ -20,6 +20,11 @@ namespace gymApp.classes
         {
             return database.QueryAsync<PersonalRecord>("select MAX(Benchpress) Benchpress,MAX(Deathlift) Deathlift,MAX(Squat) Squat FROM [PersonalRecord]");
         }
+        public Task<List<PersonalRecord>> SelectSortedByDate()
+        {
+            return database.QueryAsync<PersonalRecord>("select * FROM [PersonalRecord] ORDER BY Date ASC");
+        }
+
         public Task<List<PersonalRecord>> SelectAll()
         {
             return database.QueryAsync<PersonalRecord>("select * FROM [PersonalRecord]");

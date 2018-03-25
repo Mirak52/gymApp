@@ -20,7 +20,11 @@ namespace gymApp.classes
         {
             return database.QueryAsync<BodyStats>("select * FROM [BodyStats] ORDER BY ID_bodyStats DESC LIMIT 1");
         }
-      
+        public Task<List<BodyStats>> SelectSortedByDate()
+        {
+            return database.QueryAsync<BodyStats>("select * FROM [BodyStats] ORDER BY Date ASC");
+        }
+
         public Task<int> SaveItemAsync(BodyStats item)
         {
             if (item.ID_bodyStats != 0)

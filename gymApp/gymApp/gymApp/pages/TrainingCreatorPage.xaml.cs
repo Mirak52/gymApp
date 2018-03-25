@@ -373,13 +373,14 @@ namespace gymApp.pages
             }
             CreatePlan();
         }
-
         public PersonalRecord personalRecord = new PersonalRecord();
         private void SaveRecordsToDatabase() {
+            
             personalRecord.Benchpress = App.setNumber(BenchpressE.Text);
             personalRecord.Deathlift = App.setNumber(DeathliftE.Text);
             personalRecord.Squat = App.setNumber(SquatE.Text);
             personalRecord.Date = DateTime.Today.ToString();
+            personalRecord.Date.Remove(personalRecord.Date.Length - 12);
             App.DatabasePersonalRecord.SaveItemAsync(personalRecord);
         }
         public WeightInfluence weightInfluence = new WeightInfluence();
@@ -480,13 +481,13 @@ namespace gymApp.pages
                         for (double excerciseSet = 1; excerciseSet <= 5; excerciseSet++)
                         {
                             SetIDNumber++;
-                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            if (Convert.ToInt32(personalRecord.Deathlift * weightInfluence.Influence * 10) < 20)
                             {
                                 totalWeight = 20;
                             }
                             else
                             {
-                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                totalWeight = Convert.ToInt32(personalRecord.Deathlift * weightInfluence.Influence);
                                 weightAplifier = totalWeight * (0.5 + (excerciseSet / 10));
                                 if (weightAplifier < 20)
                                 {
@@ -517,13 +518,13 @@ namespace gymApp.pages
                         for (double excerciseSet = 1; excerciseSet <= 5; excerciseSet++)
                         {
                             SetIDNumber++;
-                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            if (Convert.ToInt32(personalRecord.Squat * weightInfluence.Influence * 10) < 20)
                             {
                                 totalWeight = 20;
                             }
                             else
                             {
-                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                totalWeight = Convert.ToInt32(personalRecord.Squat * weightInfluence.Influence);
                                 weightAplifier = totalWeight * (0.5 + (excerciseSet / 10));
                                 if (weightAplifier < 20)
                                 {
@@ -612,13 +613,13 @@ namespace gymApp.pages
                         for (double excerciseSet = 1; excerciseSet <= 6; excerciseSet++)
                         {
                             SetIDNumber++;
-                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            if (Convert.ToInt32(personalRecord.Deathlift * weightInfluence.Influence * 10) < 20)
                             {
                                 totalWeight = 20;
                             }
                             else
                             {
-                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                totalWeight = Convert.ToInt32(personalRecord.Deathlift * weightInfluence.Influence);
                                 weightAplifier = totalWeight * (0.4 + (excerciseSet / 10));
                                 if (weightAplifier < 20)
                                 {
@@ -654,13 +655,13 @@ namespace gymApp.pages
                         for (double excerciseSet = 1; excerciseSet <= 6; excerciseSet++)
                         {
                             SetIDNumber++;
-                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            if (Convert.ToInt32(personalRecord.Squat * weightInfluence.Influence * 10) < 20)
                             {
                                 totalWeight = 20;
                             }
                             else
                             {
-                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                totalWeight = Convert.ToInt32(personalRecord.Squat * weightInfluence.Influence);
                                 weightAplifier = totalWeight * (0.4 + (excerciseSet / 10));
                                 if (weightAplifier < 20)
                                 {
@@ -750,13 +751,13 @@ namespace gymApp.pages
                         for (double excerciseSet = 1; excerciseSet <= 7; excerciseSet++)
                         {
                             SetIDNumber++;
-                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            if (Convert.ToInt32(personalRecord.Deathlift * weightInfluence.Influence * 10) < 20)
                             {
                                 totalWeight = 20;
                             }
                             else
                             {
-                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                totalWeight = Convert.ToInt32(personalRecord.Deathlift * weightInfluence.Influence);
                                 weightAplifier = totalWeight * (0.3 + (excerciseSet / 10));
                                 if (weightAplifier < 20)
                                 {
@@ -790,13 +791,13 @@ namespace gymApp.pages
                         for (double excerciseSet = 1; excerciseSet <= 7; excerciseSet++)
                         {
                             SetIDNumber++;
-                            if (Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence * 10) < 20)
+                            if (Convert.ToInt32(personalRecord.Squat * weightInfluence.Influence * 10) < 20)
                             {
                                 totalWeight = 20;
                             }
                             else
                             {
-                                totalWeight = Convert.ToInt32(personalRecord.Benchpress * weightInfluence.Influence);
+                                totalWeight = Convert.ToInt32(personalRecord.Squat * weightInfluence.Influence);
                                 weightAplifier = totalWeight * (0.3 + (excerciseSet / 10));
                                 if (weightAplifier < 20)
                                 {
@@ -837,6 +838,7 @@ namespace gymApp.pages
             trainingUnit.state = 0;
             trainingUnit.Title = TrainNameE.Text;
             trainingUnit.CreatedDate = DateTime.Today.ToString();
+            trainingUnit.CreatedDate= trainingUnit.CreatedDate.Remove(trainingUnit.CreatedDate.Length - 12);
             App.DatabaseTrainingUnit.SaveItemAsync(trainingUnit);
             var id = App.DatabaseTrainingUnit.SelectLastID().Result;
             trainingUnitID = id[0].ID_TrainingUnit;

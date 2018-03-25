@@ -16,5 +16,6 @@ namespace gymApp.classes
         public int ThighCircumference { get; set; }
         public int BicepsCircumference { get; set; }
         public string Date { get; set; }
+        public string Combination { get; set; }
     }
 }

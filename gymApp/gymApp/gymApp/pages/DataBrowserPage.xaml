@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="gymApp.pages.DataBrowserPage"
+            BackgroundColor="#2196F3">
+    <ContentPage Title="Přehled údajů o postavě" >
+        <ContentPage.Content>
+            <Grid Margin="10,10,10,10">
+                <Label/>
+                <ListView x:Name="BodyStatsLV" VerticalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell TextColor="White"  DetailColor="#0D47A1" Text="{Binding Combination}" Detail="{Binding Date}"></TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Přehled maximálek">
+        <ContentPage.Content>
+            <Grid Margin="10,10,10,10">
+                <Label/>
+                <ListView x:Name="PersonalRecordsLV" VerticalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell TextColor="White"  DetailColor="#0D47A1" Text="{Binding Combination}" Detail="{Binding Date}"></TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+
+</TabbedPage>

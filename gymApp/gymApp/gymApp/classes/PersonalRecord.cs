@@ -14,5 +14,6 @@ namespace gymApp.classes
         public int Deathlift { get; set; }
         public int Squat { get; set; }
         public string Date { get; set; }
+        public string Combination { get; set; }
     }
 }

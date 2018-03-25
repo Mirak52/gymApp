@@ -61,6 +61,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\DataBrowserPage.xaml.cs">
+      <DependentUpon>DataBrowserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\ExcerciseDetailPage.xaml.cs">
       <DependentUpon>ExcerciseDetailPage.xaml</DependentUpon>
     </Compile>
@@ -211,6 +214,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="pages\WorkoutOverviewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="pages\DataBrowserPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
