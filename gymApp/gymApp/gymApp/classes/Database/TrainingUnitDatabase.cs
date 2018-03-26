@@ -21,6 +21,14 @@ namespace gymApp.classes.Database
         {
             return database.QueryAsync<TrainingUnit>("select ID_TrainingUnit FROM [TrainingUnit] order by ID_TrainingUnit DESC LIMIT 1");
         }
+        public Task<List<TrainingUnit>> SelectLastIDWhitZeroState()
+        {
+            return database.QueryAsync<TrainingUnit>("select ID_TrainingUnit FROM [TrainingUnit] Where State = 0 order by ID_TrainingUnit DESC LIMIT 1");
+        }
+        public Task<List<TrainingUnit>> UpdateTrainingUnitState(int ID)
+        {
+            return database.QueryAsync<TrainingUnit>("UPDATE [TrainingUnit] SET State = 1 WHERE ID_TrainingUnit = " + ID);
+        }
         public Task<List<TrainingUnit>> Select()
         {
             return database.QueryAsync<TrainingUnit>("SELECT * FROM [TrainingUnit]");

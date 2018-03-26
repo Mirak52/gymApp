@@ -112,7 +112,8 @@ namespace gymApp.pages
                 Application.Current.MainPage = new pages.MenuPage();
             }
             else { 
-                excerciseList.RemoveAt(0);
+                excerciseList.RemoveAt(0); 
+                
                 ExcercisesLV.ItemsSource = null;
                 ExcercisesLV.ItemsSource = excerciseList;
                 actualTime = 0;
@@ -121,7 +122,15 @@ namespace gymApp.pages
                 {
                     ExcercisesLV.ItemsSource = null;
                     TimerRun = false;
-                    if (plan) { App.DatabaseDay.UpdateDayState(ID_day); }
+                    if (plan) {
+                        App.DatabaseDay.UpdateDayState(ID_day);
+                        var plan = App.DatabaseTrainingUnit.SelectLastIDWhitZeroState().Result;
+                        var days = App.DatabaseDay.SelectSetsByTrainingUnitAndStateZero(plan[0].ID_TrainingUnit).Result;
+                        if(days.Count == 0)
+                        {
+                            App.DatabaseTrainingUnit.UpdateTrainingUnitState(plan[0].ID_TrainingUnit);
+                        }
+                    }
                     Done.Text = "Úspěšně splněno";
                     
                 }

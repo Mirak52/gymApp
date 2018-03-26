@@ -14,20 +14,20 @@
                 <Label  x:Name="ErrorL"  Text="SLEDOVANÉ ÚDAJE" Margin="0,20,10,0" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
             </StackLayout>
             <StackLayout x:Name="BodyStats" IsVisible="False" Grid.Column="0" Grid.Row="2" Grid.RowSpan="7" Margin="15,10,15,10" >
-                <Entry x:Name="WeightE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož váhu" TextColor="White" PlaceholderColor="White"/>
-                <Entry x:Name="HeightE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož výšku" TextColor="White" PlaceholderColor="White"/>
-                <Entry x:Name="WaistE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod pasu" TextColor="White" PlaceholderColor="White"/>
-                <Entry x:Name="ThighE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod stehna" TextColor="White" PlaceholderColor="White"/>
-                <Entry x:Name="BicepsE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod bicepsu" TextColor="White" PlaceholderColor="White"/>
+                <Entry x:Name="WeightE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož váhu (kg)" TextColor="White" PlaceholderColor="White"/>
+                <Entry x:Name="HeightE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož výšku (cm)" TextColor="White" PlaceholderColor="White"/>
+                <Entry x:Name="WaistE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod pasu (cm)" TextColor="White" PlaceholderColor="White"/>
+                <Entry x:Name="ThighE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod stehna (cm)" TextColor="White" PlaceholderColor="White"/>
+                <Entry x:Name="BicepsE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod bicepsu (cm)" TextColor="White" PlaceholderColor="White"/>
                 <DatePicker TextColor="White" Margin="10,0,0,0" x:Name="DateE"/>
                 
             </StackLayout>
             <Button x:Name="SendB" IsVisible="False" Grid.Row="9" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" Text="Odeslat" VerticalOptions="CenterAndExpand" Clicked="SendB_Clicked"/>
 
             <StackLayout x:Name="Records" IsVisible="False" Grid.Column="0" Grid.Row="2" Grid.RowSpan="7" Margin="15,10,15,10" >
-                <Entry x:Name="BenchpressE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Bench-press"/>
-                <Entry x:Name="DeathliftE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Death-lift"/>
-                <Entry x:Name="SquatE" Keyboard="Numeric" Margin="10,0,10,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Dřep"/>
+                <Entry x:Name="BenchpressE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Bench-press (kg)"/>
+                <Entry x:Name="DeathliftE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Death-lift (kg)"/>
+                <Entry x:Name="SquatE" Keyboard="Numeric" Margin="10,0,10,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Dřep (kg)"/>
                 <DatePicker TextColor="White" Margin="10,0,0,0" x:Name="DateR"/>
             </StackLayout>
             <Button x:Name="SendR" IsVisible="False" Grid.Row="9" BackgroundColor="White" TextColor="#008EFF" FontAttributes="Bold" Text="Odeslat" VerticalOptions="CenterAndExpand"  Clicked="SendR_Clicked"/>

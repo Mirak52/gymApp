@@ -881,33 +881,6 @@ namespace gymApp.pages
                     weightInfluence.Influence = weightInfluence.Influence + Influencer;
                 }
             }
-
-            /*if (test)
-            {
-                if (Volume == 4)//Výběr zda se jedná o lehký nebo těžký trénink
-                {
-                    weightInfluence.Influence = weightInfluence.Influence + Influencer * 2;
-                    Volume = 0;
-                }
-                else if (Volume == 1)
-                {
-                    weightInfluence.Influence = weightInfluence.Influence - Influencer;
-                }
-            }
-            if (4 * App.setNumber(DaysNumbers.SelectedItem.ToString()) - 6 == i)
-            {
-                    weightInfluence.Influence = weightInfluence.Influence - Influencer;
-            }
-            if (4 * App.setNumber(DaysNumbers.SelectedItem.ToString()) - 3 == i)
-            {
-                test = false;
-                weightInfluence.Influence = weightInfluence.Influence + Influencer * 2;
-            }
-            if (4 * App.setNumber(DaysNumbers.SelectedItem.ToString()) == i)
-            {
-                test = false;
-                weightInfluence.Influence = weightInfluence.Influence + Influencer ;
-            }*/
         }
 
         private void GenerateTraining_Pressed(object sender, EventArgs e)
@@ -924,6 +897,7 @@ namespace gymApp.pages
 
         private void Overview_Clicked(object sender, EventArgs e)
         {
+            Application.Current.MainPage = new pages.MenuPage();
             Navigation.PushModalAsync(new WorkoutOverviewPage(), false);
         }
     }

@@ -133,8 +133,10 @@ namespace gymApp.pages
         private void ExcerciseChange_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             BackToSets.Text = "ULOŽIT";
-        }
 
+        }
+        public int ID_TrainingUnit=0;
+        public string Title = null;
         private void TrainingUnitsLV_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (TrainingUnitsLV.SelectedItem is TrainingUnit selectedTrainingUnit)
@@ -142,7 +144,9 @@ namespace gymApp.pages
                 TrainingUnitsLV.SelectedItem = null;
                 TrainingUnits.IsVisible = false;
                 Days.IsVisible = true;
-                ShowDaysInTrainigUnit(selectedTrainingUnit.ID_TrainingUnit, selectedTrainingUnit.Title);
+                ID_TrainingUnit = selectedTrainingUnit.ID_TrainingUnit;
+                Title = selectedTrainingUnit.Title;
+                ShowDaysInTrainigUnit(ID_TrainingUnit, Title);
             }
         }
         private void DaysLV_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -191,6 +195,14 @@ namespace gymApp.pages
                 ExcerciseUpdater.IsVisible = false;
                 ShowSetsInDay(day_ID, MainExcerciseName.Text);
             }
+        }
+
+        private void Done_Clicked(object sender, EventArgs e)
+        {
+            App.DatabaseDay.UpdateAllDaysStateWhereTrainingUnit(ID_TrainingUnit);
+            App.DatabaseTrainingUnit.UpdateTrainingUnitState(ID_TrainingUnit);
+
+            ShowDaysInTrainigUnit(ID_TrainingUnit, Title);
         }
     }
 }

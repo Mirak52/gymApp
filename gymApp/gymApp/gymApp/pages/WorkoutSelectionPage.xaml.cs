@@ -25,12 +25,16 @@ namespace gymApp.pages
 
         private void WorkoutPlan_Clicked(object sender, EventArgs e)
         {
-            var plan = App.DatabaseTrainingUnit.SelectLastID().Result;
+            var plan = App.DatabaseTrainingUnit.SelectLastIDWhitZeroState().Result;
             if (plan.Count == 1)
             {
                 if (plan[0].state == 0)
                 {
                     var LastDay = App.DatabaseDay.SelectFirstActiveDay().Result;
+                    if(LastDay.Count == 0) { 
+
+                    }
+                    else { 
                     var sets = App.DatabaseSet.SelectSetsByTrainingUnit(LastDay[0].ID_Day).Result;
                     List<Set> setsList = new List<Set>();
                     foreach (var set in sets)
@@ -39,6 +43,7 @@ namespace gymApp.pages
                         setsList.Add(new Set {ID_day= set.ID_day, Reps = set.Reps, Weight=  set.Weight, ID_excercisePK = excercise[0].ID_excercise });
                     }
                     Navigation.PushModalAsync(new WorkoutPlayerPage(setsList), false);
+                    }
                 }
                 else
                 {

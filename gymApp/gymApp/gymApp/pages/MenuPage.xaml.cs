@@ -32,15 +32,15 @@ namespace gymApp.pages
         {
             var bodyStats = App.DatabaseBodyStats.SelectLastBodyStats().Result;
             var highestLift = App.DatabasePersonalRecord.SelectHighestRecord().Result;
-            WeightL.Text = bodyStats[0].Weight.ToString();
-            HeightL.Text = bodyStats[0].Height.ToString();
-            WaistL.Text = bodyStats[0].WaistCircumference.ToString();
-            ThighL.Text = bodyStats[0].ThighCircumference.ToString();
-            BicepsL.Text = bodyStats[0].BicepsCircumference.ToString();
+            WeightL.Text = bodyStats[0].Weight.ToString() + " kg ";
+            HeightL.Text = bodyStats[0].Height.ToString() + " cm" ;
+            WaistL.Text = bodyStats[0].WaistCircumference.ToString() + " cm";
+            ThighL.Text = bodyStats[0].ThighCircumference.ToString() + " cm";
+            BicepsL.Text = bodyStats[0].BicepsCircumference.ToString() + " cm";
 
-            BenchL.Text = highestLift[0].Benchpress.ToString();
-            DeathL.Text = highestLift[0].Deathlift.ToString();
-            SquatL.Text = highestLift[0].Squat.ToString();
+            BenchL.Text = highestLift[0].Benchpress.ToString() + " kg";
+            DeathL.Text = highestLift[0].Deathlift.ToString() + " kg";
+            SquatL.Text = highestLift[0].Squat.ToString() + " kg";
         }
 
         private void CheckFirstRun()

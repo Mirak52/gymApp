@@ -35,8 +35,9 @@
                         </ListView>
                     </StackLayout>
                     <Label/>
-                    <Button Grid.Row="10" x:Name="BackToTraininUnits" Clicked="BackToTraininUnits_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
-                    <Label Grid.Row="11"/>
+                    <Button Grid.Row="10" x:Name="Done" Clicked="Done_Clicked" Text="Označit jako splněno" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
+                    <Button Grid.Row="11" x:Name="BackToTraininUnits" Clicked="BackToTraininUnits_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" />
+                    <Label Grid.Row="12"/>
                 </StackLayout>
                 
                 <StackLayout x:Name="Sets" IsVisible="False" Margin="10,0,10,0">

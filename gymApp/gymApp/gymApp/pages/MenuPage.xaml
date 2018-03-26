@@ -72,7 +72,8 @@
                     <ListView x:Name="EmployeeView"
                             IsGroupingEnabled="true"
                               ItemSelected="EmployeeView_ItemSelected"
-                              SeparatorColor="White">
+                              SeparatorColor="White"
+                              SelectedItem="0">
                         <ListView.GroupHeaderTemplate>
                             <DataTemplate>
                                 <ViewCell>

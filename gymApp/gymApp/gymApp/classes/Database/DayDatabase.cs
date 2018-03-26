@@ -28,6 +28,10 @@ namespace gymApp.classes.Database
         {
             return database.QueryAsync<Set>("UPDATE [Day] SET State = 1 WHERE ID_Day = " + ID);
         }
+        public Task<List<Set>> UpdateAllDaysStateWhereTrainingUnit(int ID)
+        {
+            return database.QueryAsync<Set>("UPDATE [Day] SET State = 1 WHERE ID_TrainingUnit = " + ID);
+        }
         public Task<List<Day>> Select()
         {
             return database.QueryAsync<Day>("SELECT * FROM [Day]");
@@ -35,6 +39,10 @@ namespace gymApp.classes.Database
         public Task<List<Day>> SelectSetsByTrainingUnit(int trainingUnit)
         {
             return database.QueryAsync<Day>("select * FROM [Day] WHERE ID_TrainingUnit = '" + trainingUnit + "'" + "order by ID_Day asc");
+        }
+        public Task<List<Day>> SelectSetsByTrainingUnitAndStateZero(int trainingUnit)
+        {
+            return database.QueryAsync<Day>("select * FROM [Day] WHERE ID_TrainingUnit = '" + trainingUnit + "' AND State = 0 order by ID_Day asc");
         }
         public Task<int> SaveItemAsync(Day item)
         {
