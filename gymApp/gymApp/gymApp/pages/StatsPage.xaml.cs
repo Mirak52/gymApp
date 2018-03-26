@@ -74,6 +74,7 @@ namespace gymApp.pages
                 bodyStat.BicepsCircumference = bodyStats[0].BicepsCircumference;
                 SaveBodyStatData(bodyStat);
                 ErrorL.Text = "Úspěšně uloženo";
+                Application.Current.MainPage = new MenuPage();
             }
         }
         private void SaveBodyStatData(BodyStats bodyStat)
@@ -109,6 +110,7 @@ namespace gymApp.pages
                 SavePersonalRecordData(personalRecord);
               
                 ErrorL.Text = "Úspěšně uloženo";
+                Application.Current.MainPage = new MenuPage();
             }
         }
         private void SavePersonalRecordData(PersonalRecord personalRecord)
