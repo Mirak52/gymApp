@@ -797,9 +797,11 @@ namespace gymApp.pages
             trainingUnit.Title = TrainNameE.Text;
             trainingUnit.CreatedDate = DateTime.Today.ToString();
             trainingUnit.CreatedDate= trainingUnit.CreatedDate.Remove(trainingUnit.CreatedDate.Length - 12);
+
             App.DatabaseTrainingUnit.SaveItemAsync(trainingUnit);
             var id = App.DatabaseTrainingUnit.SelectLastID().Result;
-            trainingUnitID = id[0].ID_TrainingUnit;
+            if (id.Count == 0) { trainingUnitID = 1; }
+            else { trainingUnitID = id[0].ID_TrainingUnit; };
         }
         private void CreateTrainingDay(int training)
         {

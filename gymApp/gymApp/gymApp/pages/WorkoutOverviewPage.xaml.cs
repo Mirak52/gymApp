@@ -17,6 +17,7 @@ namespace gymApp.pages
         {
             InitializeComponent();
             CreateListView();
+            
         }
 
         private void CreateListView()
@@ -29,13 +30,14 @@ namespace gymApp.pages
             }
             TrainingUnitsLV.ItemsSource = TrainingUnitList;
         }
-        
 
+        private int unitTraining;
         private void ShowDaysInTrainigUnit(int trainingUnit, string Title)
         {
+            unitTraining = trainingUnit;
             List<Day> daysList = new List<Day>();
             var days = App.DatabaseDay.SelectSetsByTrainingUnit(trainingUnit).Result;
-            TrainingUnitName.Text = Title;
+            TrainingUnitName.Text = "Upravujete tréninkový plán: "+Title;
             int DayInPlan = 1;
             string state = null;
             foreach (var day in days)
@@ -46,14 +48,27 @@ namespace gymApp.pages
                 DayInPlan++;
             }
             DaysLV.ItemsSource = daysList;
+            ChecDoneButtons();
         }
 
-        
+        private void ChecDoneButtons()
+        {
+            var days = App.DatabaseDay.SelectSetsByTrainingUnitAndStateZero(unitTraining).Result;
+            if(days.Count == 0)
+            {
+                Done.IsVisible = false;
+            }
+            else { Done.IsVisible = true; }
+
+        }
+
         private int day_ID = 0;
         private void ShowSetsInDay(int iD_Day, string mainExcercise)
         {
             day_ID = iD_Day;
-            MainExcerciseName.Text = mainExcercise;
+            var lastDayInUnit = App.DatabaseDay.SelectLastDayInTrainingUnit(unitTraining).Result;
+            var NumberOfDaysInTrainingUnit = App.DatabaseDay.SelectSetsByTrainingUnit(unitTraining).Result;
+            MainExcerciseName.Text = "Upravujete den Č." + ((lastDayInUnit[0].ID_Day - iD_Day - NumberOfDaysInTrainingUnit.Count) *(-1)).ToString();
             List<Set> setsList = new List<Set>();
             var sets = App.DatabaseSet.SelectSetsByTrainingUnit(iD_Day).Result;
             string detail;

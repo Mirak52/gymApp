@@ -132,20 +132,26 @@ namespace gymApp.pages
 
         private void startCounting_Clicked(object sender, EventArgs e)
         {
-            gridSettup.IsVisible = false;
-            gridCountdown.IsVisible = true;
-            timerStatus = true;
-            countDownActual.Text = ReturnTimeInFormat(hiit.Prep);
-            startCountdown();
+            if(hiit.totalTime != 0)
+            {
+                startCounting.Text = "ZAČÍT";
+                cancelCouting.Text = "ZASTAVIT";
+                gridSettup.IsVisible = false;
+                gridCountdown.IsVisible = true;
+                timerStatus = true;
+                countDownActual.Text = ReturnTimeInFormat(hiit.Prep);
+                countDown.Text = ReturnTimeInFormat(hiit.totalTime);
+                startCountdown();
+            }
+            else
+            {
+                timer.Text = "ZADEJ ČAS";
+            }
+            
         }
         private int actualTime = 0;
         private void startCountdown()
-        {
-           /* var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-            player.Load("hallOfFame.mp3");
-            player.Play();*/
-            
-
+        {     
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 actualTime++;
                 
@@ -160,15 +166,22 @@ namespace gymApp.pages
                     return timerStatus; //continue
                 }
                 timerStatus = false;
-                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                player.Load("beepEnd.mp3");
-                player.Play();
-                action.Text = "HOTOVO";
-                cancelCouting.Text = "ÚSPĚŠNĚ SPLĚNO";
-                countDownActual.Text = "00:00";
+                InformAboutEnd();
                 return timerStatus; //not continue
             });
         }
+
+        private void InformAboutEnd()
+        {
+            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            player.Load("beepEnd.mp3");
+            player.Play();
+            action.Text = "HOTOVO";
+            cancelCouting.Text = "ÚSPĚŠNĚ SPLĚNO";
+            countDownActual.Text = "00:00";
+            DefaultHiit();
+        }
+
         private void SetActualText(int actualTime)
         {
             var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
@@ -225,6 +238,9 @@ namespace gymApp.pages
             hiit.totalTime = 0;
             hiit.Rounds = 1;
 
+            actionTime = 0;
+            actualTime = 0;
+
             roundsTime.Text = hiit.Rounds.ToString();
             workTime.Text = ReturnTimeInFormat(hiit.Work);
             prepTime.Text = ReturnTimeInFormat(hiit.Work);
@@ -235,15 +251,18 @@ namespace gymApp.pages
             VisibilityButton(prepTimeMinus, hiit.Prep);
             VisibilityButton(restTimeMinus, hiit.Rest);
             VisibilityButton(roundsTimeMinus, hiit.Rounds);
+
+            action.Text = "PŘIPRAV SE";
+            countDownActual.Text = "00:00";
+            countDown.Text = "00:00";
         }
         private void cancelCouting_Clicked(object sender, EventArgs e)
         {
             DefaultHiit();
             timerStatus = false; //stop counting
-
             gridSettup.IsVisible = true;
             gridCountdown.IsVisible = false;
-            action.Text = "PŘIPRAV SE";
+            
           
         }
     }

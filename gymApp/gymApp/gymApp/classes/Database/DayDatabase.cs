@@ -40,6 +40,14 @@ namespace gymApp.classes.Database
         {
             return database.QueryAsync<Day>("select * FROM [Day] WHERE ID_TrainingUnit = '" + trainingUnit + "'" + "order by ID_Day asc");
         }
+        public Task<List<Day>> SelectLastDayInTrainingUnit(int trainingUnit)
+        {
+            return database.QueryAsync<Day>("select ID_Day FROM [Day] WHERE ID_TrainingUnit = '" + trainingUnit + "'" + "order by ID_day DESC LIMIT 1");
+        }
+        public Task<List<Day>> SelectCountDaysInTrainingUnit(int trainingUnit)
+        {
+            return database.QueryAsync<Day>("select ID_day FROM [Day] WHERE ID_TrainingUnit = '" + trainingUnit);
+        }
         public Task<List<Day>> SelectSetsByTrainingUnitAndStateZero(int trainingUnit)
         {
             return database.QueryAsync<Day>("select * FROM [Day] WHERE ID_TrainingUnit = '" + trainingUnit + "' AND State = 0 order by ID_Day asc");
