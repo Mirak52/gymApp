@@ -679,7 +679,6 @@ namespace gymApp.pages
 
                         excercises = App.DatabaseExcercise.SelectMainExcerciseByRegionAndName(1, "Benč").Result;
                         int RepsInSet = 10;
-                        double totalWeight = 0;
                         double weightAplifier = 0;
                         for (double excerciseSet = 1; excerciseSet <= 7; excerciseSet++)
                         {
@@ -706,13 +705,11 @@ namespace gymApp.pages
                         SetWeightInfluence(Influencer, i);
                         ListOfInfluence.Add(weightInfluence.Influence);
                         CreateTrainingDay(Training);
-                        //sets.Clear();
                         excercises = App.DatabaseExcercise.SelectExcerciseByRegionWithoutMainExcercise(6, "Mrtvý tah").Result;
                         sets = GenerateWarmUp(excercises);
 
                         excercises = App.DatabaseExcercise.SelectMainExcerciseByRegionAndName(6, "Mrtvý tah").Result;
                         RepsInSet = 10;
-                        totalWeight = 0;
                         weightAplifier = 0;
                         for (double excerciseSet = 1; excerciseSet <= 7; excerciseSet++)
                         {
@@ -748,7 +745,6 @@ namespace gymApp.pages
 
                         excercises = App.DatabaseExcercise.SelectMainExcerciseByRegionAndName(7, "Dřep").Result;
                         RepsInSet = 10;
-                        totalWeight = 0;
                         weightAplifier = 0;
                         for (double excerciseSet = 1; excerciseSet <= 7; excerciseSet++)
                         {

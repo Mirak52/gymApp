@@ -8,6 +8,8 @@
             <StackLayout Grid.Column="0" Grid.Row="0" >
                 <Label/>
                 <Picker x:Name="Picker" TextColor="White" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" WidthRequest="200"  VerticalOptions="Center" SelectedIndexChanged="Picker_SelectedIndexChanged" Title="Vyber zadávání" />
+                <Picker x:Name="PickerSelected" TextColor="White" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" WidthRequest="200"  VerticalOptions="Center" SelectedIndexChanged="PickerSelected_SelectedIndexChanged" Title="" />
+
             </StackLayout>
 
             <StackLayout x:Name="Stats" IsVisible="False" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"  Margin="15,10,15,10"  >

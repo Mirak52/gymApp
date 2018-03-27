@@ -151,7 +151,6 @@ namespace gymApp.pages
 
         }
         public int ID_TrainingUnit=0;
-        public string Title = null;
         private void TrainingUnitsLV_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (TrainingUnitsLV.SelectedItem is TrainingUnit selectedTrainingUnit)

@@ -16,33 +16,69 @@ namespace gymApp.pages
         public StatsPage()
         {
             InitializeComponent();
-            SetPicker();
+            SetPickerStart();
         }
 
-        private void SetPicker()
+        private void SetPickerStart()
         {
             var picker = new List<string>();
             picker.Add("Vyber zadávání");
             picker.Add("Sledované údaje");
             picker.Add("Maximálky");
-            
+
+            var List = new List<string>();
+            List.Add("Sledované údaje");
+            List.Add("Maximálky");
+            PickerSelected.ItemsSource = List;
+            PickerSelected.IsVisible = false;
             Picker.ItemsSource = picker;
             Picker.SelectedIndex = 0;
         }
-
+        private void SetPickerSelected()
+        {
+            Picker.IsVisible = false;
+            PickerSelected.IsVisible = true;
+        }
         private void Picker_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(Picker.SelectedIndex == 1)
             {
+                SetPickerSelected();
+                Picker.SelectedIndex=0;
                 Stats.IsVisible = true;
                 BodyStats.IsVisible = true;
                 SendB.IsVisible= true;
                 Records.IsVisible = false;
                 SendR.IsVisible = false;
-
+                Picker.IsEnabled = false;
             }
             else if(Picker.SelectedIndex == 2)
             {
+                SetPickerSelected();
+                Picker.SelectedIndex = 1;
+                Stats.IsVisible = true;
+                BodyStats.IsVisible = false;
+                SendB.IsVisible = true;
+                Records.IsVisible = true;
+                SendR.IsVisible = true;
+                Picker.IsEnabled = false;
+            }
+        }
+        private void PickerSelected_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PickerSelected.SelectedIndex == 0)
+            {
+                SetPickerSelected();
+                Stats.IsVisible = true;
+                BodyStats.IsVisible = true;
+                SendB.IsVisible = true;
+                Records.IsVisible = false;
+                SendR.IsVisible = false;
+            }
+            else if (PickerSelected.SelectedIndex == 1)
+            {
+                SetPickerSelected();
+                Picker.SelectedIndex = 1;
                 Stats.IsVisible = true;
                 BodyStats.IsVisible = false;
                 SendB.IsVisible = true;
@@ -50,7 +86,6 @@ namespace gymApp.pages
                 SendR.IsVisible = true;
             }
         }
-
         private void SendB_Clicked(object sender, EventArgs e)
         {
             SaveBodyStats();
@@ -64,7 +99,7 @@ namespace gymApp.pages
             }
             else
             {
-                ErrorL.Text = "SLEDOVANÉ ÚDAJE";
+                ErrorL.Text = "STATISTIKY TĚLA";
                 var bodyStats = App.DatabaseBodyStats.SelectLastBodyStats().Result;
                 BodyStats bodyStat = new BodyStats();
                 bodyStat.Weight = bodyStats[0].Weight;
@@ -100,7 +135,7 @@ namespace gymApp.pages
             }
             else
             {
-                ErrorL.Text = "SLEDOVANÉ ÚDAJE";
+                ErrorL.Text = "MAXIMÁLKY";
                 var highestData = App.DatabasePersonalRecord.SelectHighestRecord().Result;
 
                 PersonalRecord personalRecord = new PersonalRecord();
