@@ -26,7 +26,7 @@ namespace gymApp.pages
             var TrainingUnits = App.DatabaseTrainingUnit.Select().Result;
             foreach (var TrainingUnit in TrainingUnits)
             {
-                TrainingUnitList.Add(new TrainingUnit { Title = TrainingUnit.Title, CreatedDate= TrainingUnit.CreatedDate, ID_TrainingUnit= TrainingUnit.ID_TrainingUnit});
+                TrainingUnitList.Add(new TrainingUnit { Title = TrainingUnit.Title, CreatedDate= "Vytvořeno dne: "+TrainingUnit.CreatedDate, ID_TrainingUnit= TrainingUnit.ID_TrainingUnit});
             }
             TrainingUnitsLV.ItemsSource = TrainingUnitList;
         }
@@ -37,7 +37,7 @@ namespace gymApp.pages
             unitTraining = trainingUnit;
             List<Day> daysList = new List<Day>();
             var days = App.DatabaseDay.SelectSetsByTrainingUnit(trainingUnit).Result;
-            TrainingUnitName.Text = "Upravujete tréninkový plán: "+Title;
+            TrainingUnitName.Text = "Tréninkový plán: "+Title;
             int DayInPlan = 1;
             string state = null;
             foreach (var day in days)

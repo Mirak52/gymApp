@@ -379,8 +379,7 @@ namespace gymApp.pages
             personalRecord.Benchpress = App.setNumber(BenchpressE.Text);
             personalRecord.Deathlift = App.setNumber(DeathliftE.Text);
             personalRecord.Squat = App.setNumber(SquatE.Text);
-            personalRecord.Date = DateTime.Today.ToString();
-            personalRecord.Date.Remove(personalRecord.Date.Length - 12);
+            personalRecord.Date = DateTime.Now.ToString("dd.MM.yyy");
             App.DatabasePersonalRecord.SaveItemAsync(personalRecord);
         }
         public WeightInfluence weightInfluence = new WeightInfluence();
@@ -395,9 +394,6 @@ namespace gymApp.pages
             SaveSetsToDatabase();
             
             Indicator.IsVisible = false;
-            var test = App.DatabaseSet.Select().Result;
-            var test1 = App.DatabaseDay.Select().Result;
-            var test2 = App.DatabaseTrainingUnit.Select().Result;
             Informations.Text = "Vytvořeno";
             Overview.IsVisible = true;
         }
@@ -791,9 +787,7 @@ namespace gymApp.pages
             TrainingUnit trainingUnit = new TrainingUnit();
             trainingUnit.state = 0;
             trainingUnit.Title = TrainNameE.Text;
-            trainingUnit.CreatedDate = DateTime.Today.ToString();
-            trainingUnit.CreatedDate= trainingUnit.CreatedDate.Remove(trainingUnit.CreatedDate.Length - 12);
-
+            trainingUnit.CreatedDate = DateTime.Now.ToString("dd.MM.yyy");
             App.DatabaseTrainingUnit.SaveItemAsync(trainingUnit);
             var id = App.DatabaseTrainingUnit.SelectLastID().Result;
             if (id.Count == 0) { trainingUnitID = 1; }

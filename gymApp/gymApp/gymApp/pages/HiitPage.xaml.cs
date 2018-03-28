@@ -177,9 +177,11 @@ namespace gymApp.pages
             player.Load("beepEnd.mp3");
             player.Play();
             action.Text = "HOTOVO";
+            DefaultHiit();
+            action.Text = "SPLNĚNO";
             cancelCouting.Text = "ÚSPĚŠNĚ SPLĚNO";
             countDownActual.Text = "00:00";
-            DefaultHiit();
+            
         }
 
         private void SetActualText(int actualTime)
