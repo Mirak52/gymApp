@@ -206,7 +206,37 @@ namespace gymApp.pages
 
         private void Workout_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new WorkoutSelectionPage(), false);
+            var plan = App.DatabaseTrainingUnit.SelectLastIDWhitZeroState().Result;
+            if (plan.Count == 1)
+            {
+                if (plan[0].state == 0)
+                {
+                    var LastDay = App.DatabaseDay.SelectFirstActiveDay().Result;
+                    if (LastDay.Count == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        var sets = App.DatabaseSet.SelectSetsByTrainingUnit(LastDay[0].ID_Day).Result;
+                        List<Set> setsList = new List<Set>();
+                        foreach (var set in sets)
+                        {
+                            var excercise = App.DatabaseExcercise.SelectDetailedExcercise(set.ID_excercisePK).Result;
+                            setsList.Add(new Set { ID_day = set.ID_day, Reps = set.Reps, Weight = set.Weight, ID_excercisePK = excercise[0].ID_excercise });
+                        }
+                        Navigation.PushModalAsync(new WorkoutPlayerPage(setsList), false);
+                    }
+                }
+                else
+                {
+                    Navigation.PushModalAsync(new TrainingCreatorPage(2), false);
+                }
+            }
+            else
+            {
+                Navigation.PushModalAsync(new TrainingCreatorPage(2), false);
+            }
         }
 
         private void AddStats_Clicked(object sender, EventArgs e)
@@ -221,6 +251,11 @@ namespace gymApp.pages
         private void DataBrowser_Clicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new DataBrowserPage(), false);
+        }
+
+        private void QuickTraining_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new TrainingCreatorPage(1), false);
         }
     }
 }

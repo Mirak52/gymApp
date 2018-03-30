@@ -22,63 +22,23 @@ namespace gymApp.pages
         private void SetPickerStart()
         {
             var picker = new List<string>();
-            picker.Add("Vyber zadávání");
-            picker.Add("Sledované údaje");
+            picker.Add("Údaje o postavě");
             picker.Add("Maximálky");
-
-            var List = new List<string>();
-            List.Add("Sledované údaje");
-            List.Add("Maximálky");
-            PickerSelected.ItemsSource = List;
-            PickerSelected.IsVisible = false;
             Picker.ItemsSource = picker;
             Picker.SelectedIndex = 0;
         }
-        private void SetPickerSelected()
-        {
-            Picker.IsVisible = false;
-            PickerSelected.IsVisible = true;
-        }
         private void Picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(Picker.SelectedIndex == 1)
+            if(Picker.SelectedIndex == 0)
             {
-                SetPickerSelected();
-                Picker.SelectedIndex=0;
                 Stats.IsVisible = true;
                 BodyStats.IsVisible = true;
                 SendB.IsVisible= true;
                 Records.IsVisible = false;
                 SendR.IsVisible = false;
-                Picker.IsEnabled = false;
             }
-            else if(Picker.SelectedIndex == 2)
+            else if(Picker.SelectedIndex == 1)
             {
-                SetPickerSelected();
-                Picker.SelectedIndex = 1;
-                Stats.IsVisible = true;
-                BodyStats.IsVisible = false;
-                SendB.IsVisible = true;
-                Records.IsVisible = true;
-                SendR.IsVisible = true;
-                Picker.IsEnabled = false;
-            }
-        }
-        private void PickerSelected_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (PickerSelected.SelectedIndex == 0)
-            {
-                SetPickerSelected();
-                Stats.IsVisible = true;
-                BodyStats.IsVisible = true;
-                SendB.IsVisible = true;
-                Records.IsVisible = false;
-                SendR.IsVisible = false;
-            }
-            else if (PickerSelected.SelectedIndex == 1)
-            {
-                SetPickerSelected();
-                Picker.SelectedIndex = 1;
                 Stats.IsVisible = true;
                 BodyStats.IsVisible = false;
                 SendB.IsVisible = true;

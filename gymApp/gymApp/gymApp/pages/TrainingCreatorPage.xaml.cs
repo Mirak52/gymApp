@@ -393,9 +393,7 @@ namespace gymApp.pages
 
             SaveSetsToDatabase();
             
-            Indicator.IsVisible = false;
-            Informations.Text = "Vytvořeno";
-            Overview.IsVisible = true;
+          
         }
         public List<double> ListOfInfluence = new List<double>();
         private int Volume = 1;
@@ -770,16 +768,20 @@ namespace gymApp.pages
 
         private void SaveSetsToDatabase()
         {
-            foreach(var set in sets)
-            {
-                Set setDatabase = new Set();
-                setDatabase.ID_set = set.ID_set;
-                setDatabase.ID_excercisePK = set.ID_excercisePK;
-                setDatabase.ID_day = set.ID_day;
-                setDatabase.Reps = set.Reps;
-                setDatabase.Weight = set.Weight;
-                App.DatabaseSet.SaveItemAsync(setDatabase);
-            }
+            App.DatabaseSet.SaveListAsync(sets);
+            Indicator.IsVisible = false;
+            Informations.Text = "Vytvořeno";
+            Overview.IsVisible = true;
+            /*   foreach (var set in sets)
+               {
+                   Set setDatabase = new Set();
+                   setDatabase.ID_set = set.ID_set;
+                   setDatabase.ID_excercisePK = set.ID_excercisePK;
+                   setDatabase.ID_day = set.ID_day;
+                   setDatabase.Reps = set.Reps;
+                   setDatabase.Weight = set.Weight;
+                   App.DatabaseSet.SaveItemAsync(setDatabase);
+               }*/
         }
 
         private void CreateTrainingUnit()

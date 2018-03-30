@@ -88,9 +88,6 @@
     <Compile Include="pages\WorkoutPlayerPage.xaml.cs">
       <DependentUpon>WorkoutPlayerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\WorkoutSelectionPage.xaml.cs">
-      <DependentUpon>WorkoutSelectionPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -187,12 +184,6 @@
   <ItemGroup>
     <EmbeddedResource Include="icon\arrowLeft.png" />
     <EmbeddedResource Include="icon\arrowRight.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="pages\WorkoutSelectionPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="pages\StatsPage.xaml">
