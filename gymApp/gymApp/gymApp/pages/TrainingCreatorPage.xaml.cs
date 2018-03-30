@@ -348,7 +348,7 @@ namespace gymApp.pages
             }
             else
             {
-                Warning.TextColor = Color.Red;
+                Warning.TextColor = Color.FromHex("#FF4081");
                 Warning.Text = "Zkontroluj si vložené údaje";
             }
         }

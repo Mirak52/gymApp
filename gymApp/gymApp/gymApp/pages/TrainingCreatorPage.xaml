@@ -2,88 +2,85 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="gymApp.pages.TrainingCreatorPage"
-             BackgroundColor="#2196F3">
+             BackgroundColor="LightGray">
     <ContentPage.Content>
         <StackLayout>
             <ScrollView x:Name="QuickTraining">
-                <StackLayout Margin="10,0,10,0" >
-                    <StackLayout Margin="0,10,0,0">
-                        <Picker x:Name="Muscles" TextColor="White" HorizontalOptions="Center" WidthRequest="200" />
-                    </StackLayout>
-                    <StackLayout  BackgroundColor="#0D47A1" >
+                <StackLayout  Margin="10,0,10,0" >
+                    <StackLayout Margin="0,10,0,0" BackgroundColor="White">
+                        <Picker x:Name="Muscles" TextColor="#c5a600" HorizontalOptions="Center" WidthRequest="200" />
                         <StackLayout Margin="15,10,15,0">
-                            <Label Text="Počet základních cviků" TextColor="White" FontSize="Medium" FontAttributes="Bold" />
-                            <Label x:Name="BasicNumber" TextColor="White" Text="1"/>
+                            <Label Text="Počet základních cviků" TextColor="#c5a600" FontSize="Medium" FontAttributes="Bold" />
+                            <Label x:Name="BasicNumber" TextColor="#c5a600" Text="1"/>
                             <Slider x:Name="BasicExcerciseNumber" Maximum="3" Minimum="1" Value="1" ValueChanged="BasicExcerciseNumber_ValueChanged" />
-                            <Label Text="Počet sérií základních cviků" FontAttributes="Bold" TextColor="White" FontSize="Medium" />
-                            <Label x:Name="BasicSetNumber" TextColor="White" Text="1"/>
+                            <Label Text="Počet sérií základních cviků" FontAttributes="Bold" TextColor="#c5a600" FontSize="Medium" />
+                            <Label x:Name="BasicSetNumber" TextColor="#c5a600" Text="1"/>
                             <Slider x:Name="BasicSetExcerciseNumber" Maximum="5" Minimum="1" Value="1" ValueChanged="BasicSetExcerciseNumber_ValueChanged" />
                         </StackLayout>
                     </StackLayout>
-                    <StackLayout  BackgroundColor="#0D47A1" >
+                    <StackLayout  BackgroundColor="White" >
                         <StackLayout Margin="15,10,15,0">
                             <Label/>
-                            <Label Text="Počet doplňkových cviků" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
-                            <Label x:Name="SupplementNumber" TextColor="White" Text="0" />
+                            <Label Text="Počet doplňkových cviků" TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label x:Name="SupplementNumber" TextColor="#c5a600" Text="0" />
                             <Slider x:Name="SupplementExcerciseNumber" Maximum="5" Minimum="0" Value="0" ValueChanged="SupplementExcerciseNumber_ValueChanged" />
 
-                            <Label Text="Počet sérií doplňkových cviků" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
-                            <Label x:Name="SupplementSetNumber" TextColor="White" Text="1" />
+                            <Label Text="Počet sérií doplňkových cviků" TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label x:Name="SupplementSetNumber" TextColor="#c5a600" Text="1" />
                             <Slider x:Name="SupplementSetExcerciseNumber" Maximum="5" Minimum="1" Value="1"  ValueChanged="SupplementSetExcerciseNumber_ValueChanged" />
                         </StackLayout>
                     </StackLayout>
-                    <StackLayout  BackgroundColor="#0D47A1" >
+                    <StackLayout  BackgroundColor="White" >
                         <StackLayout Margin="15,10,15,0">
                             <Label/>
-                            <Label Text="Počet kompenzačních cviků" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
-                            <Label x:Name="CompensationNumber" TextColor="White" Text="0" />
-                            <Slider x:Name="CompensatorExcerciseNumber"  Maximum="2" Minimum="0" Value="0"  ValueChanged="CompensatorExcerciseNumber_ValueChanged_1" />
+                            <Label Text="Počet kompenzačních cviků" TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label x:Name="CompensationNumber" TextColor="#c5a600" Text="0" />
+                            <Slider x:Name="CompensatorExcerciseNumber"  Maximum="1" Minimum="0" Value="0"  ValueChanged="CompensatorExcerciseNumber_ValueChanged_1" />
 
-                            <Label Text="Počet sérií kompenzačních cviků" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
-                            <Label x:Name="CompensationSetNumber" TextColor="White" Text="1" />
+                            <Label Text="Počet sérií kompenzačních cviků" TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label x:Name="CompensationSetNumber" TextColor="#c5a600" Text="1" />
                             <Slider x:Name="CompensatorSetExcerciseNumber"  Maximum="5" Minimum="1" Value="1"  ValueChanged="CompensatorExcerciseNumber_ValueChanged" />
 
-                            <Label Text="Silový / Objemový trénink" TextColor="White" FontAttributes="Bold" FontSize="Medium" />
+                            <Label Text="Silový / Objemový trénink" TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium" />
                             <Switch x:Name="VolumePower" HorizontalOptions="Center" Toggled="VolumePower_Toggled" />
-                            <Label x:Name="Information" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="Odhadovaná doba tréninku: "/>
+                            <Label x:Name="Information" FontSize="Medium" TextColor="#c5a600" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="Odhadovaná doba tréninku: "/>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout>
-                        <Button x:Name="Create" Text="Vytvořit trénink" BackgroundColor="White" TextColor="#008EFF"  FontAttributes="Bold" Clicked="Create_Clicked" />
+                        <Button x:Name="Create" Text="Vytvořit trénink" BackgroundColor="#fdd835" TextColor="Black"  FontAttributes="Bold" Clicked="Create_Clicked" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
 
             <ScrollView x:Name="LongPlan" IsVisible="False">
                 <StackLayout Margin="10,0,10,0">
-                    <StackLayout Margin="0,10,0,0">
-                        <Label Text="Generování pyramidového tréninku" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="#FFC82C" />
-                    </StackLayout>
-                    <StackLayout x:Name="RecordsSet" Margin="10,10,10,0" BackgroundColor="#0D47A1">
-                        <Label x:Name="InformationsAboutRecords" Text="Generování na základě osobních rekordů" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="White"/>
-                        <Label x:Name="UseInsertedData" Text="Vložit nová data / použít již zadaná" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="White"/>
+                    <StackLayout x:Name="RecordsSet" Margin="10,10,10,0" BackgroundColor="White">
+                        <Label Text="Generování pyramidového tréninku" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="#c5a600" />
+                        <Label/>
+                        <Label x:Name="InformationsAboutRecords" Text="Generování na základě osobních rekordů" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#c5a600"/>
+                        <Label x:Name="UseInsertedData" Text="Vložit nová data / použít již zadaná" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="#c5a600"/>
                         <Switch x:Name="UseData" HorizontalOptions="Center" Toggled="UseData_Toggled"/>
-                        <Entry x:Name="BenchpressE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Bench-press"/>
-                        <Entry x:Name="DeathliftE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Death-lift"/>
-                        <Entry x:Name="SquatE" Keyboard="Numeric" Margin="10,0,10,0" TextColor="White" PlaceholderColor="White" Placeholder="Vlož maximálku na Dřep"/>
+                        <Entry x:Name="BenchpressE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Bench-press"/>
+                        <Entry x:Name="DeathliftE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Death-lift"/>
+                        <Entry x:Name="SquatE" Keyboard="Numeric" Margin="10,0,10,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Dřep"/>
                         <Label x:Name="RecordInformations" IsVisible="False" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="White"/>
                     </StackLayout>
-                    <StackLayout Margin="10,10,10,0" BackgroundColor="#0D47A1">
-                        <Label Text="Vyber počet dnů v týdnu co můžeš trénovat" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="White"/>
-                        <Picker x:Name="DaysNumbers" TextColor="White" HorizontalOptions="Center" />
-                        <Entry x:Name="TrainNameE" Keyboard="Text" Margin="10,0,10,0" TextColor="White" PlaceholderColor="White" Placeholder="Pojmenuj tréninkový plán"/>
+                    <StackLayout Margin="10,10,10,0" BackgroundColor="White">
+                        <Label Text="Vyber počet dnů v týdnu co můžeš trénovat" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#c5a600"/>
+                        <Picker x:Name="DaysNumbers" TextColor="#c5a600" HorizontalOptions="Center" />
+                        <Entry x:Name="TrainNameE" Keyboard="Text" Margin="10,0,10,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Pojmenuj tréninkový plán"/>
                         <Label x:Name="Warning" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text=""/>
                     </StackLayout>
                     <StackLayout Margin="10,0,10,10">
-                        <Button x:Name="GenerateTraining" Text="Vytvořit trénink" BackgroundColor="White" Pressed="GenerateTraining_Pressed" TextColor="#008EFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" Clicked="GenerateTraining_Clicked" />
+                        <Button x:Name="GenerateTraining" Text="Vytvořit trénink" BackgroundColor="#fdd835" Pressed="GenerateTraining_Pressed" TextColor="Black" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" Clicked="GenerateTraining_Clicked" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
             <ScrollView x:Name="Generating" IsVisible="False">
                 <Grid Margin="10,0,10,0">
-                    <ActivityIndicator Grid.Row="1" x:Name="Indicator" IsVisible="True" Color="White" MinimumWidthRequest="150" MinimumHeightRequest="150" VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsRunning="true" />
-                    <Label Grid.Row="2" x:Name="Informations" FontSize="Large" TextColor="White" IsVisible="True" Text="Generuji trénink"  HorizontalTextAlignment="Center"/>
-                    <Button x:Name="Overview" Clicked="Overview_Clicked" IsVisible="False" Grid.Row="8" Text="Přejít přehled" BackgroundColor="White" TextColor="#008EFF" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" />
+                    <ActivityIndicator Grid.Row="1" x:Name="Indicator" IsVisible="True" Color="#c5a600" MinimumWidthRequest="150" MinimumHeightRequest="150" VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsRunning="true" />
+                    <Label Grid.Row="2" x:Name="Informations" FontSize="Large" TextColor="#c5a600" IsVisible="True" Text="Generuji trénink"  HorizontalTextAlignment="Center"/>
+                    <Button x:Name="Overview" Clicked="Overview_Clicked" IsVisible="False" Grid.Row="8" Text="Přejít přehled" BackgroundColor="#fdd835" TextColor="Black" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" />
                     <Label Grid.Row="9"/>
                 </Grid>
             </ScrollView>

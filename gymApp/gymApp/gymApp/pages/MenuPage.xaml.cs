@@ -93,7 +93,7 @@ namespace gymApp.pages
 
         private void ShowExcercises()
         {
-            EmployeeView.IsGroupingEnabled = true;
+            ExcercisesLV.IsGroupingEnabled = true;
           
             List<Group> Groups = new List<Group>();
             bool madeGroup = true;
@@ -116,7 +116,7 @@ namespace gymApp.pages
                 madeGroup = true;
                 groupID++;
             }
-            EmployeeView.ItemsSource = Groups;
+            ExcercisesLV.ItemsSource = Groups;
 
         }
 
@@ -173,9 +173,9 @@ namespace gymApp.pages
             if(searchText.Length > 2)
             {
                 var data = App.DatabaseExcercise.SelectExcerciseByParameter(searchText).Result;
-                EmployeeView.IsGroupingEnabled = false;
-                EmployeeView.ItemsSource = "";
-                EmployeeView.ItemsSource = data;
+                ExcercisesLV.IsGroupingEnabled = false;
+                ExcercisesLV.ItemsSource = "";
+                ExcercisesLV.ItemsSource = data;
             }
         }
 
@@ -194,10 +194,10 @@ namespace gymApp.pages
             return urlContents;
         }
 
-        private void EmployeeView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void ExcercisesLV_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            EmployeeView.SelectedItem = null;
-            if (EmployeeView.SelectedItem is Excercise selectedExcersise)
+            ExcercisesLV.SelectedItem = null;
+            if (ExcercisesLV.SelectedItem is Excercise selectedExcersise)
             {
                 var excercise = App.DatabaseExcercise.SelectByName(selectedExcersise.Name).Result;
                 Navigation.PushModalAsync(new ExcerciseDetailPage(excercise[0].ID_excercise), false);

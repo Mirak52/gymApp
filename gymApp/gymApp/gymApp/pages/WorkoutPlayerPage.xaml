@@ -2,24 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="gymApp.pages.WorkoutPlayerPage"
-             BackgroundColor="#2196F3">
+             BackgroundColor="LightGray">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="10,0,10,0">
-                <StackLayout Margin="0,10,0,0">
-                    <Label x:Name="TimerL" Text="00:00" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#FFC82C" FontSize="32" />
+            <StackLayout Margin="10,0,10,0" >
+                <StackLayout Margin="0,20,0,0">
+                    <Label x:Name="TimerL" Text="00:00" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#c5a600" FontSize="42" />
                 </StackLayout>
-                <StackLayout BackgroundColor="#0D47A1" VerticalOptions="FillAndExpand">
+                <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand">
                     <ListView x:Name="ExcercisesLV" ItemSelected="ExcercisesLV_ItemSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextCell TextColor="White"  DetailColor="#008EFF" Text="{Binding ExcerciseName}" Detail="{Binding Reps}"></TextCell>
+                                <TextCell TextColor="#c5a600"  DetailColor="#fcd734" Text="{Binding ExcerciseName}" Detail="{Binding Reps}"></TextCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
                 <StackLayout Margin="0,0,0,10" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
-                    <Button x:Name="Done" Text="START"  HorizontalOptions="FillAndExpand" BackgroundColor="White" TextColor="#008EFF" FontAttributes="Bold" Clicked="Done_Clicked" />
+                    <Button x:Name="Done" Text="START"  HorizontalOptions="FillAndExpand" BackgroundColor="#fdd835" TextColor="Black" FontAttributes="Bold" Clicked="Done_Clicked" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

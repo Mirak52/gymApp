@@ -55,6 +55,7 @@ namespace gymApp.pages
         {
             if(string.IsNullOrEmpty(HeightE.Text) && string.IsNullOrEmpty(WeightE.Text) && string.IsNullOrEmpty(WaistE.Text) && string.IsNullOrEmpty(ThighE.Text) && string.IsNullOrEmpty(BicepsE.Text))
             {
+                ErrorL.TextColor = Color.FromHex("#FF4081");
                 ErrorL.Text = "Nevložil si data";
             }
             else
@@ -80,7 +81,7 @@ namespace gymApp.pages
             if (App.IsNumber(ThighE.Text)) { bodyStat.ThighCircumference = App.setNumber(ThighE.Text); } else { ErrorL.Text = "Zadej pouze číslo"; }
             if (App.IsNumber(BicepsE.Text)) { bodyStat.BicepsCircumference = App.setNumber(BicepsE.Text); } else { ErrorL.Text = "Zadej pouze číslo"; }
             bodyStat.Date = DateE.Date.ToString();
-            bodyStat.Date = bodyStat.Date.Remove(bodyStat.Date.Length - 12);
+            bodyStat.Date = bodyStat.Date.Remove(bodyStat.Date.Length - 8);
             App.DatabaseBodyStats.SaveItemAsync(bodyStat);
         }
         private void SendR_Clicked(object sender, EventArgs e)
@@ -91,6 +92,7 @@ namespace gymApp.pages
         {
             if (string.IsNullOrEmpty(BenchpressE.Text) && string.IsNullOrEmpty(DeathliftE.Text) && string.IsNullOrEmpty(SquatE.Text))
             {
+                ErrorL.TextColor = Color.FromHex("#FF4081");
                 ErrorL.Text = "Nevložil si data";
             }
             else
@@ -115,7 +117,7 @@ namespace gymApp.pages
             if (App.IsNumber(DeathliftE.Text)) { personalRecord.Deathlift = App.setNumber(DeathliftE.Text); } else { ErrorL.Text = "Zadej pouze číslo"; }
             if (App.IsNumber(SquatE.Text)) { personalRecord.Squat = App.setNumber(SquatE.Text); } else { ErrorL.Text = "Zadej pouze číslo"; }
             personalRecord.Date = DateR.Date.ToString();
-            personalRecord.Date= personalRecord.Date.Remove(personalRecord.Date.Length - 12);
+            personalRecord.Date= personalRecord.Date.Remove(personalRecord.Date.Length - 8);
             App.DatabasePersonalRecord.SaveItemAsync(personalRecord);
         }
     }

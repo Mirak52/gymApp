@@ -73,9 +73,6 @@
     <Compile Include="pages\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\registration.xaml.cs">
-      <DependentUpon>registration.xaml</DependentUpon>
-    </Compile>
     <Compile Include="pages\StatsPage.xaml.cs">
       <DependentUpon>StatsPage.xaml</DependentUpon>
     </Compile>
@@ -156,12 +153,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="pages\registration.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="pages\MenuPage.xaml">

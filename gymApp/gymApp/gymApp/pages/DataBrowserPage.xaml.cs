@@ -27,8 +27,8 @@ namespace gymApp.pages
             {
                 if (BodyStat.Date != null)
                 {
-                    BodyStatsList.Add(new BodyStats { Combination = "Váha: " + BodyStat.Weight + "Kg Obvod pasu: " + BodyStat.WaistCircumference + "CM Obvod stehna: " + BodyStat.ThighCircumference + "CM Obvod bicepsu: " + BodyStat.BicepsCircumference + "CM", Date = BodyStat.Date });
-                }
+                    BodyStatsList.Add(new BodyStats { Combination ="Výška: "+BodyStat.Height+ "CM Váha: " + BodyStat.Weight + "Kg Obvod pasu: " + BodyStat.WaistCircumference + "CM", Date = BodyStat.Date + " Obvod stehna: " + BodyStat.ThighCircumference + "CM bicepsu: " + BodyStat.BicepsCircumference + "CM" });
+                    }
             }
             BodyStatsLV.ItemsSource = BodyStatsList;
 
