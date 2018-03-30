@@ -2,35 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="gymApp.pages.StatsPage"
-             BackgroundColor="#2196f3">
+             BackgroundColor="LightGray">
     <ContentPage.Content>
         <Grid Margin="10,10,10,10" >
-            <StackLayout Grid.Column="0" Grid.Row="1">
-                <Label/>
-                <Picker x:Name="Picker" TextColor="#ffff6b"  Grid.Column="0" Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="Center" WidthRequest="200" SelectedIndexChanged="Picker_SelectedIndexChanged" Title="Vyber zadávání" />
-            </StackLayout>
+            <StackLayout Grid.Row="1" Grid.RowSpan="8" BackgroundColor="White" Margin="15,10,15,10"/>
 
-            <StackLayout x:Name="Stats" IsVisible="False" Grid.Column="0" Grid.Row="0" Grid.RowSpan="1"  Margin="15,10,15,10"  >
-                <Label  x:Name="ErrorL"  Text="SLEDOVANÉ ÚDAJE" Margin="0,20,10,0" FontSize="Medium" TextColor="#fcd734" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <StackLayout Grid.Column="0" Grid.Row="1" >
+                <Label/>
+                <Picker x:Name="Picker" TextColor="#c5a600"  Grid.Column="0" Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="Center" WidthRequest="200" SelectedIndexChanged="Picker_SelectedIndexChanged" Title="Vyber zadávání" />
             </StackLayout>
-            <StackLayout x:Name="BodyStats" IsVisible="False" Grid.Column="0" Grid.Row="2" Grid.RowSpan="7" Margin="15,10,15,10" >
-                <Entry x:Name="WeightE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož váhu (kg)" TextColor="#ffff6b" PlaceholderColor="#c5a600"/>
-                <Entry x:Name="HeightE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož výšku (cm)" TextColor="#ffff6b" PlaceholderColor="#c5a600"/>
-                <Entry x:Name="WaistE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod pasu (cm)" TextColor="#ffff6b" PlaceholderColor="#c5a600"/>
-                <Entry x:Name="ThighE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod stehna (cm)" TextColor="#ffff6b" PlaceholderColor="#c5a600"/>
-                <Entry x:Name="BicepsE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod bicepsu (cm)" TextColor="#ffff6b" PlaceholderColor="#c5a600"/>
-                <DatePicker TextColor="#ffff6b" Margin="10,0,0,0" x:Name="DateE"/>
+              <StackLayout x:Name="Stats" IsVisible="False" Grid.Column="0" Grid.Row="0" Grid.RowSpan="1"  Margin="15,10,15,10"  >
+                <Label  x:Name="ErrorL"  Text="SLEDOVANÉ ÚDAJE" Margin="0,20,10,0" FontSize="Medium" TextColor="#c5a600" FontAttributes="Bold" HorizontalOptions="Center"/>
+            </StackLayout>
+            <StackLayout x:Name="BodyStats"  IsVisible="False" Grid.Column="0" Grid.Row="2" Grid.RowSpan="7" Margin="15,10,15,10" >
+                <Entry x:Name="WeightE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož váhu (kg)" TextColor="#c5a600" PlaceholderColor="#c5a600"/>
+                <Entry x:Name="HeightE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož výšku (cm)" TextColor="#c5a600" PlaceholderColor="#c5a600"/>
+                <Entry x:Name="WaistE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod pasu (cm)" TextColor="#c5a600" PlaceholderColor="#c5a600"/>
+                <Entry x:Name="ThighE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod stehna (cm)" TextColor="#c5a600" PlaceholderColor="#c5a600"/>
+                <Entry x:Name="BicepsE" Keyboard="Numeric" Margin="10,0,10,0" Placeholder="Vlož obvod bicepsu (cm)" TextColor="#c5a600" PlaceholderColor="#c5a600"/>
+                <DatePicker TextColor="#c5a600" Margin="10,0,0,0" x:Name="DateE"/>
                 
             </StackLayout>
             <Button x:Name="SendB" IsVisible="False" Grid.Row="9" BackgroundColor="#fdd835" TextColor="Black"  FontAttributes="Bold" Text="Odeslat" VerticalOptions="CenterAndExpand" Clicked="SendB_Clicked"/>
 
             <StackLayout x:Name="Records" IsVisible="False" Grid.Column="0" Grid.Row="2" Grid.RowSpan="7" Margin="15,10,15,10" >
-                <Entry x:Name="BenchpressE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="#ffff6b" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Bench-press (kg)"/>
-                <Entry x:Name="DeathliftE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="#ffff6b" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Death-lift (kg)"/>
-                <Entry x:Name="SquatE" Keyboard="Numeric" Margin="10,0,10,0" TextColor="#ffff6b" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Dřep (kg)"/>
-                <DatePicker TextColor="#ffff6b" Margin="10,0,0,0" x:Name="DateR"/>
+                <Entry x:Name="BenchpressE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Bench-press (kg)"/>
+                <Entry x:Name="DeathliftE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Death-lift (kg)"/>
+                <Entry x:Name="SquatE" Keyboard="Numeric" Margin="10,0,10,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Dřep (kg)"/>
+                <DatePicker TextColor="#c5a600" Margin="10,0,0,0" x:Name="DateR"/>
             </StackLayout>
-            <Button x:Name="SendR" IsVisible="False" Grid.Row="9" BackgroundColor="#fdd835" TextColor="Black" FontAttributes="Bold" Text="Odeslat" VerticalOptions="CenterAndExpand"  Clicked="SendR_Clicked"/>
+            <Button x:Name="SendR" IsVisible="False" Grid.Row="9" BackgroundColor="#c5a600" TextColor="Black" FontAttributes="Bold" Text="Odeslat" VerticalOptions="CenterAndExpand"  Clicked="SendR_Clicked"/>
             <Label Grid.Row="10"/>
         </Grid>
     </ContentPage.Content>
