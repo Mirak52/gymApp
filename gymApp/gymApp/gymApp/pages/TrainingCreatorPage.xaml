@@ -47,7 +47,7 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout>
-                        <Button x:Name="Create" Text="Vytvořit trénink" BackgroundColor="#fdd835" TextColor="Black"  FontAttributes="Bold" Clicked="Create_Clicked" />
+                        <Button x:Name="Create" Text="Vytvořit trénink" BackgroundColor="#0069c0" TextColor="White"  FontAttributes="Bold" Clicked="Create_Clicked" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
@@ -63,7 +63,7 @@
                         <Entry x:Name="BenchpressE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Bench-press"/>
                         <Entry x:Name="DeathliftE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Death-lift"/>
                         <Entry x:Name="SquatE" Keyboard="Numeric" Margin="10,0,10,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Dřep"/>
-                        <Label x:Name="RecordInformations" IsVisible="False" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="White"/>
+                        <Label x:Name="RecordInformations" IsVisible="False" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="#c5a600"/>
                     </StackLayout>
                     <StackLayout Margin="10,10,10,0" BackgroundColor="White">
                         <Label Text="Vyber počet dnů v týdnu co můžeš trénovat" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#c5a600"/>
@@ -72,14 +72,19 @@
                         <Label x:Name="Warning" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text=""/>
                     </StackLayout>
                     <StackLayout Margin="10,0,10,10">
-                        <Button x:Name="GenerateTraining" Text="Vytvořit trénink" BackgroundColor="#fdd835" Pressed="GenerateTraining_Pressed" TextColor="Black" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" Clicked="GenerateTraining_Clicked" />
+                        <Button x:Name="GenerateTraining" Text="Vytvořit trénink" BackgroundColor="#0069c0" Pressed="GenerateTraining_Pressed" TextColor="White" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" Clicked="GenerateTraining_Clicked" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
             <ScrollView x:Name="Generating" IsVisible="False">
                 <Grid Margin="10,0,10,0">
                     <ActivityIndicator Grid.Row="1" x:Name="Indicator" IsVisible="True" Color="#c5a600" MinimumWidthRequest="150" MinimumHeightRequest="150" VerticalOptions="Center" HorizontalOptions="FillAndExpand" IsRunning="true" />
-                    <Label Grid.Row="2" x:Name="Informations" FontSize="Large" TextColor="#c5a600" IsVisible="True" Text="Generuji trénink"  HorizontalTextAlignment="Center"/>
+                    <StackLayout Grid.Row="2" Grid.RowSpan="3" BackgroundColor="White">
+                        <Label x:Name="Informations" FontSize="Large" TextColor="#c5a600" IsVisible="True" Text="Generuji trénink"  HorizontalTextAlignment="Center"/>
+                        <Label x:Name="NumberOfDays" FontSize="Large" TextColor="#c5a600" IsVisible="True" Text=""  HorizontalTextAlignment="Center"/>
+                        <Label x:Name="NumberOfSets" FontSize="Large" TextColor="#c5a600" IsVisible="True" Text=""  HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                    
                     <Button x:Name="Overview" Clicked="Overview_Clicked" IsVisible="False" Grid.Row="8" Text="Přejít přehled" BackgroundColor="#fdd835" TextColor="Black" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"  FontAttributes="Bold" />
                     <Label Grid.Row="9"/>
                 </Grid>

@@ -7,43 +7,43 @@
         <ContentPage.Content>
             <Grid Margin="10,10,10,10">
                 <StackLayout Grid.Column="0" BackgroundColor="White" Grid.Row="0" Grid.RowSpan="2"  Grid.ColumnSpan="2">
-                    <Label  Text="SLEDOVANÉ ÚDAJE" Margin="0,10,0,0" FontSize="Medium" TextColor="#fcd734" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label  Text="SLEDOVANÉ ÚDAJE" Margin="0,10,0,0" FontSize="Medium" TextColor="#c5a600" FontAttributes="Bold" HorizontalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  Grid.ColumnSpan="2" Margin="15,10,0,0" BackgroundColor="Transparent">
                     <Label FontSize="Medium"/>
-                    <Label TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium" Text="Váha"/>
-                    <Label TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium" Text="Výška"/>
-                    <Label TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium" Text="Obvod pasu"/>
-                    <Label TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium" Text="Obvod stehna"/>
-                    <Label TextColor="#c5a600" FontAttributes="Bold" FontSize="Medium" Text="Obvod bicepsu"/>
+                    <Label TextColor="#fdd835" FontAttributes="Bold" FontSize="Medium" Text="Váha"/>
+                    <Label TextColor="#fdd835" FontAttributes="Bold" FontSize="Medium" Text="Výška"/>
+                    <Label TextColor="#fdd835" FontAttributes="Bold" FontSize="Medium" Text="Obvod pasu"/>
+                    <Label TextColor="#fdd835" FontAttributes="Bold" FontSize="Medium" Text="Obvod stehna"/>
+                    <Label TextColor="#fdd835" FontAttributes="Bold" FontSize="Medium" Text="Obvod bicepsu"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="0,10,15,0" BackgroundColor="Transparent">
                     <Label FontSize="Medium"/>
-                    <Label x:Name="WeightL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#c5a600" Text="0"/>
-                    <Label x:Name="HeightL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#c5a600" Text="0"/>
-                    <Label x:Name="WaistL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#c5a600" Text="0"/>
-                    <Label x:Name="ThighL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#c5a600" Text="0"/>
-                    <Label x:Name="BicepsL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#c5a600" Text="0"/>
+                    <Label x:Name="WeightL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#fdd835" Text="0"/>
+                    <Label x:Name="HeightL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#fdd835" Text="0"/>
+                    <Label x:Name="WaistL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#fdd835" Text="0"/>
+                    <Label x:Name="ThighL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#fdd835" Text="0"/>
+                    <Label x:Name="BicepsL" FontAttributes="Bold" HorizontalOptions="End" FontSize="Medium" TextColor="#fdd835" Text="0"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="0" BackgroundColor="White"  Grid.Row="2" Grid.RowSpan="2"  Grid.ColumnSpan="2">
-                    <Label  Text="MAXIMÁLKY" Margin="0,10,0,0" FontSize="Medium" TextColor="#fcd734" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label  Text="MAXIMÁLKY" Margin="0,10,0,0" FontSize="Medium" TextColor="#c5a600" FontAttributes="Bold" HorizontalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Grid.Column="0" Grid.Row="2" Grid.RowSpan="2"  Grid.ColumnSpan="2" Margin="15,10,0,0" BackgroundColor="Transparent">
                     <Label/>
                     <Label/>
-                    <Label TextColor="#c5a600" FontSize="Medium" FontAttributes="Bold" Text="Bench-press"/>
-                    <Label TextColor="#c5a600" FontSize="Medium" FontAttributes="Bold" Text="Death-lift"/>
-                    <Label TextColor="#c5a600" FontSize="Medium" FontAttributes="Bold" Text="Dřep"/>
+                    <Label TextColor="#fdd835" FontSize="Medium" FontAttributes="Bold" Text="Bench-press"/>
+                    <Label TextColor="#fdd835" FontSize="Medium" FontAttributes="Bold" Text="Death-lift"/>
+                    <Label TextColor="#fdd835" FontSize="Medium" FontAttributes="Bold" Text="Dřep"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,15,0" BackgroundColor="Transparent">
                     <Label/>
                     <Label/>
-                    <Label x:Name="BenchL" FontSize="Medium" HorizontalOptions="End" FontAttributes="Bold" TextColor="#c5a600" Text="0"/>
-                    <Label x:Name="DeathL" FontSize="Medium" HorizontalOptions="End" FontAttributes="Bold" TextColor="#c5a600" Text="0"/>
-                    <Label x:Name="SquatL" FontSize="Medium" HorizontalOptions="End" FontAttributes="Bold" TextColor="#c5a600" Text="0"/>
+                    <Label x:Name="BenchL" FontSize="Medium" HorizontalOptions="End" FontAttributes="Bold" TextColor="#fdd835" Text="0"/>
+                    <Label x:Name="DeathL" FontSize="Medium" HorizontalOptions="End" FontAttributes="Bold" TextColor="#fdd835" Text="0"/>
+                    <Label x:Name="SquatL" FontSize="Medium" HorizontalOptions="End" FontAttributes="Bold" TextColor="#fdd835" Text="0"/>
                 </StackLayout>
                 <Button x:Name="AddStats" Grid.Row="4" Text="Zadej další záznam" BackgroundColor="#0069c0" TextColor="White" FontAttributes="Bold" Clicked="AddStats_Clicked"  Grid.Column="0" Grid.ColumnSpan="2" />
             </Grid>
@@ -57,8 +57,8 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Button Grid.Column="0" Grid.Row="0" BackgroundColor="#fdd835" x:Name="Workout" Clicked="Workout_Clicked" Text="TRÉNINKOVÝ PLÁN"/>
-                <Button Grid.Column="1" Grid.Row="0" BackgroundColor="#fdd835" x:Name="QuickTraining" Clicked="QuickTraining_Clicked" Text="RYCHLÝ TRÉNINK"/>
+                <Button Grid.Column="0" Grid.Row="0" BackgroundColor="#0069c0" TextColor="White"  x:Name="Workout" Clicked="Workout_Clicked" Text="TRÉNINKOVÝ PLÁN"/>
+                <Button Grid.Column="1" Grid.Row="0" BackgroundColor="#0069c0" TextColor="White"  x:Name="QuickTraining" Clicked="QuickTraining_Clicked" Text="RYCHLÝ TRÉNINK"/>
                 <Button Grid.Column="0" Grid.Row="1" BackgroundColor="#0069c0" TextColor="White" Clicked="Hiit_Clicked" x:Name="HIIT" Text="HIIT"/>
                 <Button Grid.Column="1" Grid.Row="1" BackgroundColor="#0069c0" TextColor="White"  x:Name="DataBrowser" Text="PŘEHLED ÚDAJŮ" Clicked="DataBrowser_Clicked"/>
                 <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#0069c0" TextColor="White" x:Name="TrainingOverview" Text="PROHLÍŽEČ TRÉNINKŮ" Clicked="TrainingOverview_Clicked"/>

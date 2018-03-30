@@ -32,13 +32,13 @@
 
                 <StackLayout Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" Grid.RowSpan="2" />
                 <Label x:Name="timer" Text="00:00" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" HorizontalTextAlignment="Center" FontSize="30" FontAttributes="Bold" TextColor="#c5a600" VerticalTextAlignment="Center" />
-                <Button x:Name="startCounting" Text="ZAČÍT" Grid.Column="0" Grid.ColumnSpan="5" TextColor="Black" Grid.Row="8"  FontSize="Large" FontAttributes="Bold" VerticalOptions="EndAndExpand" BackgroundColor="#fdd835" Clicked="startCounting_Clicked"/>
+                <Button x:Name="startCounting" Text="ZAČÍT" Grid.Column="0" Grid.ColumnSpan="5" TextColor="White" Grid.Row="8"  FontSize="Large" FontAttributes="Bold" VerticalOptions="EndAndExpand" BackgroundColor="#0069c0" Clicked="startCounting_Clicked"/>
             </Grid>
             <Grid x:Name="gridCountdown" Margin="10,10,10,10" IsVisible="False">
                 <Label x:Name="action" Grid.Column="0" Grid.Row="2" FontAttributes="Bold" TextColor="#ffff6b" Text="PŘIPRAV SE" FontSize="40"  HorizontalOptions="Center"/>
                 <Label x:Name="countDownActual" Grid.Column="0" Grid.Row="3" Grid.RowSpan="1" VerticalTextAlignment="Center"  Text="00:00" TextColor="#ffff6b" FontSize="40" HorizontalOptions="Center"/>
                 <Label x:Name="countDown" Grid.Column="0" Grid.Row="4" Grid.RowSpan="1" VerticalTextAlignment="Center"  Text="00:00" TextColor="#ffff6b" FontSize="25" HorizontalOptions="Center"/>
-                <Button x:Name="cancelCouting" Clicked="cancelCouting_Clicked" Grid.Column="0" Grid.Row="8" TextColor="Black" Text="ZASTAVIT" FontSize="Large" FontAttributes="Bold" BackgroundColor="#fdd835"/>
+                <Button x:Name="cancelCouting" Clicked="cancelCouting_Clicked" Grid.Column="0" Grid.Row="8" TextColor="White" Text="ZASTAVIT" FontSize="Large" FontAttributes="Bold" BackgroundColor="#0069c0"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

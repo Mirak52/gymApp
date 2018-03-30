@@ -9,7 +9,7 @@
                 <StackLayout Grid.Row="0" x:Name="TrainingUnits" IsVisible="True" Margin="10,10,10,0" BackgroundColor="White">
                     <Label TextColor="#fcd734" Text="Tréninkové plány" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center"/>
                     <Label/>
-                    <ListView x:Name="TrainingUnitsLV" ItemSelected="TrainingUnitsLV_ItemSelected">
+                    <ListView x:Name="TrainingUnitsLV" Margin="10,0,10,0" ItemSelected="TrainingUnitsLV_ItemSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextCell TextColor="#c5a600" DetailColor="#fcd734" Text="{Binding Title}" Detail="{Binding CreatedDate}"></TextCell>
@@ -24,7 +24,7 @@
                     <StackLayout Grid.Row="0">
                         <Label x:Name="TrainingUnitName"  TextColor="#fcd734" FontAttributes="Bold" FontSize="Large" Text="Tréninkové sety" HorizontalTextAlignment="Center"/>
                         <Label/>
-                        <ListView x:Name="DaysLV" ItemSelected="DaysLV_ItemSelected" VerticalOptions="FillAndExpand">
+                        <ListView x:Name="DaysLV" Margin="10,0,10,0" ItemSelected="DaysLV_ItemSelected" VerticalOptions="FillAndExpand">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <TextCell TextColor="#c5a600"  DetailColor="#fcd734" Text="{Binding MainExcercise}" Detail="{Binding State}"></TextCell>
@@ -33,14 +33,14 @@
                         </ListView>
                     </StackLayout>
                     <Button x:Name="Done" Clicked="Done_Clicked" Text="Označit jako splněno" VerticalOptions="End" BackgroundColor="#fdd835" TextColor="Black"  FontAttributes="Bold" />
-                    <Button x:Name="BackToTraininUnits" Clicked="BackToTraininUnits_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="#fdd835" TextColor="Black"  FontAttributes="Bold" />
+                    <Button x:Name="BackToTraininUnits" Clicked="BackToTraininUnits_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="#0069c0" TextColor="White"  FontAttributes="Bold" />
                 </StackLayout>
 
                 <StackLayout x:Name="Sets" IsVisible="False" Margin="10,10,10,0" BackgroundColor="White">
                     <StackLayout>
-                        <Label x:Name="MainExcerciseName"  TextColor="#fcd734" FontAttributes="Bold" FontSize="Large" Text="Tréninkové sety" HorizontalTextAlignment="Center"/>
+                        <Label x:Name="MainExcerciseName"   TextColor="#fcd734" FontAttributes="Bold" FontSize="Large" Text="Tréninkové sety" HorizontalTextAlignment="Center"/>
                         <Label/>
-                        <ListView x:Name="SetsLV" ItemSelected="SetsLV_ItemSelected" VerticalOptions="FillAndExpand">
+                        <ListView x:Name="SetsLV" Margin="5,0,5,0" ItemSelected="SetsLV_ItemSelected" VerticalOptions="FillAndExpand">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <TextCell TextColor="#c5a600"  DetailColor="#fcd734" Text="{Binding ExcerciseName}" Detail="{Binding Reps}"></TextCell>
@@ -48,7 +48,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-                    <Button Grid.Row="10" x:Name="BackToDays" Clicked="BackToDays_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="#fdd835" TextColor="Black"  FontAttributes="Bold" />
+                    <Button Grid.Row="10" x:Name="BackToDays" Clicked="BackToDays_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="#0069c0" TextColor="White"  FontAttributes="Bold" />
                     <Label Grid.Row="11"/>
                 </StackLayout>
 
@@ -61,7 +61,7 @@
                         <Label x:Name="Informations" IsVisible="False" TextColor="Red" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Medium" />
                     </StackLayout>
                     <Label/>
-                    <Button Grid.Row="8" x:Name="BackToSets" Clicked="BackToSets_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="#fdd835" TextColor="Black"  FontAttributes="Bold" />
+                    <Button Grid.Row="8" x:Name="BackToSets" Clicked="BackToSets_Clicked" Text="ZPĚT" VerticalOptions="End" BackgroundColor="#0069c0" TextColor="White"  FontAttributes="Bold" />
                     <Label Grid.Row="9"/>
                 </Grid>
             </Grid>

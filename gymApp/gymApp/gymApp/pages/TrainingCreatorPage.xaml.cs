@@ -357,6 +357,7 @@ namespace gymApp.pages
         {
             LongPlan.IsVisible = false;
             Generating.IsVisible = true;
+            NumberOfDays.Text = "Celkový počet tréninků: "  + (12 * App.setNumber(DaysNumbers.SelectedItem.ToString())).ToString();
         }
 
         private void SetRecordsClass(bool EntryUsed)
@@ -392,8 +393,8 @@ namespace gymApp.pages
             CreatePhaseThree();
 
             SaveSetsToDatabase();
-            
-          
+
+            NumberOfSets.Text = "Celkový počet sérií: "+ sets.Count.ToString();
         }
         public List<double> ListOfInfluence = new List<double>();
         private int Volume = 1;

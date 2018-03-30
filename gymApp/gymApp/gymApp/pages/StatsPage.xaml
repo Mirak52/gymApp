@@ -23,7 +23,7 @@
                 <DatePicker TextColor="#c5a600" Margin="10,0,0,0" x:Name="DateE"/>
                 
             </StackLayout>
-            <Button x:Name="SendB" IsVisible="False" Grid.Row="9" BackgroundColor="#fdd835" TextColor="Black"  FontAttributes="Bold" Text="Odeslat" VerticalOptions="CenterAndExpand" Clicked="SendB_Clicked"/>
+            <Button x:Name="SendB" IsVisible="False" Grid.Row="9" BackgroundColor="#0069c0" TextColor="White"  FontAttributes="Bold" Text="Odeslat" VerticalOptions="CenterAndExpand" Clicked="SendB_Clicked"/>
 
             <StackLayout x:Name="Records" IsVisible="False" Grid.Column="0" Grid.Row="2" Grid.RowSpan="7" Margin="15,10,15,10" >
                 <Entry x:Name="BenchpressE" Keyboard="Numeric" Margin="10,10,0,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Bench-press (kg)"/>
@@ -31,7 +31,7 @@
                 <Entry x:Name="SquatE" Keyboard="Numeric" Margin="10,0,10,0" TextColor="#c5a600" PlaceholderColor="#c5a600" Placeholder="Vlož maximálku na Dřep (kg)"/>
                 <DatePicker TextColor="#c5a600" Margin="10,0,0,0" x:Name="DateR"/>
             </StackLayout>
-            <Button x:Name="SendR" IsVisible="False" Grid.Row="9" BackgroundColor="#c5a600" TextColor="Black" FontAttributes="Bold" Text="Odeslat" VerticalOptions="CenterAndExpand"  Clicked="SendR_Clicked"/>
+            <Button x:Name="SendR" IsVisible="False" Grid.Row="9" BackgroundColor="#0069c0" TextColor="White" FontAttributes="Bold" Text="Odeslat" VerticalOptions="CenterAndExpand"  Clicked="SendR_Clicked"/>
             <Label Grid.Row="10"/>
         </Grid>
     </ContentPage.Content>
