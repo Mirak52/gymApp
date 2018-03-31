@@ -1,4 +1,6 @@
-﻿using gymApp.classes;
+﻿using Android.Net;
+using gymApp.classes;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +16,42 @@ namespace gymApp
         {
             InitializeComponent();
         }
+
+        private void CheckFirstRunStatus()
+        {
+            var updater = App.DatabaseUpdater.Select().Result;
+            if (!updater.Any())
+            {
+                if (!DoIHaveInternet())
+                {
+                    Informations.IsVisible = true;
+                    Indicator.IsVisible = false;
+                    Informations.Text = "Pro první vstup je nutný internet";
+                }
+                else
+                {
+                    Application.Current.MainPage = new pages.MenuPage();
+                }
+            }
+            else {
+                Application.Current.MainPage = new pages.MenuPage();
+            }
+          
+
+        }
+        public bool DoIHaveInternet()
+        {
+            return CrossConnectivity.Current.IsConnected;
+        }
+
         private void login_Clicked_1(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new pages.MenuPage();
+            CheckFirstRunStatus();
         }
         private void login_Pressed(object sender, EventArgs e)
         {
             Indicator.IsVisible = true;
+            Informations.Text= "Kontroluji aktualizace";
             Informations.IsVisible = true;
         }
     }

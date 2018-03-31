@@ -15,7 +15,7 @@ namespace gymApp
         {
             InitializeComponent();
             MainPage = new NavigationPage(new MainPage());
-            var rootPage = new NavigationPage(new pages.MenuPage());
+           // var rootPage = new NavigationPage(new pages.MenuPage());
         }
 
         protected override void OnStart()
