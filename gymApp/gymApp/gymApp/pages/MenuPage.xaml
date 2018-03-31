@@ -66,7 +66,7 @@
                 <Image  Grid.Column="0" Grid.Row="0" Margin="0,25,0,0" Source="weightlifting.png" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
                 <Label Grid.Column="0" Grid.Row="1" FontAttributes="Bold" Margin="0,15,0,0" HorizontalTextAlignment="Center" Text="TRÉNINKOVÝ PLÁN" TextColor="White" />
                 <Button Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  BackgroundColor="Transparent" x:Name="Workout" Clicked="Workout_Clicked"/>
-
+                
                 <Image  Grid.Column="1" Grid.Row="0" Margin="0,25,0,0" Source="runner.png" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
                 <Label Grid.Column="1" Grid.Row="1" FontAttributes="Bold" Margin="0,15,0,0" HorizontalTextAlignment="Center" Text="RYCHLÝ TRÉNINK" TextColor="White" />
                 <Button Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Transparent" x:Name="QuickTraining" Clicked="QuickTraining_Clicked"/>
