@@ -57,11 +57,32 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Button Grid.Column="0" Grid.Row="0" BackgroundColor="#0069c0" TextColor="White"  x:Name="Workout" Clicked="Workout_Clicked" Text="TRÉNINKOVÝ PLÁN"/>
-                <Button Grid.Column="1" Grid.Row="0" BackgroundColor="#0069c0" TextColor="White"  x:Name="QuickTraining" Clicked="QuickTraining_Clicked" Text="RYCHLÝ TRÉNINK"/>
-                <Button Grid.Column="0" Grid.Row="1" BackgroundColor="#0069c0" TextColor="White" Clicked="Hiit_Clicked" x:Name="HIIT" Text="HIIT"/>
-                <Button Grid.Column="1" Grid.Row="1" BackgroundColor="#0069c0" TextColor="White"  x:Name="DataBrowser" Text="PŘEHLED ÚDAJŮ" Clicked="DataBrowser_Clicked"/>
-                <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#0069c0" TextColor="White" x:Name="TrainingOverview" Text="PROHLÍŽEČ TRÉNINKŮ" Clicked="TrainingOverview_Clicked"/>
+                <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="#0069c0" />
+                <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="#0069c0" />
+                <StackLayout Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" BackgroundColor="#0069c0" />
+                <StackLayout Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" BackgroundColor="#0069c0" />
+                <StackLayout Grid.Column="0" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="#0069c0" />
+
+                <Image  Grid.Column="0" Grid.Row="0" Margin="0,25,0,0" Source="weightlifting.png" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Grid.Column="0" Grid.Row="1" FontAttributes="Bold" Margin="0,15,0,0" HorizontalTextAlignment="Center" Text="TRÉNINKOVÝ PLÁN" TextColor="White" />
+                <Button Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  BackgroundColor="Transparent" x:Name="Workout" Clicked="Workout_Clicked"/>
+
+                <Image  Grid.Column="1" Grid.Row="0" Margin="0,25,0,0" Source="runner.png" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Grid.Column="1" Grid.Row="1" FontAttributes="Bold" Margin="0,15,0,0" HorizontalTextAlignment="Center" Text="RYCHLÝ TRÉNINK" TextColor="White" />
+                <Button Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Transparent" x:Name="QuickTraining" Clicked="QuickTraining_Clicked"/>
+
+                <Image  Grid.Column="0" Grid.Row="2" Margin="0,25,0,0" Source="stopwatch.png" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Grid.Column="0" Grid.Row="3" FontAttributes="Bold" Margin="0,15,0,0"   HorizontalTextAlignment="Center" Text="HIIT" TextColor="White" />
+                <Button Grid.Column="0" Grid.Row="2" FontAttributes="Bold"  Grid.RowSpan="2" BackgroundColor="Transparent" Clicked="Hiit_Clicked" x:Name="HIIT" />
+
+                <Image  Grid.Column="1" Grid.Row="2" Margin="0,25,0,0" Source="note.png" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Grid.Column="1" Grid.Row="3" FontAttributes="Bold" Margin="0,15,0,0" HorizontalTextAlignment="Center" Text="PŘEHLED ÚDAJŮ" TextColor="White" />
+                <Button Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" BackgroundColor="Transparent" x:Name="DataBrowser"  Clicked="DataBrowser_Clicked"/>
+
+                <Image  Grid.Column="0" Grid.Row="4" Margin="0,25,0,0" Grid.ColumnSpan="2" Source="planning.png" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Grid.Column="0" Grid.Row="5" FontAttributes="Bold" Margin="0,15,0,0" FontSize="Medium" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Text="PROHLÍŽEČ TRÉNINKŮ" TextColor="White" />
+                <Button Grid.Column="0" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" x:Name="TrainingOverview" Clicked="TrainingOverview_Clicked"/>
+              
             </Grid>
         </ContentPage.Content>
     </ContentPage>
