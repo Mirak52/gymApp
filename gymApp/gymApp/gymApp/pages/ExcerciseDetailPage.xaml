@@ -7,7 +7,7 @@
         <Grid Margin="10,10,10,10">
             <Image  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="arrowLeft.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
             <Button Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" x:Name="GoToLeft" BackgroundColor="Transparent"  Clicked="GoToLeft_Clicked" HorizontalOptions="EndAndExpand" />
-            <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" x:Name="NameExcercise" VerticalTextAlignment="Center" FontSize="Large" TextColor="#c6a700" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="Ahoj"/>
+            <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" x:Name="NameExcercise" VerticalTextAlignment="Center" FontSize="Large" TextColor="#0069c0" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="Ahoj"/>
             <Image  Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" Source="arrowRight.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
             <Button Grid.Column="4" Grid.RowSpan="2" BackgroundColor="Transparent" Grid.Row="0" x:Name="GoToRight" Clicked="GoToRight_Clicked"/>
 

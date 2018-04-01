@@ -151,7 +151,8 @@ namespace gymApp.pages
         }
         private int actualTime = 0;
         private void startCountdown()
-        {     
+        {
+            action.Text = "PŘIPRAV SE";
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 actualTime++;
                 

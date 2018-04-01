@@ -89,7 +89,7 @@
     <ContentPage Title="CVIKY" >
         <ContentPage.Content>
             <Grid Margin="10,10,10,10">
-                <RelativeLayout Grid.Column="0" Grid.Row="0" BackgroundColor="White"/>
+                <StackLayout Grid.Column="0" Grid.Row="0" BackgroundColor="White"/>
                 <Entry  Grid.Column="0" Grid.Row="0" x:Name="exerciseSearch" Placeholder="Type excercise name" TextChanged="exerciseSearch_TextChanged" TextColor="#c6a700" FontAttributes="Bold" PlaceholderColor="#c6a700" />
 
                 <RelativeLayout Grid.Column="0" Grid.Row="1" Grid.RowSpan="8" BackgroundColor="White"/>
@@ -105,7 +105,7 @@
                                     <Frame OutlineColor="#c6a700" BackgroundColor="Transparent">
                                         <Label FontSize="Large"/>
                                     </Frame>
-                                    <Label TextColor="#fdd835"  FontFamily="Bold" FontSize="Large" Text="{Binding FirstInitial}" />
+                                    <Label TextColor="#0069c0" VerticalOptions="Center"  FontFamily="Bold" FontSize="Large" Text="{Binding FirstInitial}" />
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.GroupHeaderTemplate>
