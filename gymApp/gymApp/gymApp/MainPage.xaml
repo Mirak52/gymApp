@@ -8,10 +8,10 @@
     <Grid Margin="20,20,20,0">
         
         <StackLayout Grid.Row="0" Grid.RowSpan="2"  >
-            <Image BackgroundColor="Blue"/>
-
+            <Image Source="logo.png" HeightRequest="70" WidthRequest="70"/>
+            <Label Text="GymLab" HorizontalTextAlignment="Center" FontSize="42" TextColor="#fdd835" FontAttributes="Bold" />
         </StackLayout>
-        <StackLayout Grid.Row="2" Grid.RowSpan="6">
+        <StackLayout Grid.Row="3" Grid.RowSpan="5">
             <ActivityIndicator x:Name="Indicator" IsVisible="False" Color="White" MinimumWidthRequest="150" MinimumHeightRequest="150" HorizontalOptions="FillAndExpand" IsRunning="true" />
             <Label x:Name="Informations" FontSize="Large" TextColor="#ffff6b" FontAttributes="Bold" IsVisible="False" Text="Kontroluji aktualizace" HorizontalTextAlignment="Center"/>
             <Button x:Name="login" Grid.Row="4" Text="VSTOUPIT" Clicked="login_Clicked_1" Pressed="login_Pressed" VerticalOptions="EndAndExpand" BackgroundColor="#fdd835" TextColor="Black"  FontAttributes="Bold"  />
