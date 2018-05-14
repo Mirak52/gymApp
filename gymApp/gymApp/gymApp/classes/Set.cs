@@ -9,7 +9,6 @@ namespace gymApp.classes
 {
     public class Set
     {
-        //[PrimaryKey, AutoIncrement]
         public int ID_set { get; set; }
         public int ID_excercisePK { get; set; }
         public string ExcerciseName { get; set; }

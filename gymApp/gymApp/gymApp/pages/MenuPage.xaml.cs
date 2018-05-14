@@ -178,18 +178,19 @@ namespace gymApp.pages
                 ExcercisesLV.ItemsSource = data;
             }
         }
-
+        public static string ApiUrlExcercise = "https://student.sps-prosek.cz/~bastlma14/gymApp/Excercises.php";
+        public static string ApiUrlRegions = "https://student.sps-prosek.cz/~bastlma14/gymApp/Excercises.php?action=1";
         async Task<string> GetExcerciseJson()
         {
             HttpClient client = new HttpClient();
-            Task<string> getStringTask = client.GetStringAsync("https://student.sps-prosek.cz/~bastlma14/gymApp/Excercises.php");
+            Task<string> getStringTask = client.GetStringAsync(ApiUrlExcercise);
             string urlContents = await getStringTask;
             return urlContents;
         }
         async Task<string> GetRegionJson()
         {
             HttpClient client = new HttpClient();
-            Task<string> getStringTask = client.GetStringAsync("https://student.sps-prosek.cz/~bastlma14/gymApp/Excercises.php?action=1");
+            Task<string> getStringTask = client.GetStringAsync(ApiUrlRegions);
             string urlContents = await getStringTask;
             return urlContents;
         }
